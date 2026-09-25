@@ -1,0 +1,155 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Comments from '../../components/Comments.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
+
+const locale = post.data.lang === 'vi' ? 'vi-VN' : 'en-GB';
+const shown = post.data.date.toLocaleDateString(locale, {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+const canonical = new URL(`/blog/${post.id}/`, Astro.site).toString();
+const minutes = remarkPluginFrontmatter?.minutes;
+---
+
+<Base current="Blog" title={post.data.title} description={post.data.description}>
+  <article class="post">
+    <header class="wrap post__head">
+      <p class="post__kicker small muted">
+        <a href="/blog/">Blog</a>
+        <span aria-hidden="true">·</span>
+        <time datetime={post.data.date.toISOString()}>{shown}</time>
+        {minutes && (<><span aria-hidden="true">·</span><span>{minutes} min read</span></>)}
+        {post.data.lang === 'vi' && (<><span aria-hidden="true">·</span><span>Tiếng Việt</span></>)}
+      </p>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <p class="post__tags small muted">{post.data.tags.join(' · ')}</p>
+      )}
+    </header>
+
+    <div class="wrap">
+      <!-- .prose must be an inner element: putting it on .wrap itself would
+           combine max-width:40rem with the wrap's margin-inline:auto and
+           centre the reading column instead of aligning it to the heading. -->
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+
+    <div class="wrap">
+      <Comments url={canonical} />
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  /* Long-form reading column. Scoped to .prose so it cannot leak into the
+     rest of the site. */
+  .prose {
+    max-width: 40rem;
+    font-size: 1.02rem;
+    line-height: 1.72;
+  }
+
+  .prose > * + * { margin-top: 1.15em; }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    margin-top: 2.4em;
+    margin-bottom: 0.5em;
+    padding-top: 0.6em;
+    border-top: 1px solid var(--border);
+  }
+  .prose h3 { font-size: 1.15rem; margin-top: 1.9em; margin-bottom: 0.4em; }
+
+  .prose p { max-width: none; }
+  .prose strong { font-weight: 600; }
+
+  .prose ul, .prose ol { padding-left: 1.3em; }
+  .prose li + li { margin-top: 0.4em; }
+  .prose li::marker { color: var(--text-muted); }
+
+  .prose blockquote {
+    margin-inline: 0;
+    padding: 0.15em 0 0.15em 1.2em;
+    border-left: 2px solid var(--accent);
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  .prose img,
+  .prose video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .prose figure { margin: 2em 0; }
+  .prose figcaption {
+    margin-top: 0.6em;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .prose code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--bg-sunken);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.08em 0.32em;
+  }
+
+  .prose pre {
+    background: var(--bg-sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    overflow-x: auto;          /* wide code scrolls itself, not the page */
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+  .prose pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .prose th, .prose td {
+    text-align: left;
+    padding: 0.5em 0.8em 0.5em 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .prose th { font-weight: 600; color: var(--text); white-space: nowrap; }
+
+  .prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
+</style>
+
+<style>
+  .post__head { padding-block: clamp(2.5rem, 6vw, 3.5rem) 1.75rem; }
+  .post__kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .post__head h1 { max-width: 34rem; margin-bottom: 0.6rem; }
+  .post__head .lede { max-width: 38rem; }
+  .post__tags { margin-top: 1rem; }
+</style>

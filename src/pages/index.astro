@@ -1,0 +1,208 @@
+---
+import Base from '../layouts/Base.astro';
+import PhasePortrait from '../components/PhasePortrait.astro';
+import site from '../data/site.json';
+
+const pillars = [
+  {
+    kind: 'Living matter',
+    title: 'Steering cells with language',
+    body: 'Prompt-to-Intervention turns a free-form English sentence into a bioelectric intervention on a cellular collective. Sentence embeddings drive an evolved policy network; the reward is supplied by a vision–language model reading the outcome, so no behaviour has to be hand-specified in advance. It is the first demonstration of steering emergent cellular dynamics from language alone.',
+    meta: 'ZapGPT · P2I · funded by the U.S. Army Research Office',
+    href: '/research/#living',
+    links: [
+      { label: 'Code', href: 'https://github.com/namlehai90/ALife_ZapGPT' },
+      { label: 'Video', href: 'https://youtu.be/u58QZ6P1RUo' },
+    ],
+  },
+  {
+    kind: 'Markets',
+    title: 'Finding the phase boundary in price',
+    body: 'A market is a collective that reorganises without anyone deciding to. Theta treats it that way: it locates an instrument in a phase space, names the regime it is in, and says whether that regime is building or breaking — across several timeframes at once, resolved jointly rather than reconciled by eye. Built and running as three production platforms.',
+    meta: 'Theta · BunnyQuant · three production platforms',
+    href: '/bunnyquant/',
+    links: [{ label: 'theta.bunnyquant.com', href: 'https://theta.bunnyquant.com' }],
+  },
+];
+
+const selected = [
+  {
+    year: '2025',
+    title: 'Emergent Collective Reproduction via Evolving Neuronal Flocks',
+    note: 'Neural agents self-organise into flocks that divide — an evolutionary transition in individuality, arrived at without being asked for.',
+    venue: 'Northeast Journal of Complex Systems',
+    href: 'https://orb.binghamton.edu/nejcs/vol7/iss2/8',
+  },
+  {
+    year: '2025',
+    title: 'Decoupling Representation and Learning in Genetic Programming',
+    note: 'The LaSER approach: let the program describe the representation and let a learner do the fitting.',
+    venue: 'GPTP · arXiv:2505.17309',
+    href: 'https://arxiv.org/abs/2505.17309',
+  },
+  {
+    year: '2025',
+    title: 'Giving Simulated Cells a Voice',
+    note: 'Evolving prompt-to-intervention models for cellular control.',
+    venue: 'GECCO Companion, ACM',
+    href: 'https://arxiv.org/abs/2505.02766',
+  },
+];
+---
+
+<Base current="Home">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="hero__kicker mono">{site.role} · University of Vermont</p>
+        <h1>{site.name}<span class="hero__dot">.</span></h1>
+        <p class="lede hero__thesis">{site.thesis}</p>
+        <p class="hero__blurb">{site.blurb}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/research/">Research</a>
+          <a class="btn" href="/bunnyquant/">Ventures</a>
+          <a class="btn" href={site.links.cv}>CV (PDF)</a>
+        </div>
+      </div>
+
+      <div class="hero__viz">
+        <PhasePortrait />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">One question, two substrates</p>
+      <div class="thesis">
+        <p class="wide">
+          A flock of cells and a market are both collectives of parts that adapt to one another
+          without a plan. In both, the interesting events are not the averages but the
+          <strong>transitions</strong> — the moment a population commits to a new organisation, the
+          moment a regime turns over. My work is about characterising those transitions well enough
+          to detect them, and in the case of living matter, well enough to
+          <em>cause</em> them.
+        </p>
+        <p class="wide">
+          The methods travel between the two: evolutionary computation, dynamical-systems analysis,
+          and — more recently — foundation models used not as oracles but as
+          <strong>interfaces</strong>, translating human intent into interventions on a system that
+          has no notion of what we want.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="grid-2 pillars">
+        {pillars.map((p) => (
+          <article class="pillar">
+            <p class="pillar__kind mono">{p.kind}</p>
+            <h2 class="pillar__title"><a href={p.href}>{p.title}</a></h2>
+            <p>{p.body}</p>
+            <p class="pillar__meta small muted">{p.meta}</p>
+            <p class="pillar__links small">
+              {p.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <ol class="sel">
+        {selected.map((s) => (
+          <li class="sel__item">
+            <span class="sel__year mono">{s.year}</span>
+            <div>
+              <h3 class="sel__title"><a href={s.href}>{s.title}</a></h3>
+              <p class="sel__note">{s.note}</p>
+              <p class="sel__venue small muted">{s.venue}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p><a href="/publications/">All publications &rarr;</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(3rem, 8vw, 5.5rem) 3.5rem; }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero__kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.055em;
+    color: var(--text-muted);
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  .hero h1 { margin-bottom: 0.5rem; }
+  .hero__dot { color: var(--accent); }
+
+  .hero__thesis { margin-bottom: 1.35rem; }
+  .hero__blurb { color: var(--text-soft); max-width: 33rem; }
+
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.75rem; }
+
+  .hero__viz { display: flex; justify-content: flex-end; }
+
+  /* On one column the name leads; the portrait follows it rather than
+     pushing it below the fold. */
+  @media (max-width: 52rem) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__viz { justify-content: flex-start; }
+    .hero__actions { margin-bottom: 0.5rem; }
+  }
+
+  .thesis p { font-size: 1.02rem; color: var(--text-soft); }
+
+  .pillars { gap: 2.5rem 3rem; }
+
+  .pillar { border-top: 2px solid var(--accent); padding-top: 1.1rem; }
+  .pillar__kind {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  .pillar__title { font-size: 1.35rem; margin-bottom: 0.55rem; }
+  .pillar__title a { color: var(--text); border: 0; }
+  .pillar__title a:hover { color: var(--accent); }
+  .pillar p { max-width: none; }
+  .pillar__meta { margin-bottom: 0.4rem; }
+  .pillar__links { display: flex; gap: 1rem; margin: 0; }
+
+  .sel { list-style: none; margin: 0 0 1.75rem; padding: 0; }
+  .sel__item {
+    display: grid;
+    grid-template-columns: 3.75rem 1fr;
+    gap: 1.25rem;
+    padding-block: 1.15rem;
+    border-top: 1px solid var(--border);
+  }
+  .sel__item:last-child { border-bottom: 1px solid var(--border); }
+  .sel__year { color: var(--text-muted); font-size: 0.82rem; padding-top: 0.2rem; }
+  .sel__title { margin-bottom: 0.3rem; }
+  .sel__title a { color: var(--text); border: 0; }
+  .sel__title a:hover { color: var(--accent); }
+  .sel__note { margin-bottom: 0.25rem; color: var(--text-soft); max-width: 44rem; }
+  .sel__venue { margin: 0; }
+
+  @media (max-width: 34rem) {
+    .sel__item { grid-template-columns: 1fr; gap: 0.35rem; }
+  }
+</style>

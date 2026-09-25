@@ -1,0 +1,238 @@
+---
+// The hero's signature: an illustrative trajectory through a four-phase
+// state space, cycling clockwise.
+//
+// DELIBERATELY GENERIC. The curve is a decorative Lissajous figure, not the
+// Theta estimator, and nothing here encodes the real method — no state
+// definition, no thresholds, no time constants. This file ships its script
+// verbatim to the browser, comments included, so keep it that way.
+const { caption = true } = Astro.props;
+---
+
+<figure class="pp">
+  <canvas id="pp-canvas" class="pp__canvas" role="img"
+    aria-label="Animated illustration: a trajectory orbiting clockwise through four quadrants labelled strengthening, weakening, declining and recovery."></canvas>
+  {caption && (
+    <figcaption class="pp__cap small muted">
+      The four phases a regime moves through, cycling clockwise. Illustrative.
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .pp { margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .pp__canvas {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 26rem;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+  }
+
+  .pp__cap { max-width: 26rem; line-height: 1.5; }
+</style>
+
+<script is:inline>
+  (() => {
+    const canvas = document.getElementById('pp-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const GUIDE = 0.8;           // where the decorative guide lines sit
+    const DOMAIN = 1.25;         // plotted half-range
+    const TRAIL = 420;           // points retained in the fading trail
+
+    // Three incommensurate modes: dominant slow cycle plus two perturbations,
+    // so the orbit never exactly repeats but keeps a clear clockwise sense.
+    const MODES = [
+      { a: 0.72, w: 1.00, p: 0.0 },
+      { a: 0.17, w: 0.37, p: 1.7 },
+      { a: 0.07, w: 2.13, p: 0.6 },
+    ];
+    const WREF = MODES[0].w;
+
+    const px = (t) => MODES.reduce((s, m) => s + m.a * Math.sin(m.w * t + m.p), 0);
+    const py = (t) => MODES.reduce((s, m) => s + m.a * m.w * Math.cos(m.w * t + m.p), 0) / WREF;
+
+    let palette = {};
+    const readPalette = () => {
+      const cs = getComputedStyle(document.documentElement);
+      const v = (n) => cs.getPropertyValue(n).trim();
+      palette = {
+        border: v('--border'),
+        muted: v('--text-muted'),
+        accent: v('--accent'),
+        bg: v('--bg-raised'),
+        q: [v('--q-str'), v('--q-weak'), v('--q-decl'), v('--q-recv')],
+      };
+    };
+
+    let W = 0, H = 0;
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width) return;
+      W = rect.width;
+      H = rect.height;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const pad = () => Math.max(18, W * 0.085);
+    const sx = (x) => pad() + ((x + DOMAIN) / (2 * DOMAIN)) * (W - 2 * pad());
+    const sy = (y) => H - pad() - ((y + DOMAIN) / (2 * DOMAIN)) * (H - 2 * pad());
+
+    function drawFrame(t, trail) {
+      const p = pad();
+      const x0 = sx(-DOMAIN), x1 = sx(DOMAIN);
+      const y0 = sy(DOMAIN), y1 = sy(-DOMAIN);
+      const cx = sx(0), cy = sy(0);
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Quadrant tints, ordered: strengthening, weakening, declining, recovery.
+      const quads = [
+        [cx, y0, x1 - cx, cy - y0, palette.q[0]],
+        [cx, cy, x1 - cx, y1 - cy, palette.q[1]],
+        [x0, cy, cx - x0, y1 - cy, palette.q[2]],
+        [x0, y0, cx - x0, cy - y0, palette.q[3]],
+      ];
+      ctx.globalAlpha = 0.045;
+      for (const [x, y, w, h, colour] of quads) {
+        ctx.fillStyle = colour;
+        ctx.fillRect(x, y, w, h);
+      }
+      ctx.globalAlpha = 1;
+
+      // Decorative guide lines.
+      ctx.save();
+      ctx.setLineDash([3, 4]);
+      ctx.strokeStyle = palette.border;
+      ctx.lineWidth = 1;
+      for (const b of [-GUIDE, GUIDE]) {
+        ctx.beginPath();
+        ctx.moveTo(sx(b), y0);
+        ctx.lineTo(sx(b), y1);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Axes.
+      ctx.strokeStyle = palette.border;
+      ctx.lineWidth = 1.25;
+      ctx.beginPath();
+      ctx.moveTo(x0, cy); ctx.lineTo(x1, cy);
+      ctx.moveTo(cx, y0); ctx.lineTo(cx, y1);
+      ctx.stroke();
+
+      // Quadrant labels.
+      const fs = Math.max(8, Math.min(10.5, W * 0.031));
+      ctx.font = `600 ${fs}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+      ctx.fillStyle = palette.muted;
+      ctx.globalAlpha = 0.85;
+      const inset = fs * 0.9;
+      ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+      ctx.fillText('STRENGTHENING', x1 - inset, y0 + inset);
+      ctx.textBaseline = 'bottom';
+      ctx.fillText('WEAKENING', x1 - inset, y1 - inset);
+      ctx.textAlign = 'left';
+      ctx.fillText('DECLINING', x0 + inset, y1 - inset);
+      ctx.textBaseline = 'top';
+      ctx.fillText('RECOVERY', x0 + inset, y0 + inset);
+      ctx.globalAlpha = 1;
+
+      // Trail, oldest faintest.
+      ctx.lineWidth = 1.6;
+      ctx.lineCap = 'round';
+      for (let i = 1; i < trail.length; i++) {
+        const a = i / trail.length;
+        ctx.globalAlpha = a * a * 0.72;
+        ctx.strokeStyle = palette.accent;
+        ctx.beginPath();
+        ctx.moveTo(sx(trail[i - 1][0]), sy(trail[i - 1][1]));
+        ctx.lineTo(sx(trail[i][0]), sy(trail[i][1]));
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      // Current state.
+      const hx = sx(px(t)), hy = sy(py(t));
+      ctx.beginPath();
+      ctx.arc(hx, hy, 9, 0, Math.PI * 2);
+      ctx.fillStyle = palette.accent;
+      ctx.globalAlpha = 0.16;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.beginPath();
+      ctx.arc(hx, hy, 3.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = palette.bg;
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+    }
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let raf = null;
+    let t = 0;
+
+    const buildTrail = (end, n, step) => {
+      const pts = [];
+      for (let i = n; i >= 0; i--) {
+        const tt = end - i * step;
+        pts.push([px(tt), py(tt)]);
+      }
+      return pts;
+    };
+
+    const renderStatic = () => {
+      resize();
+      readPalette();
+      if (W) drawFrame(6.0, buildTrail(6.0, 900, 0.014));
+    };
+
+    const loop = () => {
+      t += 0.0075;
+      if (W) drawFrame(t, buildTrail(t, TRAIL, 0.014));
+      raf = requestAnimationFrame(loop);
+    };
+
+    const start = () => {
+      if (raf !== null) return;
+      if (reduced.matches) { renderStatic(); return; }
+      raf = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+    };
+
+    const boot = () => { resize(); readPalette(); if (reduced.matches) renderStatic(); else start(); };
+
+    // Only animate while on screen and while the tab is visible.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        for (const e of entries) e.isIntersecting ? start() : stop();
+      }, { threshold: 0.05 }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { resize(); if (reduced.matches) renderStatic(); }, 120);
+    });
+
+    // Keep canvas colours in step with the theme toggle and with the OS.
+    new MutationObserver(() => { readPalette(); if (reduced.matches) renderStatic(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', () => { readPalette(); if (reduced.matches) renderStatic(); });
+    reduced.addEventListener('change', () => { stop(); boot(); });
+
+    boot();
+  })();
+</script>

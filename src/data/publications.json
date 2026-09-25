@@ -1,0 +1,221 @@
+{
+  "note": "Single source of truth for every publication listed on the site. Keep in sync with /Volumes/DATA/postdoc/CV/cv_nam_le.tex.",
+  "groups": [
+    {
+      "id": "journal",
+      "title": "Journal Articles",
+      "items": [
+        {
+          "authors": "Nam H. Le, M. Levin, R. A. Watson, J. Bongard, C. L. Buckley",
+          "title": "Emergent Collective Reproduction via Evolving Neuronal Flocks",
+          "venue": "Northeast Journal of Complex Systems, Vol. 7, No. 2, Article 8",
+          "year": "2025",
+          "links": [
+            {
+              "label": "Full text",
+              "href": "https://orb.binghamton.edu/nejcs/vol7/iss2/8"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/namlehai90/Evolving-Neuronal-Flocks"
+            },
+            {
+              "label": "Video",
+              "href": "https://www.youtube.com/watch?v=0fqAUwj0fDk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter",
+      "title": "Book Chapters",
+      "items": [
+        {
+          "authors": "Nam H. Le, Josh Bongard",
+          "title": "Decoupling Representation and Learning in Genetic Programming: The LaSER Approach",
+          "venue": "Genetic Programming Theory and Practice XXII, Springer Nature Singapore",
+          "year": "2026",
+          "links": [
+            {
+              "label": "Preprint (arXiv:2505.17309)",
+              "href": "https://arxiv.org/abs/2505.17309"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preprint",
+      "title": "Preprints",
+      "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "Organismal Agency and Rapid Adaptation: The Phenopoiesis Algorithm for Phenotype-First Evolution",
+          "venue": "arXiv:2602.00978",
+          "year": "2026",
+          "links": [
+            {
+              "label": "Preprint",
+              "href": "https://arxiv.org/abs/2602.00978"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio",
+      "title": "Bio-Inspired AI and Language-Based Control",
+      "items": [
+        {
+          "authors": "K. Kannan Srinivasan, Nam H. Le, Josh Bongard, Douglas Blackiston",
+          "title": "Evolving Agents to Generate and Falsify Hypotheses of Biological Self-Assembly",
+          "venue": "ALIFE 2025: Proceedings of the Artificial Life Conference, MIT Press, Kyoto, Japan",
+          "year": "October 2025",
+          "links": [
+            {
+              "label": "Paper",
+              "href": "https://direct.mit.edu/isal/proceedings/isal2025/37/24/134091"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
+          "title": "ZapGPT: Free-form Language Prompting for Simulated Cellular Control",
+          "venue": "Proceedings of the 2025 8th International Conference on Computational Intelligence and Intelligent Systems (CIIS 2025), ACM, pp. 119–126",
+          "year": "November 2025",
+          "links": [
+            {
+              "label": "Code",
+              "href": "https://github.com/namlehai90/ALife_ZapGPT"
+            },
+            {
+              "label": "Video",
+              "href": "https://youtu.be/u58QZ6P1RUo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neuro",
+      "title": "Neuroevolution and Multi-Agent Learning",
+      "items": [
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "Social Learning vs Self-teaching in a Multi-agent Neural Network System",
+          "venue": "Applications of Evolutionary Computation, Springer, pp. 354–368",
+          "year": "2020"
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Evolving Self-taught Neural Networks: The Baldwin Effect and the Emergence of Intelligence",
+          "venue": "AISB Symposium on AI & Games",
+          "year": "2019"
+        }
+      ]
+    },
+    {
+      "id": "alife",
+      "title": "Artificial Life and Evolution",
+      "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "Organic Selection and Social Heredity: The Original Baldwin Effect Revisited",
+          "venue": "ALIFE 2019 Conference Proceedings, MIT Press",
+          "year": "2019"
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "title": "Learning Strategies in Evolutionary Optimisation",
+      "items": [
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "Evolutionary Consequences of Learning Strategies in a Dynamic Rugged Landscape",
+          "venue": "GECCO Proceedings, ACM",
+          "year": "2019"
+        },
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "How Learning Strategies Can Promote an Evolving Population in Dynamic Environments",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2019"
+        },
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "The Evolution of Self-taught Neural Networks in a Multi-agent Environment",
+          "venue": "EvoStar",
+          "year": "2019",
+          "award": "Best Paper nominee"
+        },
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "How the Baldwin Effect Can Guide Evolution in Dynamic Environments",
+          "venue": "Theory and Practice of Natural Computing (TPNC)",
+          "year": "2018"
+        },
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "Adaptive Advantage of Learning Strategies: A Study Through Dynamic Landscape",
+          "venue": "Parallel Problem Solving from Nature (PPSN XV)",
+          "year": "2018"
+        },
+        {
+          "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
+          "title": "The Baldwin Effect Reconsidered Through the Prism of Social Learning",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2018",
+          "award": "Best Student Paper nominee"
+        }
+      ]
+    },
+    {
+      "id": "gp",
+      "title": "Genetic Programming and Representation Learning",
+      "items": [
+        {
+          "authors": "Nam H. Le, M. O'Neill, A. Brabazon",
+          "title": "Social Grammatical Evolution with Imitation Learning for Real-Valued Function Estimation",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2017"
+        },
+        {
+          "authors": "Nam H. Le, H. N. Xuan, A. Brabazon, T. P. Thi",
+          "title": "Complexity Measures in Genetic Programming Learning: A Brief Review",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2016"
+        }
+      ]
+    },
+    {
+      "id": "companion",
+      "title": "Workshop, Companion and Short Papers",
+      "items": [
+        {
+          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
+          "title": "Giving Simulated Cells a Voice: Evolving Prompt-to-Intervention Models for Cellular Control",
+          "venue": "GECCO Companion Proceedings (poster track), ACM",
+          "year": "2025",
+          "links": [
+            {
+              "label": "PDF",
+              "href": "https://arxiv.org/abs/2505.02766"
+            },
+            {
+              "label": "Video",
+              "href": "https://youtu.be/t2juNHTRs-o"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Evolution and Self-teaching in Neural Networks",
+          "venue": "GECCO Companion Proceedings (poster track), ACM",
+          "year": "2019"
+        }
+      ]
+    }
+  ]
+}

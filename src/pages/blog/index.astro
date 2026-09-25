@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const langs = [...new Set(posts.map((p) => p.data.lang))];
+const fmt = (d, lang) =>
+  d.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-GB', {
+    year: 'numeric', month: 'long', day: 'numeric',
+  });
+---
+
+<Base
+  current="Blog"
+  title="Blog"
+  description="Notes on evolutionary computation, artificial life, and complex adaptive systems — including work not yet in a paper. In English and Vietnamese."
+>
+  <section class="head">
+    <div class="wrap">
+      <h1>Blog</h1>
+      <p class="lede">
+        Working notes — ideas, results and arguments that are not in a paper yet, or that a paper
+        has no room for. Written in English or Vietnamese, whichever the thought arrived in.
+      </p>
+      <p class="head__feed small muted">
+        <a href="/rss.xml">RSS feed</a>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      {langs.length > 1 && (
+        <div class="filter" role="group" aria-label="Filter posts by language">
+          <button type="button" class="filter__btn is-on" data-lang="all">All</button>
+          {langs.includes('en') && (<button type="button" class="filter__btn" data-lang="en">English</button>)}
+          {langs.includes('vi') && (<button type="button" class="filter__btn" data-lang="vi">Tiếng Việt</button>)}
+        </div>
+      )}
+
+      {posts.length === 0 ? (
+        <p class="muted">No posts yet.</p>
+      ) : (
+        <ol class="posts">
+          {posts.map((p) => (
+            <li class="post" data-lang={p.data.lang}>
+              <div class="post__meta">
+                <time class="mono" datetime={p.data.date.toISOString()}>{fmt(p.data.date, p.data.lang)}</time>
+                {p.data.lang === 'vi' && <span class="post__lang">Tiếng Việt</span>}
+                {p.data.draft && <span class="post__draft">draft</span>}
+              </div>
+              <div>
+                <h2 class="post__title"><a href={`/blog/${p.id}/`}>{p.data.title}</a></h2>
+                <p class="post__desc">{p.data.description}</p>
+                {p.data.tags.length > 0 && (
+                  <p class="post__tags small muted">{p.data.tags.join(' · ')}</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 2rem; }
+  .head h1 { margin-bottom: 0.7rem; }
+  .head__feed { margin-top: 1rem; }
+
+  .filter { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .filter__btn {
+    padding: 0.32rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.84rem;
+    cursor: pointer;
+  }
+  .filter__btn:hover { color: var(--text); border-color: var(--border-strong); }
+  .filter__btn.is-on { background: var(--accent-soft); border-color: var(--accent); color: var(--text); }
+
+  .posts { list-style: none; margin: 0; padding: 0; }
+  .post {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0.5rem 2rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .post:last-child { border-bottom: 1px solid var(--border); }
+  .post[hidden] { display: none; }
+
+  .post__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+    padding-top: 0.25rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+  .post__lang, .post__draft {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 0.02rem 0.35rem;
+  }
+  .post__draft { color: var(--amber); border-color: var(--amber); }
+
+  .post__title { font-size: 1.28rem; margin-bottom: 0.35rem; }
+  .post__title a { color: var(--text); border: 0; }
+  .post__title a:hover { color: var(--accent); }
+  .post__desc { margin-bottom: 0.35rem; color: var(--text-soft); max-width: 42rem; }
+  .post__tags { margin: 0; }
+
+  @media (max-width: 42rem) {
+    .post { grid-template-columns: 1fr; gap: 0.35rem; }
+    .post__meta { flex-direction: row; align-items: center; gap: 0.6rem; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const buttons = document.querySelectorAll('.filter__btn');
+    if (!buttons.length) return;
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const want = btn.dataset.lang;
+        buttons.forEach((b) => b.classList.toggle('is-on', b === btn));
+        document.querySelectorAll('.post').forEach((p) => {
+          p.hidden = want !== 'all' && p.dataset.lang !== want;
+        });
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,174 @@
+---
+import Base from '../layouts/Base.astro';
+
+const strands = [
+  {
+    id: 'living',
+    kind: 'Language-driven control of living systems',
+    title: 'Prompt-to-Intervention',
+    lead: 'Can you tell a cellular collective what to do, in ordinary English, and have it comply?',
+    body: [
+      'Prompt-to-Intervention (P2I) is an architecture that maps a free-form sentence onto a bioelectric intervention on a collective of cells. A sentence embedding conditions a multi-head convolutional policy network, whose parameters are found by CMA-ES. The crucial move is the reward: rather than hand-specifying a target pattern, a vision–language model reads the resulting behaviour and scores how well it matches the prompt. Nothing about the target has to be written down in advance.',
+      'The system generalises past its training prompts, which is the part that matters. Instructions it has never seen still land on the intended behaviour more often than not — evidence that what is being learned is a mapping between semantic space and dynamical space, not a lookup table.',
+      'The current work takes this off the simulator. Xenobots — self-assembling constructs built from living cells — are the target, and the question is whether an ordinary English instruction can elicit a prescribed change in how one moves. That work is validated against archival behavioural recordings, with live assays underway at Tufts. A patent application has been filed through the University of Vermont, and the method and results are held back until prosecution and peer review are done.',
+    ],
+    meta: [
+      ['Project', '“Giving Cells a Voice”, funded by the U.S. Army Research Office'],
+      ['With', 'Josh Bongard (UVM), Michael Levin (Tufts), Douglas Blackiston (Tufts)'],
+      ['Systems', 'ZapGPT · P2I · Xenobots'],
+      ['Status', 'Patent application filed · manuscripts under review'],
+    ],
+    links: [
+      { label: 'Code', href: 'https://github.com/namlehai90/ALife_ZapGPT' },
+      { label: 'Video', href: 'https://youtu.be/u58QZ6P1RUo' },
+      { label: 'Paper', href: 'https://arxiv.org/abs/2505.02766' },
+    ],
+  },
+  {
+    id: 'eti',
+    kind: 'Artificial life',
+    title: 'Evolutionary transitions in individuality',
+    lead: 'How does a population of individuals become one individual?',
+    body: [
+      'VitaNova is a simulation in which agents with evolving neural controllers self-organise into flocks — and then the flocks begin to reproduce as units, dividing to found daughter flocks. Role specialisation appears inside them without being selected for directly.',
+      'The point is not that the outcome is surprising; multicellularity and eusociality both happened. The point is that natural selection and self-organisation had to work together to produce it, and the model lets you take the two apart and watch what each contributes.',
+    ],
+    meta: [
+      ['Published', 'Northeast Journal of Complex Systems, 2025'],
+      ['With', 'Michael Levin, Richard A. Watson, Josh Bongard, Christopher L. Buckley'],
+    ],
+    links: [
+      { label: 'Paper', href: 'https://orb.binghamton.edu/nejcs/vol7/iss2/8' },
+      { label: 'Code', href: 'https://github.com/namlehai90/Evolving-Neuronal-Flocks' },
+      { label: 'Video', href: 'https://www.youtube.com/watch?v=0fqAUwj0fDk' },
+      { label: 'Talk', href: 'https://youtu.be/Q-yZ-IeZywg' },
+    ],
+  },
+  {
+    id: 'learning',
+    kind: 'Computational intelligence',
+    title: 'Learning, evolution, and the Baldwin effect',
+    lead: 'What does an individual’s ability to learn do to the population it belongs to?',
+    body: [
+      'My doctoral work concerned evolving self-taught neural networks: agents that generate their own training signal rather than receiving one from the environment. Across dynamic and rugged fitness landscapes, a consistent asymmetry appears — self-teaching buys robustness when the environment moves quickly, while social learning buys speed when it is comparatively stable.',
+      'This is the Baldwin effect examined as an engineering question rather than a historical one: not whether it happened, but under what conditions learning is worth its cost to a population.',
+    ],
+    meta: [
+      ['Thesis', 'Learning and Evolution in Dynamic Environments (UCD, 2022)'],
+      ['Venues', 'GECCO · PPSN · IEEE CEC · EvoStar · ALIFE'],
+    ],
+    links: [{ label: 'Code', href: 'https://github.com/namlehai90/Evolving-Self-taght-Architectures' }],
+  },
+  {
+    id: 'markets',
+    kind: 'Dynamical systems for markets',
+    title: 'Phase transitions in price',
+    lead: 'The same transition question, asked of a different collective.',
+    body: [
+      'A market reorganises without anyone deciding that it should — which makes it, formally, the same kind of object as the collectives above. I treat it as a dynamical system with identifiable regimes, so that the question stops being “is this reading high or low” and becomes “which regime is this, and is it building or breaking”.',
+      'Working this way makes several timeframes resolvable as one object rather than several charts to reconcile, and makes the set of possible turning-point events enumerable instead of interpretive — including the transition that starts and then fails, which is the common case and the one most approaches discard as noise.',
+      'This strand is commercial rather than academic: the method is proprietary and unpublished. It is built and running as Theta.',
+    ],
+    meta: [
+      ['Status', 'Proprietary · unpublished'],
+      ['Validated on', 'Equity indices, index futures, cryptocurrencies'],
+      ['Shipped as', 'theta.bunnyquant.com'],
+    ],
+    links: [
+      { label: 'Theta', href: 'https://theta.bunnyquant.com' },
+      { label: 'More on the venture', href: '/bunnyquant/' },
+    ],
+  },
+];
+---
+
+<Base
+  current="Research"
+  title="Research"
+  description="Evolutionary computation, artificial life, language-driven control of living systems, and dynamical-systems analysis of markets."
+>
+  <section class="head">
+    <div class="wrap">
+      <h1>Research</h1>
+      <p class="lede">
+        Four strands, one question: how coherent behaviour arises in a collective that nobody is
+        directing — and what it takes to steer it once it has.
+      </p>
+    </div>
+  </section>
+
+  {strands.map((s) => (
+    <section id={s.id}>
+      <div class="wrap strand">
+        <div class="strand__aside">
+          <p class="strand__kind mono">{s.kind}</p>
+          <dl class="meta">
+            {s.meta.map(([k, v]) => (
+              <div class="meta__row">
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="strand__main">
+          <h2>{s.title}</h2>
+          <p class="strand__lead">{s.lead}</p>
+          {s.body.map((para) => (<p class="wide">{para}</p>))}
+          <p class="strand__links small">
+            {s.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+          </p>
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 2.5rem; }
+  .head h1 { margin-bottom: 0.7rem; }
+
+  .strand {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 2rem 3rem;
+    align-items: start;
+  }
+
+  .strand__kind {
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+    line-height: 1.5;
+  }
+
+  .meta { margin: 0; font-size: 0.85rem; }
+  .meta__row { padding-block: 0.55rem; border-top: 1px solid var(--border); }
+  .meta dt {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+  .meta dd { margin: 0; color: var(--text-soft); line-height: 1.45; }
+
+  .strand__main h2 { margin-bottom: 0.45rem; }
+  .strand__lead {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    max-width: 38rem;
+    margin-bottom: 1.15rem;
+  }
+  .strand__links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin: 1.25rem 0 0; }
+
+  @media (max-width: 52rem) {
+    .strand { grid-template-columns: 1fr; gap: 1.5rem; }
+    .strand__aside { order: 2; }
+  }
+</style>

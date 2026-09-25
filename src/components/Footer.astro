@@ -1,0 +1,55 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div>
+      <p class="foot__name">{site.name}, {site.credential}</p>
+      <p class="foot__line muted small">{site.role} · {site.location}</p>
+    </div>
+
+    <nav class="foot__links small" aria-label="Elsewhere">
+      <a href={`mailto:${site.email}`}>Email</a>
+      <a href={site.links.scholar}>Google Scholar</a>
+      <a href={site.links.github}>GitHub</a>
+      <a href={site.links.cv}>CV (PDF)</a>
+    </nav>
+  </div>
+
+  <div class="wrap foot__base small muted">
+    <span>&copy; {year} {site.name}</span>
+    <span class="mono">drnamlabs.com</span>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    border-top: 1px solid var(--border);
+    background: var(--bg-sunken);
+    padding-block: 2.5rem 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .foot__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .foot__name { font-family: var(--serif); font-size: 1.05rem; margin: 0 0 0.15rem; }
+  .foot__line { margin: 0; }
+
+  .foot__links { display: flex; flex-wrap: wrap; gap: 1.15rem; align-items: flex-start; }
+
+  .foot__base {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+</style>

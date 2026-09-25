@@ -1,0 +1,16 @@
+{
+  "name": "drnamlabs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "drnamlabs.com — personal site of Nam H. Le, Ph.D.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "./deploy.sh"
+  },
+  "dependencies": {
+    "astro": "^5.16.2"
+  }
+}

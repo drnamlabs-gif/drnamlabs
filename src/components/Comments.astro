@@ -1,0 +1,82 @@
+---
+// Remark42, self-hosted on the same box at /remark42/. Readers comment with
+// a display name; no third party sees the thread or the addresses.
+//
+// The widget is loaded only when it scrolls into view, so a reader who never
+// reaches the bottom of a post never pays for it.
+const { url } = Astro.props;
+---
+
+<section class="comments" id="comments">
+  <h2 class="comments__head">Comments</h2>
+  <p class="comments__note small muted">
+    Questions, corrections and disagreement are all welcome — especially on the unpublished work.
+  </p>
+  <div id="remark42"></div>
+  <noscript>
+    <p class="small muted">Comments need JavaScript enabled.</p>
+  </noscript>
+</section>
+
+<style>
+  .comments {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .comments__head { font-size: 1.3rem; margin-bottom: 0.35rem; }
+  .comments__note { margin-bottom: 1.5rem; max-width: 34rem; }
+  #remark42 { min-height: 6rem; }
+</style>
+
+<script is:inline define:vars={{ pageUrl: url }}>
+  (() => {
+    const host = 'https://drnamlabs.com/remark42';
+    const mount = document.getElementById('remark42');
+    if (!mount) return;
+
+    const currentTheme = () => {
+      const explicit = document.documentElement.getAttribute('data-theme');
+      if (explicit) return explicit;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      window.remark_config = {
+        host,
+        site_id: 'drnamlabs',
+        url: pageUrl,
+        components: ['embed'],
+        max_shown_comments: 50,
+        theme: currentTheme(),
+        locale: 'en',
+        show_email_subscription: false,
+      };
+      const s = document.createElement('script');
+      s.src = host + '/web/embed.js';
+      s.defer = true;
+      document.head.appendChild(s);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) { load(); io.disconnect(); }
+        }
+      }, { rootMargin: '300px' });
+      io.observe(mount);
+    } else {
+      load();
+    }
+
+    // Keep the widget in step with the site's theme toggle.
+    new MutationObserver(() => {
+      if (window.REMARK42 && window.REMARK42.changeTheme) {
+        window.REMARK42.changeTheme(currentTheme());
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+</script>

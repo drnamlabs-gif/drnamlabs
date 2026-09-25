@@ -1,0 +1,190 @@
+---
+import Base from '../layouts/Base.astro';
+
+const platforms = [
+  {
+    host: 'bunnyquant.com',
+    href: 'https://bunnyquant.com',
+    market: 'United States',
+    body: 'Equities, cryptocurrencies, futures, and precious metals, for intraday and short-horizon trading. Regime and cycle detection, multi-timeframe structure, and risk measures that assume the distribution moves.',
+  },
+  {
+    host: 'bunnyquant.vn',
+    href: 'https://bunnyquant.vn',
+    market: 'Vietnam',
+    body: 'Listed equities and index derivatives, plus a fundamental-analysis engine built for the local market: discounted cash flow, Monte Carlo valuation, financial-statement parsing and peer-relative comparison.',
+  },
+  {
+    host: 'theta.bunnyquant.com',
+    href: 'https://theta.bunnyquant.com',
+    market: 'Cross-market',
+    body: 'Theta — market phase transitions. The applied form of the dynamical-systems work below, covering Vietnamese equities and derivatives, cryptocurrencies, and U.S. equities and futures.',
+  },
+];
+
+// Capability only. The method behind Theta is unpublished and stays that
+// way: no state variables, no thresholds, no estimator, no measured rates.
+// If a line here would help someone rebuild it, it does not belong on a
+// public page.
+const results = [
+  {
+    n: '01',
+    head: 'A regime, not a reading',
+    body: 'Most tools answer “is this high or low right now?”. Theta answers a different question: which regime is this instrument in, and is that regime strengthening or coming apart? The output is a position in a phase space and a direction of travel through it, not a number to compare against a threshold.',
+  },
+  {
+    n: '02',
+    head: 'Timeframes that agree with each other',
+    body: 'Reading several timeframes usually means reading several charts and reconciling them by eye. Theta treats the timeframes as one object and resolves them jointly, so the answer does not depend on which chart you happened to open first — and disagreement between fast and slow becomes information rather than confusion.',
+  },
+  {
+    n: '03',
+    head: 'A finite vocabulary of transitions',
+    body: 'Because the state space has structure, the set of things that can happen at a turning point is enumerable rather than a matter of interpretation: regime changes, early turning points, transitions that begin and fail, shocks, and propagation from faster timeframes to slower ones. Each is named, detected, and alerted separately.',
+  },
+  {
+    n: '04',
+    head: 'The failed transition is a first-class event',
+    body: 'Most momentum reversals do not lead anywhere. Treating them as noise throws away a signal; treating them as regime changes produces false alarms. Theta classifies them as their own category — which is what makes it usable for continuation as well as for reversal.',
+  },
+];
+---
+
+<Base
+  current="Ventures"
+  title="BunnyQuant"
+  description="BunnyQuant — three production quantitative-analytics platforms for the U.S. and Vietnamese markets, founded and built by Nam H. Le."
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="eyebrow">Founder and developer</p>
+      <h1>BunnyQuant</h1>
+      <p class="lede">
+        Three production platforms for retail traders in two markets. Each ships as a live web
+        application with a companion native iOS app, served by one shared research codebase — so
+        the numbers on your phone and the numbers in the browser cannot drift apart.
+      </p>
+      <p class="head__note">
+        Built and operated single-handedly: the quantitative research, the backends, the front ends,
+        the mobile clients, the data infrastructure, and the servers they run on.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="plats">
+        {platforms.map((p) => (
+          <article class="plat">
+            <p class="plat__market mono">{p.market}</p>
+            <h2 class="plat__host"><a href={p.href}>{p.host}</a></h2>
+            <p>{p.body}</p>
+            <p class="plat__ships small muted">Web application · native iOS app</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What makes Theta different</p>
+      <h2 class="th__title">Built on dynamical systems, not on chart patterns</h2>
+      <p class="lede th__lede">
+        Theta is not a repackaged indicator. It comes out of my own research on how complex
+        adaptive systems change state — the same work described under Research. Four things
+        follow from that.
+      </p>
+
+      <ol class="results">
+        {results.map((r) => (
+          <li class="result">
+            <span class="result__n mono">{r.n}</span>
+            <div>
+              <h3>{r.head}</h3>
+              <p class="wide">{r.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <p class="small muted th__foot">
+        Validated across equity indices, index futures and cryptocurrencies. The underlying method
+        is proprietary and unpublished; the four-phase cycle it produces is the app’s icon.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How it is built</p>
+      <div class="grid-2">
+        <div>
+          <h3>Engineering</h3>
+          <p>
+            Python and FastAPI backends with TTL caching, Next.js front ends, React Native and
+            SwiftUI clients rendering phase portraits in hand-drawn SVG, PostgreSQL with row-level
+            security, background scanning services with push alerting, subscription billing, and
+            Linux/nginx deployment with managed TLS.
+          </p>
+        </div>
+        <div>
+          <h3>Data</h3>
+          <p>
+            Databento CME tick data, FRED macroeconomic series and CBOE options chains for the
+            United States; VCI exchange feeds and financial statements for Vietnam; OKX for
+            cryptocurrencies. Three markets, three time conventions — reconciled once, in one place,
+            so a session boundary in Ho Chi Minh City is not silently read as UTC.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 2.5rem; }
+  .head h1 { margin-bottom: 0.7rem; }
+  .head__note { color: var(--text-soft); max-width: 40rem; margin-top: 1.1rem; }
+
+  .plats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 2.25rem 2.5rem;
+  }
+
+  .plat { border-top: 2px solid var(--accent); padding-top: 1rem; }
+  .plat__market {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.45rem;
+  }
+  .plat__host { font-family: var(--mono); font-size: 1.02rem; font-weight: 500; margin-bottom: 0.6rem; }
+  .plat__host a { color: var(--text); border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .plat__host a:hover { color: var(--accent); }
+  .plat p { max-width: none; font-size: 0.95rem; }
+  .plat__ships { margin: 0; }
+
+  .th__title { margin-bottom: 0.5rem; }
+  .th__lede { margin-bottom: 2rem; }
+  .th__foot { margin-top: 1.75rem; max-width: 40rem; }
+
+  .results { list-style: none; margin: 0; padding: 0; }
+  .result {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .result:last-child { border-bottom: 1px solid var(--border); }
+  .result__n { color: var(--accent); font-size: 0.9rem; padding-top: 0.15rem; }
+  .result h3 { margin-bottom: 0.4rem; }
+  .result p { margin: 0; color: var(--text-soft); }
+
+  @media (max-width: 34rem) {
+    .result { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+</style>
