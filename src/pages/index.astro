@@ -1,27 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
 import PhasePortrait from '../components/PhasePortrait.astro';
+import FlockCanvas from '../components/FlockCanvas.astro';
+import LearningCanvas from '../components/LearningCanvas.astro';
 import site from '../data/site.json';
 
-const pillars = [
+const tiles = [
   {
     kind: 'Living matter',
     title: 'Steering cells with language',
-    body: 'Prompt-to-Intervention turns a free-form English sentence into a bioelectric intervention on a cellular collective. Sentence embeddings drive an evolved policy network; the reward is supplied by a vision–language model reading the outcome, so no behaviour has to be hand-specified in advance. It is the first demonstration of steering emergent cellular dynamics from language alone.',
-    meta: 'ZapGPT · P2I · funded by the U.S. Army Research Office',
     href: '/research/#living',
-    links: [
-      { label: 'Code', href: 'https://github.com/namlehai90/ALife_ZapGPT' },
-      { label: 'Video', href: 'https://youtu.be/u58QZ6P1RUo' },
-    ],
+    media: 'image',
+    src: '/research/living-pipeline.png',
+    alt: 'The Prompt-to-Intervention pipeline: a sentence, a policy network, a bioelectric intervention, a vision–language model scoring the result.',
+  },
+  {
+    kind: 'Embodied agents',
+    title: 'Language-driven control, in a body',
+    href: '/research/#embodied',
+    media: 'video',
+    src: '/research/embodied-loop',
+    alt: 'A Pac-Man-style agent following a language instruction through a maze.',
+  },
+  {
+    kind: 'Artificial life',
+    title: 'Flocks that reproduce as units',
+    href: '/research/#eti',
+    media: 'flock',
+  },
+  {
+    kind: 'Computational intelligence',
+    title: 'Learning, evolution, and the Baldwin effect',
+    href: '/research/#learning',
+    media: 'learning',
   },
   {
     kind: 'Markets',
     title: 'Finding the phase boundary in price',
-    body: 'A market is a collective that reorganises without anyone deciding to. Theta treats it that way: it locates an instrument in a phase space, names the regime it is in, and says whether that regime is building or breaking — across several timeframes at once, resolved jointly rather than reconciled by eye. Built and running as three production platforms.',
-    meta: 'Theta · BunnyQuant · three production platforms',
-    href: '/bunnyquant/',
-    links: [{ label: 'theta.bunnyquant.com', href: 'https://theta.bunnyquant.com' }],
+    href: '/research/#markets',
+    media: 'portrait',
+  },
+  {
+    kind: 'Embodied agents',
+    title: 'A physical Braitenberg vehicle',
+    comingSoon: true,
+  },
+  {
+    kind: 'Computational intelligence',
+    title: 'Evolving free-energy self-modelling networks',
+    comingSoon: true,
   },
 ];
 
@@ -66,14 +93,14 @@ const selected = [
       </div>
 
       <div class="hero__viz">
-        <PhasePortrait />
+        <PhasePortrait href="/research/#markets" />
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <p class="eyebrow">One question, two substrates</p>
+      <p class="eyebrow">One question, several substrates</p>
       <div class="thesis">
         <p class="wide">
           A flock of cells and a market are both collectives of parts that adapt to one another
@@ -84,7 +111,7 @@ const selected = [
           <em>cause</em> them.
         </p>
         <p class="wide">
-          The methods travel between the two: evolutionary computation, dynamical-systems analysis,
+          The methods travel across them: evolutionary computation, dynamical-systems analysis,
           and — more recently — foundation models used not as oracles but as
           <strong>interfaces</strong>, translating human intent into interventions on a system that
           has no notion of what we want.
@@ -95,17 +122,33 @@ const selected = [
 
   <section>
     <div class="wrap">
-      <div class="grid-2 pillars">
-        {pillars.map((p) => (
-          <article class="pillar">
-            <p class="pillar__kind mono">{p.kind}</p>
-            <h2 class="pillar__title"><a href={p.href}>{p.title}</a></h2>
-            <p>{p.body}</p>
-            <p class="pillar__meta small muted">{p.meta}</p>
-            <p class="pillar__links small">
-              {p.links.map((l) => (<a href={l.href}>{l.label}</a>))}
-            </p>
-          </article>
+      <p class="eyebrow">Research, at a glance</p>
+      <div class="tile-grid">
+        {tiles.map((t) => t.comingSoon ? (
+          <div class="tile tile--soon">
+            <p class="tile__kind mono">{t.kind}</p>
+            <p class="tile__title">{t.title}</p>
+            <p class="tile__soon-tag small">Coming soon</p>
+          </div>
+        ) : (
+          <a class="tile" href={t.href} aria-label={`${t.kind}: ${t.title}`}>
+            <div class="tile__media">
+              {t.media === 'image' && <img src={t.src} alt={t.alt} class="tile__img" loading="lazy" />}
+              {t.media === 'video' && (
+                <video class="tile__vid" muted loop playsinline preload="metadata" aria-label={t.alt}>
+                  <source src={`${t.src}.webm`} type="video/webm" />
+                  <source src={`${t.src}.mp4`} type="video/mp4" />
+                </video>
+              )}
+              {t.media === 'flock' && <FlockCanvas />}
+              {t.media === 'learning' && <LearningCanvas />}
+              {t.media === 'portrait' && <PhasePortrait caption={false} />}
+            </div>
+            <div class="tile__label">
+              <p class="tile__kind mono">{t.kind}</p>
+              <p class="tile__title">{t.title}</p>
+            </div>
+          </a>
         ))}
       </div>
     </div>
@@ -130,6 +173,27 @@ const selected = [
     </div>
   </section>
 </Base>
+
+<script is:inline>
+  (() => {
+    const videos = document.querySelectorAll('video.tile__vid');
+    if (!videos.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduced.matches) return; // leave paused on the first frame
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        }
+      }, { threshold: 0.15 });
+      videos.forEach((v) => io.observe(v));
+    } else {
+      videos.forEach((v) => v.play().catch(() => {}));
+    }
+  })();
+</script>
 
 <style>
   .hero { padding-block: clamp(3rem, 8vw, 5.5rem) 3.5rem; }
@@ -169,22 +233,97 @@ const selected = [
 
   .thesis p { font-size: 1.02rem; color: var(--text-soft); }
 
-  .pillars { gap: 2.5rem 3rem; }
-
-  .pillar { border-top: 2px solid var(--accent); padding-top: 1.1rem; }
-  .pillar__kind {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 0.5rem;
+  .tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
   }
-  .pillar__title { font-size: 1.35rem; margin-bottom: 0.55rem; }
-  .pillar__title a { color: var(--text); border: 0; }
-  .pillar__title a:hover { color: var(--accent); }
-  .pillar p { max-width: none; }
-  .pillar__meta { margin-bottom: 0.4rem; }
-  .pillar__links { display: flex; gap: 1rem; margin: 0; }
+
+  .tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: var(--text);
+  }
+  .tile:hover { border-color: var(--accent); }
+
+  .tile__media {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    background: var(--bg-raised);
+  }
+  .tile__img, .tile__vid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* PhasePortrait ships its own max-width/aspect-ratio for the hero; inside a
+     tile it needs to fill the tile instead. */
+  .tile__media :global(.pp) { width: 100%; height: 100%; margin: 0; }
+  .tile__media :global(.pp__canvas) {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  .tile__img {
+    animation: tile-pan 14s ease-in-out infinite alternate;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile__img { animation: none; }
+  }
+  @keyframes tile-pan {
+    from { transform: scale(1.06) translate(0, 0); }
+    to { transform: scale(1.16) translate(-1.5%, -1.5%); }
+  }
+
+  .tile__label {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+  }
+  .tile__kind {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 0.2rem;
+  }
+  .tile__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .tile--soon {
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem;
+    color: var(--text-muted);
+  }
+  .tile--soon .tile__kind { color: var(--accent); }
+  .tile--soon .tile__title { color: var(--text-soft); font-weight: 600; font-size: 0.95rem; }
+  .tile__soon-tag {
+    margin: 0.6rem 0 0;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+  }
 
   .sel { list-style: none; margin: 0 0 1.75rem; padding: 0; }
   .sel__item {

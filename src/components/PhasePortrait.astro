@@ -6,12 +6,19 @@
 // Theta estimator, and nothing here encodes the real method — no state
 // definition, no thresholds, no time constants. This file ships its script
 // verbatim to the browser, comments included, so keep it that way.
-const { caption = true } = Astro.props;
+const { caption = true, href } = Astro.props;
 ---
 
 <figure class="pp">
-  <canvas id="pp-canvas" class="pp__canvas" role="img"
-    aria-label="Animated illustration: a trajectory orbiting clockwise through four quadrants labelled strengthening, weakening, declining and recovery."></canvas>
+  {href ? (
+    <a class="pp__link" href={href} aria-label="View the markets research">
+      <canvas class="pp__canvas" role="img"
+        aria-label="Animated illustration: a trajectory orbiting clockwise through four quadrants labelled strengthening, weakening, declining and recovery."></canvas>
+    </a>
+  ) : (
+    <canvas class="pp__canvas" role="img"
+      aria-label="Animated illustration: a trajectory orbiting clockwise through four quadrants labelled strengthening, weakening, declining and recovery."></canvas>
+  )}
   {caption && (
     <figcaption class="pp__cap small muted">
       The four phases a regime moves through, cycling clockwise. Illustrative.
@@ -33,11 +40,14 @@ const { caption = true } = Astro.props;
   }
 
   .pp__cap { max-width: 26rem; line-height: 1.5; }
+
+  .pp__link { display: block; border: 0; }
+  .pp__link:hover .pp__canvas { border-color: var(--accent); }
 </style>
 
 <script is:inline>
   (() => {
-    const canvas = document.getElementById('pp-canvas');
+    const canvas = document.currentScript.closest('.pp').querySelector('.pp__canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;

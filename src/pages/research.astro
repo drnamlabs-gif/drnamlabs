@@ -25,6 +25,23 @@ const strands = [
     ],
   },
   {
+    id: 'embodied',
+    kind: 'Embodied dynamical agents',
+    title: 'Language-driven control of embodied agents',
+    lead: 'Does the same trick work on something that has to move through a world?',
+    body: [
+      'Convince-not-control extends here from a bioelectric field acting on a cluster of cells to a driven Kuramoto oscillator whose coupling and forcing terms act on a Braitenberg-style vehicle. A reactive coach re-issues its instruction as the vehicle’s own state drifts, which is closer to how the cellular version actually has to work than a single open-loop prompt is.',
+      'Skills compose zero-shot: a vehicle trained to move right and one trained to avoid a wall combine into one that does both, without retraining on the combination. Tested first on 2D maze and lava-crossing tasks, where a wrong correction ends the episode outright rather than merely costing some reward.',
+      'This is the rehearsal track for a physical Braitenberg vehicle: the simulated substrate here stands in for one where the dynamics cannot be reset between attempts.',
+    ],
+    meta: [
+      ['Substrate', 'Driven Kuramoto oscillator → Braitenberg vehicle'],
+      ['Tasks', '2D maze · lava-crossing (MiniGrid-style)'],
+      ['Status', 'Simulated; physical vehicle in progress'],
+    ],
+    links: [],
+  },
+  {
     id: 'eti',
     kind: 'Artificial life',
     title: 'Evolutionary transitions in individuality',
@@ -91,7 +108,7 @@ const strands = [
     <div class="wrap">
       <h1>Research</h1>
       <p class="lede">
-        Four strands, one question: how coherent behaviour arises in a collective that nobody is
+        Five strands, one question: how coherent behaviour arises in a collective that nobody is
         directing — and what it takes to steer it once it has.
       </p>
     </div>
@@ -116,9 +133,11 @@ const strands = [
           <h2>{s.title}</h2>
           <p class="strand__lead">{s.lead}</p>
           {s.body.map((para) => (<p class="wide">{para}</p>))}
-          <p class="strand__links small">
-            {s.links.map((l) => (<a href={l.href}>{l.label}</a>))}
-          </p>
+          {s.links.length > 0 && (
+            <p class="strand__links small">
+              {s.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+            </p>
+          )}
         </div>
       </div>
     </section>
