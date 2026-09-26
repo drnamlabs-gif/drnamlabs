@@ -47,7 +47,7 @@ const { caption = true, href } = Astro.props;
 
 <script is:inline>
   (() => {
-    const canvas = document.currentScript.closest('.pp').querySelector('.pp__canvas');
+    const canvas = document.currentScript.previousElementSibling.querySelector('.pp__canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;

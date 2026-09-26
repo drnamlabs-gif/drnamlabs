@@ -8,11 +8,11 @@ import site from '../data/site.json';
 const tiles = [
   {
     kind: 'Living matter',
-    title: 'Steering cells with language',
+    title: 'Steering biobots with language',
     href: '/research/#living',
-    media: 'image',
-    src: '/research/living-pipeline.png',
-    alt: 'The Prompt-to-Intervention pipeline: a sentence, a policy network, a bioelectric intervention, a vision–language model scoring the result.',
+    media: 'video',
+    src: '/research/living-loop',
+    alt: 'A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.',
   },
   {
     kind: 'Embodied agents',
@@ -78,48 +78,6 @@ const selected = [
 ---
 
 <Base current="Home">
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="hero__kicker mono">{site.role} · University of Vermont</p>
-        <h1>{site.name}<span class="hero__dot">.</span></h1>
-        <p class="lede hero__thesis">{site.thesis}</p>
-        <p class="hero__blurb">{site.blurb}</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="/research/">Research</a>
-          <a class="btn" href="/bunnyquant/">Ventures</a>
-          <a class="btn" href={site.links.cv}>CV (PDF)</a>
-        </div>
-      </div>
-
-      <div class="hero__viz">
-        <PhasePortrait href="/research/#markets" />
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <p class="eyebrow">One question, several substrates</p>
-      <div class="thesis">
-        <p class="wide">
-          A flock of cells and a market are both collectives of parts that adapt to one another
-          without a plan. In both, the interesting events are not the averages but the
-          <strong>transitions</strong> — the moment a population commits to a new organisation, the
-          moment a regime turns over. My work is about characterising those transitions well enough
-          to detect them, and in the case of living matter, well enough to
-          <em>cause</em> them.
-        </p>
-        <p class="wide">
-          The methods travel across them: evolutionary computation, dynamical-systems analysis,
-          and — more recently — foundation models used not as oracles but as
-          <strong>interfaces</strong>, translating human intent into interventions on a system that
-          has no notion of what we want.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <section>
     <div class="wrap">
       <p class="eyebrow">Research, at a glance</p>
@@ -150,6 +108,48 @@ const selected = [
             </div>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__viz">
+        <PhasePortrait href="/research/#markets" />
+      </div>
+
+      <div class="hero__text">
+        <p class="hero__kicker mono">{site.role} · University of Vermont</p>
+        <h1>{site.name}<span class="hero__dot">.</span></h1>
+        <p class="lede hero__thesis">{site.thesis}</p>
+        <p class="hero__blurb">{site.blurb}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/research/">Research</a>
+          <a class="btn" href="/bunnyquant/">Ventures</a>
+          <a class="btn" href={site.links.cv}>CV (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">One question, several substrates</p>
+      <div class="thesis">
+        <p class="wide">
+          A flock of cells and a market are both collectives of parts that adapt to one another
+          without a plan. In both, the interesting events are not the averages but the
+          <strong>transitions</strong> — the moment a population commits to a new organisation, the
+          moment a regime turns over. My work is about characterising those transitions well enough
+          to detect them, and in the case of living matter, well enough to
+          <em>cause</em> them.
+        </p>
+        <p class="wide">
+          The methods travel across them: evolutionary computation, dynamical-systems analysis,
+          and — more recently — foundation models used not as oracles but as
+          <strong>interfaces</strong>, translating human intent into interventions on a system that
+          has no notion of what we want.
+        </p>
       </div>
     </div>
   </section>
@@ -200,7 +200,7 @@ const selected = [
 
   .hero__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
   }
@@ -221,13 +221,12 @@ const selected = [
 
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.75rem; }
 
-  .hero__viz { display: flex; justify-content: flex-end; }
+  .hero__viz { display: flex; justify-content: flex-start; }
 
-  /* On one column the name leads; the portrait follows it rather than
-     pushing it below the fold. */
+  /* The animation leads, on every width — it's the first thing a visitor
+     sees, ahead of the name and the long thesis line below it. */
   @media (max-width: 52rem) {
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__viz { justify-content: flex-start; }
     .hero__actions { margin-bottom: 0.5rem; }
   }
 

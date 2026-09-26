@@ -7,10 +7,11 @@ const strands = [
     kind: 'Language-driven control of living systems',
     title: 'Prompt-to-Intervention',
     lead: 'Can you tell a cellular collective what to do, in ordinary English, and have it comply?',
+    media: '/research/living-loop',
     body: [
       'Prompt-to-Intervention (P2I) is an architecture that maps a free-form sentence onto a bioelectric intervention on a collective of cells. A sentence embedding conditions a multi-head convolutional policy network, whose parameters are found by CMA-ES. The crucial move is the reward: rather than hand-specifying a target pattern, a vision–language model reads the resulting behaviour and scores how well it matches the prompt. Nothing about the target has to be written down in advance.',
       'The system generalises past its training prompts, which is the part that matters. Instructions it has never seen still land on the intended behaviour more often than not — evidence that what is being learned is a mapping between semantic space and dynamical space, not a lookup table.',
-      'The current work takes this off the simulator. Xenobots — self-assembling constructs built from living cells — are the target, and the question is whether an ordinary English instruction can elicit a prescribed change in how one moves. That work is validated against archival behavioural recordings, with live assays underway at Tufts. A patent application has been filed through the University of Vermont, and the method and results are held back until prosecution and peer review are done.',
+      'The current work takes this off the simulator. Xenobots — self-assembling constructs built from living cells — are the target, and the question is whether an ordinary English instruction can elicit a prescribed change in how one moves. The clip above is one such result: a biobot’s own archival trajectory, before and after being told, in plain English, to move faster, slower, or stop. Live assays are underway at Tufts. A patent application covering the general approach has been filed through the University of Vermont, and a manuscript describing the method is under review — so the mechanism itself stays undescribed here until that process is done.',
     ],
     meta: [
       ['Project', '“Giving Cells a Voice”, funded by the U.S. Army Research Office'],
@@ -132,6 +133,12 @@ const strands = [
         <div class="strand__main">
           <h2>{s.title}</h2>
           <p class="strand__lead">{s.lead}</p>
+          {s.media && (
+            <video class="strand__video" controls muted loop playsinline preload="metadata">
+              <source src={`${s.media}.webm`} type="video/webm" />
+              <source src={`${s.media}.mp4`} type="video/mp4" />
+            </video>
+          )}
           {s.body.map((para) => (<p class="wide">{para}</p>))}
           {s.links.length > 0 && (
             <p class="strand__links small">
@@ -185,6 +192,16 @@ const strands = [
     margin-bottom: 1.15rem;
   }
   .strand__links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin: 1.25rem 0 0; }
+
+  .strand__video {
+    display: block;
+    width: 100%;
+    max-width: 30rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    margin-bottom: 1.15rem;
+  }
 
   @media (max-width: 52rem) {
     .strand { grid-template-columns: 1fr; gap: 1.5rem; }
