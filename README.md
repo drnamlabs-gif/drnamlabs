@@ -40,7 +40,7 @@ The same server also runs `theta.bunnyquant.com`, `bunnyquant.com` and
 | The CV people download | `public/CV.pdf` |
 | Blog posts | `src/content/blog/*.md` |
 
-Keep `publications.json` in step with `~/Desktop/CV/cv_nam_le.tex`; they are
+Keep `publications.json` in step with `/Volumes/DATA/postdoc/CV/cv_nam_le.tex`; they are
 the two places a publication has to be listed.
 
 ## The hero canvas

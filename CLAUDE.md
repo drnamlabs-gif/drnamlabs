@@ -42,8 +42,8 @@ from the live site.
 | Colours, type, spacing | `src/styles/global.css` |
 | Published CV | `public/CV.pdf` |
 
-The CV itself is built **outside this repo**, from `~/Desktop/CV/cv_nam_le.tex` via
-`~/Desktop/CV/build.sh`. That build refuses to emit a PDF containing `[TODO]` placeholders,
+The CV itself is built **outside this repo**, from `/Volumes/DATA/postdoc/CV/cv_nam_le.tex` via
+`/Volumes/DATA/postdoc/CV/build.sh`. That build refuses to emit a PDF containing `[TODO]` placeholders,
 a named target employer, or the Theta method. Keep `publications.json` in step with it —
 those are the two places a publication has to be listed.
 
