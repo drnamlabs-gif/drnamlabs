@@ -63,6 +63,24 @@ const strands = [
     ],
   },
   {
+    id: 'symbolic',
+    kind: 'Artificial life',
+    title: 'Symbolic reasoning in embodied agents',
+    lead: 'Can an embodied agent learn to notice which one doesn’t belong, using nothing but attention?',
+    media: '/research/oddworld-loop',
+    body: [
+      'A world of five clusters, each five objects distinguished only by shape, colour and size. In every cluster exactly one object differs from the rest along one of those attributes — the odd one out. Six agents wander between clusters; each reads one token per object (no positions, just the attributes) through a small self-attention network, and is rewarded only for approaching and eating the odd object. Nothing tells it in advance which attribute matters, or that "different" is the rule to look for.',
+      'The clip contrasts an early checkpoint against one two million steps later, same seed, same task. Early on, agents aim at objects close to chance. Later, they aim at the odd one reliably — and the attention weights show why: objects that share the value of the attribute that actually varies start attending to each other, a "who looks like me" pattern that only makes sense once the rule has been found.',
+      'This is a direct descendant of the Polyworld lineage — embodied, foraging, selection-pressured agents — pointed at a symbolic/relational task rather than raw survival. Early-stage and exploratory: no manuscript yet.',
+    ],
+    meta: [
+      ['Substrate', 'Self-attention over symbolic object tokens (shape · colour · size)'],
+      ['Task', 'Embodied odd-one-out foraging'],
+      ['Status', 'Early-stage, exploratory — no manuscript yet'],
+    ],
+    links: [],
+  },
+  {
     id: 'learning',
     kind: 'Computational intelligence',
     title: 'Learning, evolution, and the Baldwin effect',
@@ -109,7 +127,7 @@ const strands = [
     <div class="wrap">
       <h1>Research</h1>
       <p class="lede">
-        Five strands, one question: how coherent behaviour arises in a collective that nobody is
+        Six strands, one question: how coherent behaviour arises in a collective that nobody is
         directing — and what it takes to steer it once it has.
       </p>
     </div>
