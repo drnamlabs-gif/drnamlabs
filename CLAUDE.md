@@ -67,6 +67,11 @@ those are the two places a publication has to be listed.
 
 ## Deployment
 
+**Deploying from a machine that has never deployed before? Read `DEPLOY.md` first.**
+That machine needs its own SSH key authorised on the server. No private key is
+committed to this repo and none ever should be — `theta-server` is root on a box
+serving five production sites, and a key in git history cannot be taken back.
+
 `./deploy.sh` rsyncs `dist/` to `theta-server:/var/www/drnamlabs` over an existing
 `~/.ssh/config` host alias, after copying the live files to a timestamped backup directory.
 nginx serves the directory statically (`try_files $uri $uri/ =404`), so there is no service
