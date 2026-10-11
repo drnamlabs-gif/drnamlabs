@@ -22,7 +22,28 @@ const strands = [
     links: [
       { label: 'Preprint', href: 'https://doi.org/10.5281/zenodo.23291253' },
     ],
-  },{
+  },
+  {
+    id: 'collapse',
+    kind: 'Cultural evolution and machine learning',
+    title: "Rogers' paradox in language models",
+    lead: 'If copying is cheaper than learning, who is left to learn?',
+    body: [
+      "Cultural evolution has a result that reads like a warning. Social learning is cheap: copy someone who already solved the problem and skip the cost of solving it yourself. So copying spreads. But Rogers' paradox is that a population full of copiers is no better off on average than one with no copying at all — copied information is only as good as the moment it was acquired, and in a world that keeps changing it goes stale. The benefit of copying depends on somebody still paying to learn directly.",
+      "The same accounting now applies to machines. Language models trained on the output of other language models lose knowledge across generations, and they lose the rare things first — the tail goes before the common case does. That failure is usually discussed as a data-quality problem. Read through cultural evolution it is something more specific: model collapse is Rogers' paradox, with model weights in the place of a population and training corpora in the place of culture.",
+      "A 2026 preprint makes that reading quantitative on small language models, and asks the question the paradox forces: who pays for the fresh data? Copying is the cheap move for any individual model, which is exactly why it scales — and exactly why the ecosystem cannot run on it alone.",
+    ],
+    meta: [
+      ['Status', 'Preprint, Zenodo, 2026'],
+      ['Substrate', 'Small language models, generational retraining'],
+      ['Reads with', "Rogers' paradox · the Baldwin-effect work below"],
+    ],
+    links: [
+      { label: 'Preprint', href: 'https://doi.org/10.5281/zenodo.23298661' },
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/rogers-model-collapse' },
+    ],
+  },
+  {
     id: 'living',
     kind: 'Language-driven control of living systems',
     title: 'Prompt-to-Intervention',
@@ -90,7 +111,7 @@ const strands = [
     body: [
       'My doctoral work concerned evolving self-taught neural networks: agents that generate their own training signal rather than receiving one from the environment. Across dynamic and rugged fitness landscapes, a consistent asymmetry appears — self-teaching buys robustness when the environment moves quickly, while social learning buys speed when it is comparatively stable.',
       'This is the Baldwin effect examined as an engineering question rather than a historical one: not whether it happened, but under what conditions learning is worth its cost to a population.',
-      'The same accounting now applies to machines. Language models trained on other models\' output lose knowledge across generations, rare knowledge first; read through cultural evolution, this model collapse is Rogers\' paradox — copying is cheaper than learning, so it spreads, but copies go stale unless someone keeps learning for themselves. A 2026 preprint makes the reading quantitative on small language models and asks who pays for the fresh data models need.',
+      'The same accounting now applies to machines, and that question has become its own line of work — see Rogers\' paradox in language models, above.',
     ],
     meta: [
       ['Thesis', 'Learning and Evolution in Dynamic Environments (UCD, 2022)'],
@@ -98,8 +119,6 @@ const strands = [
     ],
     links: [
       { label: 'Code', href: 'https://github.com/namlehai90/Evolving-Self-taght-Architectures' },
-      { label: 'Model collapse preprint', href: 'https://doi.org/10.5281/zenodo.23298661' },
-      { label: 'Model collapse code', href: 'https://github.com/drnamlabs-gif/rogers-model-collapse' },
     ],
   },
   {
