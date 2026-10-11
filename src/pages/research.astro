@@ -12,14 +12,16 @@ const strands = [
       'Ten clusters sit on a ring, each holding five objects built from shape (four kinds), colour (four kinds) and size (two kinds). In every cluster exactly one object differs from the rest along one of those three attributes. Agents wander between clusters and have to approach and eat it — the clip\'s camera holds three clusters in frame at once.',
       'The brain reading each scene is a tiny generic attention network: one token per object, a few self-attention heads, a residual connection, a small scoring MLP — about a thousand numbers, with nothing in the architecture that knows what "odd one out" means. Those thousand numbers are the genome. There is no training step and no fitness function that scores an agent on accuracy: an agent only gains energy by actually eating the odd object, loses it by eating the wrong one, and lives, reproduces or starves on that energy alone. Whatever skill at the task exists has to pay for itself in survival, not get handed down by a reward signal that already knows the answer. A "neutral" control, run alongside, decouples the payoff from the agent\'s actual choice, to tell real selection apart from drift.',
       'The clip contrasts an early population against one two million steps later, same seed. Early on, agents aim close to chance. Later, they aim at the odd object reliably — and the attention weights show a mechanism: objects sharing the value of whichever attribute actually varies start attending to each other, a "who looks like me" pattern that only makes sense once the rule has been found.',
-      'A direct descendant of the Polyworld lineage — embodied, foraging, selection-pressured populations — pointed at a symbolic/relational task instead of raw survival. Early-stage and exploratory: no manuscript yet.',
+      'A direct descendant of the Polyworld lineage — embodied, foraging, selection-pressured populations — pointed at a symbolic/relational task instead of raw survival.',
     ],
     meta: [
       ['Substrate', 'Evolved multi-head self-attention (genome = the network\'s own weights)'],
       ['Task', 'Embodied odd-one-out foraging, implicit (energy-based) selection'],
-      ['Status', 'Early-stage, exploratory — no manuscript yet'],
+      ['Status', 'Preprint, Zenodo, 2026'],
     ],
-    links: [],
+    links: [
+      { label: 'Preprint', href: 'https://doi.org/10.5281/zenodo.23291253' },
+    ],
   },{
     id: 'living',
     kind: 'Language-driven control of living systems',
