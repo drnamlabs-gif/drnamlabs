@@ -90,12 +90,17 @@ const strands = [
     body: [
       'My doctoral work concerned evolving self-taught neural networks: agents that generate their own training signal rather than receiving one from the environment. Across dynamic and rugged fitness landscapes, a consistent asymmetry appears — self-teaching buys robustness when the environment moves quickly, while social learning buys speed when it is comparatively stable.',
       'This is the Baldwin effect examined as an engineering question rather than a historical one: not whether it happened, but under what conditions learning is worth its cost to a population.',
+      'The same accounting now applies to machines. Language models trained on other models\' output lose knowledge across generations, rare knowledge first; read through cultural evolution, this model collapse is Rogers\' paradox — copying is cheaper than learning, so it spreads, but copies go stale unless someone keeps learning for themselves. A 2026 preprint makes the reading quantitative on small language models and asks who pays for the fresh data models need.',
     ],
     meta: [
       ['Thesis', 'Learning and Evolution in Dynamic Environments (UCD, 2022)'],
       ['Venues', 'GECCO · PPSN · IEEE CEC · EvoStar · ALIFE'],
     ],
-    links: [{ label: 'Code', href: 'https://github.com/namlehai90/Evolving-Self-taght-Architectures' }],
+    links: [
+      { label: 'Code', href: 'https://github.com/namlehai90/Evolving-Self-taght-Architectures' },
+      { label: 'Model collapse preprint', href: 'https://doi.org/10.5281/zenodo.23298661' },
+      { label: 'Model collapse code', href: 'https://github.com/drnamlabs-gif/rogers-model-collapse' },
+    ],
   },
   {
     id: 'markets',
