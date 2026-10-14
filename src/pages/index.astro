@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import PhasePortrait from '../components/PhasePortrait.astro';
-import FlockCanvas from '../components/FlockCanvas.astro';
 import LearningCanvas from '../components/LearningCanvas.astro';
 import site from '../data/site.json';
 
@@ -33,7 +32,9 @@ const tiles = [
     kind: 'Artificial life',
     title: 'Flocks that reproduce as units',
     href: '/research/#eti',
-    media: 'flock',
+    media: 'video',
+    src: '/research/vitanova-loop',
+    alt: 'A real VitaNova run: a collective disperses, re-aggregates into a ring, then splits into two daughter collectives.',
   },
   {
     kind: 'Computational intelligence',
@@ -119,7 +120,6 @@ const selected = [
                   <source src={`${t.src}.mp4`} type="video/mp4" />
                 </video>
               )}
-              {t.media === 'flock' && <FlockCanvas />}
               {t.media === 'learning' && <LearningCanvas />}
               {t.media === 'portrait' && <PhasePortrait caption={false} />}
             </div>
