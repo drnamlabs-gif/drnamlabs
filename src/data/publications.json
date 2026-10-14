@@ -70,6 +70,10 @@
             {
               "label": "Preprint",
               "href": "https://doi.org/10.5281/zenodo.23291253"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/drnamlabs-gif/oddworld"
             }
           ]
         },
