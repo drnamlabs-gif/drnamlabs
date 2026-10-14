@@ -1,14 +1,16 @@
 {
   "name": "Nam H. Le",
   "credential": "Ph.D.",
-  "role": "Researcher",
-  "affiliation": "Research in the United Kingdom and the United States",
-  "location": "United Kingdom & United States",
+  "role": "Postdoctoral Research Fellow",
+  "affiliation": "Morphology, Evolution & Cognition Laboratory, University of Vermont",
+  "location": "Burlington, Vermont",
   "thesis": "I study phase transitions in complex adaptive systems — in living matter, and in markets.",
   "blurb": "Evolutionary computation, artificial life, and the language-driven control of living and embodied systems. The same question runs through everything I build: how does coherent, adaptive behaviour arise from parts that have no plan — and once it has arisen, can we steer it?",
   "email": "namlehai90@gmail.com",
   "links": {
+    "scholar": "https://scholar.google.com/citations?user=waKh7a8AAAAJ&hl=en",
     "github": "https://github.com/namlehai90",
+    "lab": "https://www.meclab.org/people",
     "cv": "/CV.pdf"
   },
   "nav": [
