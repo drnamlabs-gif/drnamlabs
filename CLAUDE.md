@@ -1,8 +1,9 @@
 # drnamlabs.com — context for Claude Code
 
-Personal academic site of **Nam H. Le, Ph.D.** — postdoctoral research fellow at the
-University of Vermont (Morphology, Evolution & Cognition Lab; co-mentored by Josh Bongard
-and Michael Levin), and founder of the BunnyQuant quantitative-analytics venture.
+Personal academic site of **Nam H. Le, Ph.D.**, a researcher working in the United Kingdom
+and the United States, and founder of the BunnyQuant quantitative-analytics venture.
+(Owner, 14/10/2026: he has left the University of Vermont. The site must not present him as
+working there, and carries no Google Scholar or LinkedIn links.)
 
 Astro, static output, no application backend. Live at <https://drnamlabs.com>.
 
