@@ -1,0 +1,204 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Nature ↔ machine: the same four layers, named in each world.
+const layers = [
+  ['Evolution', 'slow, across generations', 'pretraining'],
+  ['Development', 'once, early, then fixed', 'fine-tuning'],
+  ['Individual learning', 'fast, within a lifetime', 'in-context learning'],
+  ['Social learning & culture', 'between individuals', 'distillation & synthetic data'],
+];
+
+const parts = [
+  {
+    n: 'I',
+    title: 'The question',
+    body: 'Two stacks set side by side — the one evolution built and the one machine learning has assembled — and a single design problem stated plainly: which layer should carry which information, and when.',
+  },
+  {
+    n: 'II',
+    title: 'The layers, in theory',
+    body: 'A chapter each for the slow layer (selection), the fast layer (learning) and the social layer (transmission): what each is, what it costs, and the first result about two of them steering one another — the Baldwin effect, read as an engineering condition rather than a historical curiosity.',
+  },
+  {
+    n: 'III',
+    title: 'Allocation in silico',
+    body: 'What my own experiments, and the literature, say about the allocation problem: the rate at which the world changes decides which layer wins, the rules hold across substrates, and they hold even when the environment is another adapting agent.',
+  },
+  {
+    n: 'IV',
+    title: 'What machines may do that life cannot',
+    body: 'Three freedoms a machine stack has and biology does not — writing its own objective, writing information back down the stack, and setting its own price — and where the same questions now land for foundation models under drift.',
+  },
+];
+
+// Public work the book is built from. Unpublished companion results are deliberately not listed here.
+const lineage = [
+  { label: 'Learning and evolution (PhD)', note: 'Self-taught neural networks across dynamic, rugged landscapes — the empirical ground for the allocation question.', href: 'https://github.com/namlehai90/Evolving-Self-taght-Architectures', hrefLabel: 'Code' },
+  { label: 'Emergent collective reproduction (VitaNova)', note: 'Northeast Journal of Complex Systems, 2025.', href: 'https://orb.binghamton.edu/nejcs/vol7/iss2/8', hrefLabel: 'Paper' },
+  { label: 'Decoupling representation and learning (LaSER)', note: 'Genetic Programming Theory & Practice XXII, Springer, 2026.', href: 'https://arxiv.org/abs/2505.17309', hrefLabel: 'Preprint' },
+  { label: 'Phenotype-first evolution (Phenopoiesis)', note: 'Information flowing down the stack. Preprint, 2026.', href: 'https://arxiv.org/abs/2602.00978', hrefLabel: 'Preprint' },
+  { label: "Model collapse as Rogers' paradox", note: 'The economics of copying, carried over to language models. Preprint, Zenodo, 2026.', href: 'https://doi.org/10.5281/zenodo.23298661', hrefLabel: 'Preprint' },
+  { label: 'Relational reasoning under implicit selection (Oddworld)', note: 'When a stack sets its own objective. Preprint, Zenodo, 2026.', href: 'https://doi.org/10.5281/zenodo.23291253', hrefLabel: 'Preprint' },
+];
+---
+
+<Base
+  current="Book"
+  title="The Adaptation Stack"
+  description="A book in preparation: an algorithmic theory of how adaptation is allocated across timescales — evolution, learning and culture — and what that says about foundation models."
+>
+  <section class="head">
+    <div class="wrap hero">
+      <div class="hero__text">
+        <p class="kicker mono">Book in preparation · Springer Natural Computing Series</p>
+        <h1>The Adaptation Stack</h1>
+        <p class="sub">Who Learns What, When — from Evolution to AI</p>
+        <p class="lede">
+          Nature runs several channels of adaptation at once, each on its own timescale: evolution across
+          generations, learning within a lifetime, and the slower-than-a-thought but faster-than-a-lineage
+          traffic of social learning between individuals. The book asks one question of that arrangement,
+          and answers it as an algorithm: <em>which channel should carry which information, as a function
+          of how fast the world is changing — and how do the channels steer one another?</em>
+        </p>
+        <p class="wide">
+          Modern AI turns out to have the same stack. Pretraining sits where evolution sits; fine-tuning
+          where development sits; in-context learning where lifetime learning sits; and training one model
+          on another's output where social transmission sits. The question every foundation-model team now
+          argues over — when the world drifts, do you retrain, fine-tune, retrieve, or distil? — is the
+          allocation question, in machine dress.
+        </p>
+      </div>
+      <figure class="hero__cover">
+        <img src="/book/cover.svg" width="640" height="900"
+             alt="Cover of The Adaptation Stack, showing four stacked layers from evolution up to culture" />
+        <figcaption class="small">Working cover.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="two-stacks">
+    <div class="wrap">
+      <h2>Two stacks, one design problem</h2>
+      <p class="wide">The same four layers, named once in biology and once in machine learning:</p>
+      <dl class="stacks">
+        {layers.map(([nature, when, machine]) => (
+          <div class="stacks__row">
+            <dt>{nature} <span class="when">— {when}</span></dt>
+            <dd><span class="approx">≈</span> {machine}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="wide small">
+        The lineage the book claims is Dennett's Tower of Generate-and-Test, made algorithmic — not a new
+        identity between evolution and learning, but a theory of the division of labour between them.
+      </p>
+    </div>
+  </section>
+
+  <section id="structure">
+    <div class="wrap">
+      <h2>What the book argues</h2>
+      <div class="parts">
+        {parts.map((p) => (
+          <div class="part">
+            <p class="part__n mono">Part {p.n}</p>
+            <h3>{p.title}</h3>
+            <p class="wide">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="lineage">
+    <div class="wrap">
+      <h2>Where it comes from</h2>
+      <p class="wide">
+        The book grows out of my doctoral work on learning and evolution and extends, through the papers
+        below, to the dynamics of foundation models. Each is one layer of the argument; the chapters that
+        rest on work still under review are described here only in outline.
+      </p>
+      <ul class="lineage">
+        {lineage.map((l) => (
+          <li>
+            <span class="lineage__label">{l.label}</span>
+            <span class="lineage__note">{l.note}</span>
+            {l.href && <a class="lineage__link small" href={l.href}>{l.hrefLabel}</a>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="wrap status">
+      <h2>Status</h2>
+      <p class="wide">
+        A full monograph, in preparation for Springer's Natural Computing Series; the proposal and sample
+        chapters are being written. If you edit for the series, or would like to read a chapter in draft,
+        I would be glad to hear from you — <a href="mailto:namlehai90@gmail.com">namlehai90@gmail.com</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 2.5rem; }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+    gap: 2.5rem 3rem;
+    align-items: start;
+  }
+  .kicker {
+    font-size: 0.7rem; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 0.9rem;
+  }
+  .head h1 { margin-bottom: 0.3rem; }
+  .sub {
+    font-family: var(--serif); font-style: italic; font-size: 1.3rem;
+    color: var(--accent); margin: 0 0 1.4rem;
+  }
+  .hero__cover { margin: 0; }
+  .hero__cover img {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .hero__cover figcaption { color: var(--text-muted); margin-top: 0.5rem; text-align: center; }
+
+  /* two stacks */
+  .stacks { margin: 0.5rem 0 0; max-width: 42rem; }
+  .stacks__row {
+    display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+    padding-block: 0.7rem; border-top: 1px solid var(--border);
+  }
+  .stacks dt { font-family: var(--serif); font-size: 1.08rem; color: var(--text); }
+  .stacks dt .when { color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
+  .stacks dd { margin: 0; color: var(--text-soft); white-space: nowrap; }
+  .stacks .approx { color: var(--accent); }
+
+  /* parts */
+  .parts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 2.5rem; }
+  .part__n {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 0.3rem;
+  }
+  .part h3 { margin-bottom: 0.4rem; }
+
+  /* lineage */
+  .lineage { list-style: none; margin: 1.2rem 0 0; padding: 0; max-width: 46rem; }
+  .lineage li { padding-block: 0.8rem; border-top: 1px solid var(--border); }
+  .lineage__label { font-family: var(--serif); font-size: 1.05rem; color: var(--text); display: block; }
+  .lineage__note { color: var(--text-soft); display: block; margin-top: 0.15rem; }
+  .lineage__link { display: inline-block; margin-top: 0.3rem; }
+
+  .status { max-width: 46rem; }
+
+  @media (max-width: 52rem) {
+    .hero { grid-template-columns: 1fr; }
+    .hero__cover { order: -1; max-width: 15rem; }
+    .parts { grid-template-columns: 1fr; }
+  }
+</style>
