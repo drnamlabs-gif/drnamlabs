@@ -37,7 +37,6 @@ The same server also runs `theta.bunnyquant.com`, `bunnyquant.com` and
 | BunnyQuant / Theta | `src/pages/bunnyquant.astro` |
 | Home page copy | `src/pages/index.astro` |
 | Colours, type, spacing | `src/styles/global.css` |
-| The CV people download | `public/CV.pdf` |
 | Blog posts | `src/content/blog/*.md` |
 
 Keep `publications.json` in step with `/Volumes/DATA/postdoc/CV/cv_nam_le.tex`; they are
@@ -57,10 +56,11 @@ single static orbit under `prefers-reduced-motion`.
 
 ## Notes
 
-- `public/CV.pdf` is what the CV links resolve to. `deploy.sh` refuses to
-  publish it if it still contains `[TODO]` placeholders.
-- `/CV.pdf` and `/bunnyquant` deliberately keep the paths the previous site
-  linked to, so old links do not 404.
+- The CV is deliberately not on the site (one CV per target market, sent
+  directly). `/CV.pdf` now 404s. `deploy.sh` still refuses to publish a
+  `CV.pdf` carrying `[TODO]` placeholders, should one ever come back.
+- `/bunnyquant` deliberately keeps the path the previous site linked to, so
+  old links do not 404.
 
 ## Blog
 

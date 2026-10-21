@@ -40,9 +40,9 @@ from the live site.
 | Home page copy | `src/pages/index.astro` |
 | Blog posts | `src/content/blog/*.md` (`./new-post.sh "Title"`, or `./new-post.sh vi "Tiêu đề"`) |
 | Colours, type, spacing | `src/styles/global.css` |
-| Published CV | `public/CV.pdf` |
 
-The CV itself is built **outside this repo**, from `/Volumes/DATA/postdoc/CV/cv_nam_le.tex` via
+The CV is **not published on the site** — there is one CV per target market, sent directly.
+It is built **outside this repo**, from `/Volumes/DATA/postdoc/CV/cv_nam_le.tex` via
 `/Volumes/DATA/postdoc/CV/build.sh`. That build refuses to emit a PDF containing `[TODO]` placeholders,
 a named target employer, or the Theta method. Keep `publications.json` in step with it —
 those are the two places a publication has to be listed.
