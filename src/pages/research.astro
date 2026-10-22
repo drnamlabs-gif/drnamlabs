@@ -54,28 +54,49 @@ const strands = [
       'Prompt-to-Intervention (P2I) is an architecture that maps a free-form sentence onto a bioelectric intervention on a collective of cells. A sentence embedding conditions a multi-head convolutional policy network, whose parameters are found by CMA-ES. The crucial move is the reward: rather than hand-specifying a target pattern, a vision–language model reads the resulting behaviour and scores how well it matches the prompt. Nothing about the target has to be written down in advance.',
       'The system generalises past its training prompts, which is the part that matters. Instructions it has never seen still land on the intended behaviour more often than not — evidence that what is being learned is a mapping between semantic space and dynamical space, not a lookup table.',
       'The current work takes this off the simulator. Xenobots — self-assembling constructs built from living cells — are the target, and the question is whether an ordinary English instruction can elicit a prescribed change in how one moves. The clip above is one such result: a biobot’s own archival trajectory, before and after being told, in plain English, to move faster, slower, or stop. Live assays are underway at Tufts. A patent application covering the general approach has been filed through the University of Vermont, and a manuscript describing the method is under review — so the mechanism itself stays undescribed here until that process is done.',
-      'A question runs underneath all of it, and it is easy to skip past: when a system like this succeeds, did the sentence do the work? A network can score well while ignoring its input entirely. Six earlier single-cell controllers in this project did exactly that — each emitted a fixed intervention and never read its prompt — and nothing in a training curve gives it away, because a dead language channel looks like a model that is still learning.',
-      'Three controls settle it, and they have to run beside the training rather than after it: retrain on shuffled sentence-to-target pairings, feed an empty prompt at test time, and hold back paraphrases that were never trained on. Run across twenty sentences and sixty simulations of a bioelectric tissue, the trained network does read the sentence, and the evidence is stronger than a drop in score. Handed a different target’s sentence it does not degrade — it builds the opposite voltage pattern, every time, on sentence pairs that differ by one phrase.',
-    ],
-    mediaAfter: {
-      src: '/research/p2i-sentences',
-      caption: 'One trained network, two requests three words apart. Each panel is a simulated tissue of 68 cells starting at rest; the rings mark the region the sentence asked to depolarise. The number is the voltage difference between the requested region and the rest of the tissue.',
-    },
-    after: [
-      'The same three controls, run on an unrelated substrate — a single driven oscillator whose behaviour is known in closed form, so the best possible intervention can be written down rather than searched for — locate where the limit actually is, and it is not in the network. Sentence encoders place opposites close together: “go up” and “go down” sit at cosine 0.78, while “go up” and “head north”, which mean the same thing, sit at 0.32. The controller therefore picks up the axis and loses the sign. On the tissue the same bottleneck shows up a second way: the five phrasings of each request rank in exact inverse order of how much they resemble one another, worst where they share a template.',
-      'Two independent measurements on two substrates, pointing at the same component. It makes the next move a measurement rather than a guess: more training will not recover a distinction the encoder never encoded.',
     ],
     meta: [
       ['Project', '“Giving Cells a Voice”, funded by the U.S. Army Research Office'],
       ['With', 'Josh Bongard (UVM), Michael Levin (Tufts), Douglas Blackiston (Tufts)'],
       ['Systems', 'ZapGPT · P2I · Xenobots'],
-      ['Verification', '60 simulations, 20 sentences, three controls'],
-      ['Status', 'Patent application filed · manuscripts under review · preprint on the controls in preparation'],
+      ['Status', 'Patent application filed · manuscripts under review'],
     ],
     links: [
       { label: 'Code', href: 'https://github.com/namlehai90/ALife_ZapGPT' },
       { label: 'Video', href: 'https://youtu.be/u58QZ6P1RUo' },
       { label: 'Paper', href: 'https://arxiv.org/abs/2505.02766' },
+    ],
+  },
+  {
+    id: 'verify',
+    kind: 'Simulated tissue engineering',
+    title: 'Did the sentence do the work?',
+    lead: 'A network can score well while ignoring its own prompt entirely — only a control tells the two apart.',
+    media: '/research/p2i-verify-loop',
+    body: [
+      'Every tissue state on this page is a real run of BETSE (the BioElectric Tissue Simulation Engine), Pietak and Levin’s open-source bioelectricity simulator: ion-channel and gap-junction activity solved by finite volume methods, not an illustration of what a cell collective might do.',
+      'A question runs underneath the P2I work above, and it is easy to skip past: when a system like this succeeds, did the sentence do the work? A network can score well while ignoring its input entirely. Six earlier single-cell controllers in this project did exactly that — each emitted a fixed intervention and never read its prompt — and nothing in a training curve gives it away, because a dead language channel looks like a model that is still learning.',
+      'Three controls settle it, and they have to run beside the training rather than after it: retrain on shuffled sentence-to-target pairings, feed an empty prompt at test time, and hold back paraphrases that were never trained on. Run across twenty sentences and sixty simulations of a bioelectric tissue, the trained network does read the sentence, and the evidence is stronger than a drop in score. Handed a different target’s sentence it does not degrade — it builds the opposite voltage pattern, every time, on sentence pairs that differ by one phrase.',
+      'The same three controls, run on an unrelated substrate — a single driven oscillator whose behaviour is known in closed form, so the best possible intervention can be written down rather than searched for — locate where the limit actually is, and it is not in the network. Sentence encoders place opposites close together: “go up” and “go down” sit at cosine 0.78, while “go up” and “head north”, which mean the same thing, sit at 0.32. The controller therefore picks up the axis and loses the sign. On the tissue the same bottleneck shows up a second way: the five phrasings of each request rank in exact inverse order of how much they resemble one another, worst where they share a template.',
+      'Two independent measurements on two substrates, pointing at the same component. It makes the next move a measurement rather than a guess: more training will not recover a distinction the encoder never encoded.',
+    ],
+    gallery: [
+      {
+        src: '/research/p2i-verify-center',
+        caption: '“Raise the voltage at the core”, target centre. Three rows, one colour scale: untrained weights (top), the trained network fed the wrong target’s sentence (middle), the trained network fed its own sentence (bottom). Only the bottom row lands on the ringed region.',
+      },
+      {
+        src: '/research/p2i-verify-ring',
+        caption: 'The matched control: “raise the voltage around the perimeter”, target ring, same three rows. Fed the centre sentence instead, the trained network does not default to the ring — it builds the centre pattern.',
+      },
+    ],
+    meta: [
+      ['Substrate', 'BETSE — Pietak & Levin (2016), doi:10.3389/fbioe.2016.00055'],
+      ['Verification', '60 simulations, 20 sentences, three controls'],
+      ['Status', 'Preprint on the controls in preparation'],
+    ],
+    links: [
+      { label: 'BETSE (Pietak & Levin, 2016)', href: 'https://doi.org/10.3389/fbioe.2016.00055' },
     ],
   },
   {
@@ -167,7 +188,7 @@ const strands = [
     <div class="wrap">
       <h1>Research</h1>
       <p class="lede">
-        Seven strands, one question: how coherent behaviour arises in a collective that nobody is
+        Eight strands, one question: how coherent behaviour arises in a collective that nobody is
         directing — and what it takes to steer it once it has.
       </p>
     </div>
@@ -207,6 +228,19 @@ const strands = [
             </figure>
           )}
           {s.after && s.after.map((para) => (<p class="wide">{para}</p>))}
+          {s.gallery && (
+            <div class="strand__gallery">
+              {s.gallery.map((g) => (
+                <figure class="strand__fig">
+                  <video class="strand__video" controls muted loop playsinline preload="metadata">
+                    <source src={`${g.src}.webm`} type="video/webm" />
+                    <source src={`${g.src}.mp4`} type="video/mp4" />
+                  </video>
+                  <figcaption class="small">{g.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
           {s.links.length > 0 && (
             <p class="strand__links small">
               {s.links.map((l) => (<a href={l.href}>{l.label}</a>))}
@@ -263,6 +297,15 @@ const strands = [
   .strand__fig {
     margin: 0 0 1.4rem;
   }
+
+  .strand__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.5rem 1.75rem;
+    margin: 0 0 1.4rem;
+  }
+  .strand__gallery .strand__fig { margin: 0; }
+  .strand__gallery .strand__video { max-width: none; }
 
   .strand__fig .strand__video {
     margin-bottom: 0.5rem;
