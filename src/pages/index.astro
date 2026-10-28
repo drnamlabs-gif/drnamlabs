@@ -133,21 +133,21 @@ const selected = [
             <source src="/research/living-loop.webm" type="video/webm" />
             <source src="/research/living-loop.mp4" type="video/mp4" />
           </video></span>
-          <span class="trio__cap"><b class="mono">Biobots</b> Steered by a sentence</span>
+          <span class="trio__cap"><b class="mono">Biobots</b><i>“make a xenobot speed up”</i></span>
         </a>
         <a class="trio__item trio__item--light" href="/research/#verify" aria-label="Cells: one phrase changed, the tissue flips">
           <span class="trio__media"><video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
             <source src="/research/p2i-verify-loop.webm" type="video/webm" />
             <source src="/research/p2i-verify-loop.mp4" type="video/mp4" />
           </video></span>
-          <span class="trio__cap"><b class="mono">Cells</b> One phrase, opposite tissue</span>
+          <span class="trio__cap"><b class="mono">Cells</b><i>“raise the voltage at the core” — or “around the perimeter”</i></span>
         </a>
         <a class="trio__item trio__item--grey" href="/research/#morph" aria-label="Robots: GPT-Morph, a sentence designs the robot">
           <span class="trio__media"><video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A four-legged robot evolved from the sentence a four-legged robot that walks sideways to the right, walking sideways in simulation.">
             <source src="/research/morph-walk.webm" type="video/webm" />
             <source src="/research/morph-walk.mp4" type="video/mp4" />
           </video></span>
-          <span class="trio__cap"><b class="mono">Robots</b> A sentence designs the body</span>
+          <span class="trio__cap"><b class="mono">Robots</b><i>“a four-legged robot that walks sideways to the right”</i></span>
         </a>
       </div>
       <div class="hero__actions">
@@ -314,7 +314,8 @@ const selected = [
   .trio__item--light .trio__media { background: #fbfaf7; }
   .trio__item--grey .trio__media { background: #9a9a96; }
   .trio__item .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .trio__cap { display: block; padding: 0.7rem 0.1rem 0; font-size: 0.92rem; color: var(--text-soft); }
+  .trio__cap { display: block; padding: 0.7rem 0.1rem 0; font-size: 1rem; color: var(--text); }
+  .trio__cap i { display: block; font-family: var(--serif); line-height: 1.35; }
   .trio__cap b { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.1rem; }
   @media (max-width: 52rem) { .trio { grid-template-columns: 1fr; } }
   .hero { position: relative; }
