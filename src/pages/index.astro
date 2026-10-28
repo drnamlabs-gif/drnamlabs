@@ -32,15 +32,6 @@ const tiles = [
     alt: 'A real VitaNova run: a collective disperses, re-aggregates into a ring, then splits into two daughter collectives.',
   },
   {
-    kind: 'Evolutionary robotics',
-    title: 'GPT-Morph: language to a robot that moves',
-    cls: 'b-g',
-    href: '/research/#morph',
-    media: 'video',
-    src: '/research/morph-story',
-    alt: 'A robot designed from the sentence: a four-legged robot that walks sideways to the right, from a random design that falls over to the evolved walker, in simulation.',
-  },
-  {
     kind: 'Computational intelligence',
     title: 'Learning, evolution, and the Baldwin effect',
     cls: 'b-e',
@@ -159,6 +150,43 @@ const selected = [
           </video>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">GPT-Morph: a sentence designs the robot</p>
+      <div class="morph">
+        <a class="tile morph__main" href="/research/#morph" aria-label="GPT-Morph: a four-legged robot that walks sideways to the right">
+          <div class="tile__media">
+            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="From the sentence a four-legged robot that walks sideways to the right, to a random design that falls over, to the evolved walker, in simulation.">
+              <source src="/research/morph-story.webm" type="video/webm" />
+              <source src="/research/morph-story.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </a>
+        <a class="tile morph__side" href="/research/#morph" aria-label="GPT-Morph: an Italian sentence for a robot that spins on itself">
+          <div class="tile__media">
+            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A robot evolved from an Italian sentence spinning on the spot.">
+              <source src="/research/morph-turn.webm" type="video/webm" />
+              <source src="/research/morph-turn.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </a>
+        <a class="tile morph__side" href="/research/#morph" aria-label="GPT-Morph: a French sentence for a long-legged robot that hops">
+          <div class="tile__media">
+            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A robot evolved from a French sentence hopping on two long legs.">
+              <source src="/research/morph-hop.webm" type="video/webm" />
+              <source src="/research/morph-hop.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </a>
+      </div>
+      <p class="morph__cap">
+        A language model turns a sentence — in English, Italian or French — into a design spec; one evolutionary search
+        finds the body and the gait together, and a rule written beforehand checks the robot did what was asked. Simulated in
+        MuJoCo. <a href="/research/#morph">How it works &rarr;</a>
+      </p>
     </div>
   </section>
 
@@ -348,9 +376,20 @@ const selected = [
   .bento .tile { aspect-ratio: auto; transition: transform 0.25s ease, border-color 0.2s; }
   .bento .tile:hover { transform: translateY(-3px); }
   .bento .b-a { grid-column: span 2; grid-row: span 2; }
+  .bento .b-f { grid-column: span 2; }
   .bento .b-a .tile__title { font-size: 1.25rem; }
   @media (max-width: 52rem) {
     .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 10rem; }
+  }
+
+  .morph { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+  .morph__main { grid-row: 1 / span 2; aspect-ratio: 4 / 3; }
+  .morph__side { aspect-ratio: auto; }
+  .morph__cap { max-width: 46rem; color: var(--text-soft); margin: 1rem 0 0; font-size: 0.95rem; }
+  @media (max-width: 52rem) {
+    .morph { grid-template-columns: 1fr 1fr; }
+    .morph__main { grid-column: 1 / span 2; grid-row: auto; }
+    .morph__side { aspect-ratio: 4 / 3; }
   }
 
   .stage { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem; }
