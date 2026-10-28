@@ -51,7 +51,7 @@ if [[ -z "$dry" ]]; then
   ssh "$HOST" "chown -R root:root '$WEB_ROOT' && find '$WEB_ROOT' -type d -exec chmod 755 {} + && find '$WEB_ROOT' -type f -exec chmod 644 {} +"
 
   say "Verifying"
-  for p in / /research/ /publications/ /bunnyquant/ /book/ /favicon.svg; do
+  for p in / /research/ /publications/ /bunnyquant/ /book/ /portfolio/ /favicon.svg; do
     code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 15 "https://drnamlabs.com$p")
     printf '  %-18s %s\n' "$p" "$code"
     [[ "$code" == "200" ]] || { echo "  ^ expected 200" >&2; }

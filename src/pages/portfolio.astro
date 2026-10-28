@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Only projects whose repository is public (checked with `gh repo view`) and whose
+// claims can be read straight off the repository README. No method names for BunnyQuant.
+const projects = [
+  {
+    id: 'cellbio-gpt',
+    kind: 'Language model · bioelectricity',
+    title: 'CellBio-GPT',
+    lead: 'A small language model for cell and tissue bioelectricity, with a physics simulator as the referee.',
+    body: [
+      'Language models trained on papers learn how papers sound. In biology nothing usually tells the model when a number it wrote is wrong. Bioelectricity is an exception, because the membrane physics can be simulated: BETSE takes ion concentrations and channel permeabilities and returns the voltage of every cell in a tissue.',
+      'The simulator is used twice. It scores the model’s numeric predictions, so the model is trained against physics rather than against someone’s opinion of its answers, and it writes the exams, so it is possible to ask whether the model learned anything beyond its training points. Facts are not memorised: they live in a full-text library of 3.2 million PubMed abstracts that the model quotes with PMIDs.',
+      'Every stage of the pipeline is written for the project in plain PyTorch on one GPU: a BPE tokenizer, a 40.5M-parameter GPT, pretraining, SFT, preference optimisation, and reinforcement learning with the simulator as verifier. The final exams were sealed: the repository holds only their hashes, committed before any model saw them, and the analysis plan.',
+    ],
+    meta: [
+      ['Model', '10-layer GPT, 40.5M parameters, written from scratch'],
+      ['Corpus', '3.2M PubMed abstracts, 0.99B training tokens'],
+      ['Referee', 'BETSE bioelectric tissue simulator'],
+      ['Status', 'Public, with a live demo'],
+    ],
+    links: [
+      { label: 'Live demo', href: '/cellbio/' },
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/cellbio-gpt' },
+      { label: 'Related research', href: '/research/#verify' },
+    ],
+  },
+  {
+    id: 'bunnyquant-ios',
+    kind: 'iPhone and iPad app · Swift',
+    title: 'BunnyQuant for iPhone and iPad',
+    lead: 'A native client for the BunnyQuant analytics service: a watchlist, candlestick charts, and a risk card.',
+    body: [
+      'Written in plain Swift and SwiftUI, with no third-party libraries and no web views. The candlestick charts are drawn directly with SwiftUI Canvas. For each symbol it shows entry, stop-loss and take-profit levels alongside a movement-and-risk card.',
+      'It is free, and every install gets its own anonymous account, verified with Apple App Attest rather than a sign-up form. Results are kept on the device until the bar closes, so reopening the app does not spend an allowance.',
+      'The analysis itself runs on private servers and is not part of the repository; the source is published for reading only.',
+    ],
+    meta: [
+      ['Stack', 'Swift · SwiftUI Canvas · App Attest · iOS 17+'],
+      ['Market', 'US equities, crypto, futures'],
+      ['Source', 'Public, all rights reserved'],
+    ],
+    links: [
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/bunnyquant-ios' },
+      { label: 'BunnyQuant', href: 'https://bunnyquant.com' },
+    ],
+  },
+  {
+    id: 'bunnyquantvn-ios',
+    kind: 'iPhone and iPad app · Swift',
+    title: 'BunnyQuantVN',
+    lead: 'The sister app for the Vietnamese market, in Vietnamese: the VN30 list, candlesticks, entry, stop-loss and take-profit.',
+    body: [
+      'Same native Swift approach as the US app, pointed at a Vietnamese backend, with its own interface language, logo and colours. A watchlist is seeded with VN30 tickers on first launch, and each ticker opens to a candlestick chart with entry, stop-loss and take-profit levels and a movement-and-risk card.',
+      'Free, with an anonymous per-install account verified by Apple App Attest. As with the US app, the analysis is server-side and not in the repository.',
+    ],
+    meta: [
+      ['Stack', 'Swift · SwiftUI Canvas · App Attest'],
+      ['Market', 'Vietnam, VN30'],
+      ['Source', 'Public, all rights reserved'],
+    ],
+    links: [
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/bunnyquantvn-ios' },
+      { label: 'BunnyQuantVN', href: 'https://bunnyquant.vn' },
+    ],
+  },
+];
+---
+
+<Base
+  current="Portfolio"
+  title="Portfolio"
+  description="Software I have built and published: a from-scratch bioelectricity language model refereed by a tissue simulator, and native iPhone apps."
+>
+  <section class="head">
+    <div class="wrap">
+      <h1>Portfolio</h1>
+      <p class="lede">
+        Things that run, with code you can read. Research results are on the
+        <a href="/research/">research page</a>; this is the software.
+      </p>
+    </div>
+  </section>
+  {projects.map((p) => (
+    <section id={p.id}>
+      <div class="wrap project">
+        <div class="project__aside">
+          <p class="project__kind mono">{p.kind}</p>
+          <dl class="meta">
+            {p.meta.map(([k, v]) => (
+              <div class="meta__row">
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="project__main">
+          <h2>{p.title}</h2>
+          <p class="project__lead">{p.lead}</p>
+          {p.body.map((para) => (<p class="wide">{para}</p>))}
+          <p class="project__links small">
+            {p.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+          </p>
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 2.5rem; }
+  .head h1 { margin-bottom: 0.7rem; }
+
+  .project {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 2rem 3rem;
+    align-items: start;
+  }
+  .project__kind {
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+    line-height: 1.5;
+  }
+  .meta { margin: 0; font-size: 0.85rem; }
+  .meta__row { padding-block: 0.55rem; border-top: 1px solid var(--border); }
+  .meta dt {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+  .meta dd { margin: 0; color: var(--text-soft); line-height: 1.45; }
+
+  .project__main h2 { margin-bottom: 0.45rem; }
+  .project__lead {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    max-width: 38rem;
+    margin-bottom: 1.15rem;
+  }
+  .project__links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin: 1.25rem 0 0; }
+
+  @media (max-width: 52rem) {
+    .project { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project__aside { order: 2; }
+  }
+</style>
