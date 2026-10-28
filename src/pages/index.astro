@@ -112,81 +112,49 @@ const selected = [
 
 <Base current="Home">
   <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="hero__kicker mono">{site.name}, {site.credential} · AI researcher · University of Vermont</p>
-        <h1>Telling biobots what to do, in plain English<span class="hero__dot">.</span></h1>
-        <p class="lede hero__thesis">
-          Language-driven control of xenobots and simulated cell collectives. I build adaptive AI
-          — language models, reinforcement learning and open-ended search — and check that it was
-          the sentence that did it.
-        </p>
-        <ul class="hero__chips mono">
-          <li>Xenobots</li>
-          <li>Language models</li>
-          <li>AI for science</li>
-          <li>Reinforcement learning</li>
-          <li>Open-ended search</li>
-          <li>Adaptive agents</li>
-        </ul>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="/research/">Research</a>
-          <a class="btn" href="/portfolio/">Software</a>
-          <a class="btn" href={`mailto:${site.email}`}>Contact</a>
-        </div>
-      </div>
-      <div class="hero__viz hero__pair">
-        <a class="hero__clip pair__a" href="/research/#living" aria-label="Steering biobots with language">
-          <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.">
+    <div class="wrap">
+      <p class="hero__kicker mono">{site.name}, {site.credential} · AI researcher · University of Vermont</p>
+      <h1>Using language to design and control biobots, robots and cells<span class="hero__dot">.</span></h1>
+      <p class="lede hero__thesis">
+        I build AI that turns a sentence into an intervention or a design — for xenobots, simulated
+        tissue and evolved robots — and check that it was the sentence that did it.
+      </p>
+      <ul class="hero__chips mono">
+        <li>Xenobots</li>
+        <li>Language models</li>
+        <li>AI for science</li>
+        <li>Reinforcement learning</li>
+        <li>Open-ended search</li>
+        <li>Adaptive agents</li>
+      </ul>
+      <div class="trio">
+        <a class="trio__item trio__item--dark" href="/research/#living" aria-label="Biobots: steered by a sentence">
+          <span class="trio__media"><video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.">
             <source src="/research/living-loop.webm" type="video/webm" />
             <source src="/research/living-loop.mp4" type="video/mp4" />
-          </video>
-          <span class="hero__cap mono">Xenobots, steered by a sentence</span>
+          </video></span>
+          <span class="trio__cap"><b class="mono">Biobots</b> Steered by a sentence</span>
         </a>
-        <a class="hero__clip pair__b" href="/research/#verify" aria-label="Simulated tissue engineering: one phrase changed, the tissue flips">
-          <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
+        <a class="trio__item trio__item--light" href="/research/#verify" aria-label="Cells: one phrase changed, the tissue flips">
+          <span class="trio__media"><video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
             <source src="/research/p2i-verify-loop.webm" type="video/webm" />
             <source src="/research/p2i-verify-loop.mp4" type="video/mp4" />
-          </video>
+          </video></span>
+          <span class="trio__cap"><b class="mono">Cells</b> One phrase, opposite tissue</span>
+        </a>
+        <a class="trio__item trio__item--grey" href="/research/#morph" aria-label="Robots: GPT-Morph, a sentence designs the robot">
+          <span class="trio__media"><video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A four-legged robot evolved from the sentence a four-legged robot that walks sideways to the right, walking sideways in simulation.">
+            <source src="/research/morph-walk.webm" type="video/webm" />
+            <source src="/research/morph-walk.mp4" type="video/mp4" />
+          </video></span>
+          <span class="trio__cap"><b class="mono">Robots</b> A sentence designs the body</span>
         </a>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <p class="eyebrow">GPT-Morph: a sentence designs the robot</p>
-      <div class="morph">
-        <a class="tile morph__main" href="/research/#morph" aria-label="GPT-Morph: a four-legged robot that walks sideways to the right">
-          <div class="tile__media">
-            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="From the sentence a four-legged robot that walks sideways to the right, to a random design that falls over, to the evolved walker, in simulation.">
-              <source src="/research/morph-story.webm" type="video/webm" />
-              <source src="/research/morph-story.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </a>
-        <a class="tile morph__side" href="/research/#morph" aria-label="GPT-Morph: an Italian sentence for a robot that spins on itself">
-          <div class="tile__media">
-            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A robot evolved from an Italian sentence spinning on the spot.">
-              <source src="/research/morph-turn.webm" type="video/webm" />
-              <source src="/research/morph-turn.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </a>
-        <a class="tile morph__side" href="/research/#morph" aria-label="GPT-Morph: a French sentence for a long-legged robot that hops">
-          <div class="tile__media">
-            <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A robot evolved from a French sentence hopping on two long legs.">
-              <source src="/research/morph-hop.webm" type="video/webm" />
-              <source src="/research/morph-hop.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </a>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/research/">Research</a>
+        <a class="btn" href="/portfolio/">Software</a>
+        <a class="btn" href={`mailto:${site.email}`}>Contact</a>
       </div>
-      <p class="morph__cap">
-        A language model turns a sentence — in English, Italian or French — into a design spec; one evolutionary search
-        finds the body and the gait together, and a rule written beforehand checks the robot did what was asked. Simulated in
-        MuJoCo. <a href="/research/#morph">How it works &rarr;</a>
-      </p>
     </div>
   </section>
 
@@ -308,13 +276,6 @@ const selected = [
 <style>
   .hero { padding-block: clamp(3rem, 8vw, 5.5rem) 3.5rem; }
 
-  .hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-
   .hero__kicker {
     font-size: 0.75rem;
     letter-spacing: 0.055em;
@@ -331,14 +292,6 @@ const selected = [
 
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.75rem; }
 
-  .hero__viz { display: flex; justify-content: flex-start; }
-
-  /* The animation leads, on every width — it's the first thing a visitor
-     sees, ahead of the name and the long thesis line below it. */
-  @media (max-width: 52rem) {
-    .hero__grid { grid-template-columns: 1fr; }
-    .hero__actions { margin-bottom: 0.5rem; }
-  }
 
   .hero h1 { font-size: clamp(1.9rem, 4.2vw, 2.9rem); line-height: 1.12; }
   .hero__chips {
@@ -346,26 +299,29 @@ const selected = [
     font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-muted);
   }
   .hero__chips li { border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.7rem; }
-  .hero__clip {
-    position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
-    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #0b100e;
+  .hero h1 { max-width: 40rem; }
+  .hero__thesis { max-width: 42rem; }
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .trio__item { display: block; color: var(--text); transition: transform 0.25s ease; }
+  .trio__item:hover { transform: translateY(-3px); }
+  .trio__media {
+    display: block; aspect-ratio: 4 / 3; overflow: hidden;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: 0 18px 50px -22px color-mix(in srgb, var(--accent) 45%, transparent);
   }
-  .hero__clip:hover { border-color: var(--accent); }
-  .hero__pair { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
-  .pair__a { position: relative; aspect-ratio: 16 / 9; background: #0b100e; }
-  .pair__b { position: relative; aspect-ratio: 960 / 690; background: #fbfaf7; }
-  .hero__clip .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .hero__cap {
-    position: absolute; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.9rem;
-    font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: #fff;
-    background: linear-gradient(transparent, rgba(8,12,18,0.78));
-  }
+  .trio__item:hover .trio__media { border-color: var(--accent); }
+  .trio__item--dark .trio__media { background: #0b100e; }
+  .trio__item--light .trio__media { background: #fbfaf7; }
+  .trio__item--grey .trio__media { background: #9a9a96; }
+  .trio__item .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .trio__cap { display: block; padding: 0.7rem 0.1rem 0; font-size: 0.92rem; color: var(--text-soft); }
+  .trio__cap b { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.1rem; }
+  @media (max-width: 52rem) { .trio { grid-template-columns: 1fr; } }
   .hero { position: relative; }
   .hero::before {
     content: ''; position: absolute; inset: -10% -5% auto -5%; height: 90%; pointer-events: none; z-index: -1;
     background: radial-gradient(60% 60% at 75% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   }
-  .hero__clip { box-shadow: 0 18px 60px -20px color-mix(in srgb, var(--accent) 45%, transparent); }
 
   .bento {
     display: grid;
@@ -380,16 +336,6 @@ const selected = [
   .bento .b-a .tile__title { font-size: 1.25rem; }
   @media (max-width: 52rem) {
     .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 10rem; }
-  }
-
-  .morph { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
-  .morph__main { grid-row: 1 / span 2; aspect-ratio: 4 / 3; }
-  .morph__side { aspect-ratio: auto; }
-  .morph__cap { max-width: 46rem; color: var(--text-soft); margin: 1rem 0 0; font-size: 0.95rem; }
-  @media (max-width: 52rem) {
-    .morph { grid-template-columns: 1fr 1fr; }
-    .morph__main { grid-column: 1 / span 2; grid-row: auto; }
-    .morph__side { aspect-ratio: 4 / 3; }
   }
 
   .stage { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem; }
