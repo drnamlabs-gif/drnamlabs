@@ -12,7 +12,7 @@ Astro, static output, no application backend. Live at <https://drnamlabs.com>.
 npm install
 npm run dev        # http://localhost:4321 — drafts are visible here only
 npm run build      # -> dist/
-./deploy.sh        # build, back up the live site, rsync, verify
+./deploy.sh        # build, upload (ssh+tar), swap in, verify
 ```
 
 ## The one rule that matters
@@ -72,8 +72,11 @@ That machine needs its own SSH key authorised on the server. No private key is
 committed to this repo and none ever should be — `theta-server` is root on a box
 serving five production sites, and a key in git history cannot be taken back.
 
-`./deploy.sh` rsyncs `dist/` to `theta-server:/var/www/drnamlabs` over an existing
-`~/.ssh/config` host alias, after copying the live files to a timestamped backup directory.
+`./deploy.sh` streams `dist/` as a tar over ssh to `theta-server`, stages it beside
+`/var/www/drnamlabs`, checks the file count, then swaps it in with two renames; the previous
+site is renamed to `/var/www/drnamlabs_backups/<timestamp>/`. It needs only bash, ssh, tar
+and curl — **no rsync, on purpose**, so a Windows machine (Git Bash/WSL) can deploy as well
+as the Mac. `--dry-run` lists files that would be added or removed.
 nginx serves the directory statically (`try_files $uri $uri/ =404`), so there is no service
 to restart. It then curl-verifies every route.
 

@@ -1,6 +1,6 @@
 # Deploying from a second machine
 
-`./deploy.sh` publishes the built site by rsync over SSH to the host alias
+`./deploy.sh` publishes the built site as a tar stream over SSH to the host alias
 `theta-server`. A fresh clone can build (`npm run build`) immediately, but it
 cannot deploy until that machine has its **own** SSH key authorised on the
 server.
@@ -26,13 +26,13 @@ machine without touching the others.
 
 ### 1. Windows only: use a bash shell
 
-`deploy.sh` is a bash script and needs `rsync`, `ssh` and `curl`. Native
-PowerShell will not run it. Either is fine:
+`deploy.sh` is a bash script and needs only `ssh`, `tar` and `curl` (no
+rsync). Native PowerShell will not run it. Either is fine:
 
 - **WSL** (recommended) — `wsl --install`, then work inside the Linux home
-  directory, not `/mnt/c`, or rsync permissions get strange.
-- **Git Bash**, which ships with Git for Windows. It has `ssh` and `curl`;
-  install `rsync` through its package manager if missing.
+  directory, not `/mnt/c`, or file permissions get strange.
+- **Git Bash**, which ships with Git for Windows. It includes `ssh`, `tar` and
+  `curl`, so there is nothing extra to install.
 
 Run every command below inside that shell.
 

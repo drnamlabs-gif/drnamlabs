@@ -18,11 +18,13 @@ npm run preview    # serve dist/ locally
 ./deploy.sh              # build, back up the live site, upload, verify
 ```
 
-It rsyncs `dist/` to `theta-server:/var/www/drnamlabs` over the existing
-`~/.ssh/config` host alias. nginx serves the directory statically with
-`try_files $uri $uri/ =404`, so there is no service to restart. Each deploy
-copies the current live files to `/var/www/drnamlabs_backups/<timestamp>/`
-first.
+It streams `dist/` as a tar over ssh to `theta-server`, stages it next to
+`/var/www/drnamlabs` and swaps it in with two renames, using the existing
+`~/.ssh/config` host alias. There is no rsync, so it runs the same on macOS,
+WSL and Git Bash. nginx serves the directory statically with
+`try_files $uri $uri/ =404`, so there is no service to restart. The previous
+site is kept as `/var/www/drnamlabs_backups/<timestamp>/` — to roll back, rename
+it back over `/var/www/drnamlabs`.
 
 The same server also runs `theta.bunnyquant.com`, `bunnyquant.com` and
 `bunnyquant.vn` from sibling directories. `deploy.sh` never touches them.
