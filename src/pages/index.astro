@@ -13,16 +13,7 @@ const tiles = [
     media: 'video',
     src: '/research/oddworld-loop',
     alt: 'Agents in a 3D diorama learning, over training, to pick out the one object in a cluster that differs from the rest.',
-  },{
-    kind: 'Simulated tissue engineering',
-    title: 'One phrase changed, the tissue flips',
-    cls: 'b-b',
-    href: '/research/#verify',
-    media: 'video',
-    src: '/research/p2i-verify-loop',
-    alt: 'Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.',
-  },
-  {
+  },  {
     kind: 'Embodied agents',
     title: 'Language-driven control, in a body',
     cls: 'b-c',
@@ -144,13 +135,21 @@ const selected = [
           <a class="btn" href={`mailto:${site.email}`}>Contact</a>
         </div>
       </div>
-      <a class="hero__viz hero__clip" href="/research/#living" aria-label="Steering biobots with language">
-        <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.">
-          <source src="/research/living-loop.webm" type="video/webm" />
-          <source src="/research/living-loop.mp4" type="video/mp4" />
-        </video>
-        <span class="hero__cap mono">Steering biobots with language</span>
-      </a>
+      <div class="hero__viz hero__pair">
+        <a class="hero__clip pair__a" href="/research/#living" aria-label="Steering biobots with language">
+          <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.">
+            <source src="/research/living-loop.webm" type="video/webm" />
+            <source src="/research/living-loop.mp4" type="video/mp4" />
+          </video>
+          <span class="hero__cap mono">Xenobots, steered by a sentence</span>
+        </a>
+        <a class="hero__clip pair__b" href="/research/#verify" aria-label="Simulated tissue engineering: one phrase changed, the tissue flips">
+          <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
+            <source src="/research/p2i-verify-loop.webm" type="video/webm" />
+            <source src="/research/p2i-verify-loop.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -315,7 +314,14 @@ const selected = [
     border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #0b100e;
   }
   .hero__clip:hover { border-color: var(--accent); }
+  .hero__pair { position: relative; width: 100%; aspect-ratio: 4 / 3; display: block; }
+  .pair__a { position: absolute; left: 0; top: 0; width: 84%; aspect-ratio: 16 / 9; }
+  .pair__b {
+    position: absolute; right: 0; bottom: 0; width: 58%; aspect-ratio: 960 / 690; z-index: 2;
+    background: #fbfaf7; box-shadow: 0 22px 50px -14px rgba(0,0,0,0.7);
+  }
   .hero__clip .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .pair__a { background: #0b100e; }
   .hero__cap {
     position: absolute; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.9rem;
     font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: #fff;
@@ -337,12 +343,9 @@ const selected = [
   .bento .tile { aspect-ratio: auto; transition: transform 0.25s ease, border-color 0.2s; }
   .bento .tile:hover { transform: translateY(-3px); }
   .bento .b-a { grid-column: span 2; grid-row: span 2; }
-  .bento .b-b { grid-column: span 2; }
-  .bento .b-e, .bento .b-f { grid-column: span 2; }
   .bento .b-a .tile__title { font-size: 1.25rem; }
   @media (max-width: 52rem) {
     .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 10rem; }
-    .bento .b-e, .bento .b-f { grid-column: span 1; }
   }
 
   .stage { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem; }
