@@ -9,6 +9,16 @@ const projects = [
     kind: 'Language model · bioelectricity',
     title: 'CellBio-GPT',
     lead: 'A small language model for cell and tissue bioelectricity, with a physics simulator as the referee.',
+    hero: {
+      src: '/portfolio/cellbio-pipeline.png', w: 1445, h: 564,
+      alt: 'Pipeline diagram: PubMed abstracts feed a tokenizer, a 40M transformer, pretraining, SFT and DPO, then GRPO whose reward comes from the BETSE simulator, then evaluation, a library reader and a live demo.',
+      caption: 'The pipeline, every stage written from scratch. The loop at the bottom right is the point: the model’s prediction goes to the simulator, and the simulator’s answer is the reward.',
+    },
+    figs: [{
+      src: '/portfolio/cellbio-exams.png', w: 1799, h: 692,
+      alt: 'Two bar charts of held-out reward. Exam A, on a lattice holdout: the lattice-trained 40M model scores 0.945. Exam B, off-grid and sealed: the lattice-trained model drops to 0.539, a random-trained model reaches 0.777, and random-trained with five worked examples reaches 0.835.',
+      caption: 'Exam design decides what a score means. Trained on a lattice of simulator settings, the model does well on held-out lattice points and falls below a constant guess off the lattice; training on random points, with five worked examples in the prompt, recovers it.',
+    }],
     body: [
       'Language models trained on papers learn how papers sound. In biology nothing usually tells the model when a number it wrote is wrong. Bioelectricity is an exception, because the membrane physics can be simulated: BETSE takes ion concentrations and channel permeabilities and returns the voltage of every cell in a tissue.',
       'The simulator is used twice. It scores the model’s numeric predictions, so the model is trained against physics rather than against someone’s opinion of its answers, and it writes the exams, so it is possible to ask whether the model learned anything beyond its training points. Facts are not memorised: they live in a full-text library of 3.2 million PubMed abstracts that the model quotes with PMIDs.',
@@ -99,7 +109,19 @@ const projects = [
         <div class="project__main">
           <h2>{p.title}</h2>
           <p class="project__lead">{p.lead}</p>
+          {p.hero && (
+            <figure class="project__fig">
+              <img src={p.hero.src} width={p.hero.w} height={p.hero.h} alt={p.hero.alt} loading="lazy" />
+              <figcaption class="small">{p.hero.caption}</figcaption>
+            </figure>
+          )}
           {p.body.map((para) => (<p class="wide">{para}</p>))}
+          {p.figs && p.figs.map((f) => (
+            <figure class="project__fig">
+              <img src={f.src} width={f.w} height={f.h} alt={f.alt} loading="lazy" />
+              <figcaption class="small">{f.caption}</figcaption>
+            </figure>
+          ))}
           <p class="project__links small">
             {p.links.map((l) => (<a href={l.href}>{l.label}</a>))}
           </p>
@@ -147,6 +169,16 @@ const projects = [
     max-width: 38rem;
     margin-bottom: 1.15rem;
   }
+  .project__fig { margin: 0 0 1.4rem; }
+  .project__fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fbfaf7;
+  }
+  .project__fig figcaption { margin-top: 0.5rem; max-width: 38rem; color: var(--text-muted); line-height: 1.45; }
   .project__links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin: 1.25rem 0 0; }
 
   @media (max-width: 52rem) {
