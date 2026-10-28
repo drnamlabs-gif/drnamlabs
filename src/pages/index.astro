@@ -14,13 +14,13 @@ const tiles = [
     src: '/research/oddworld-loop',
     alt: 'Agents in a 3D diorama learning, over training, to pick out the one object in a cluster that differs from the rest.',
   },{
-    kind: 'Living matter',
-    title: 'Steering biobots with language',
+    kind: 'Simulated tissue engineering',
+    title: 'One phrase changed, the tissue flips',
     cls: 'b-b',
-    href: '/research/#living',
+    href: '/research/#verify',
     media: 'video',
-    src: '/research/living-loop',
-    alt: 'A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.',
+    src: '/research/p2i-verify-loop',
+    alt: 'Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.',
   },
   {
     kind: 'Embodied agents',
@@ -124,18 +124,18 @@ const selected = [
     <div class="wrap hero__grid">
       <div class="hero__text">
         <p class="hero__kicker mono">{site.name}, {site.credential} · AI researcher · University of Vermont</p>
-        <h1>Telling collectives of cells what to do, in plain English<span class="hero__dot">.</span></h1>
+        <h1>Telling biobots what to do, in plain English<span class="hero__dot">.</span></h1>
         <p class="lede hero__thesis">
-          I work on language models, evolutionary computation and learning. The question: can a
-          sentence steer a simulated tissue or a living xenobot — and was it really the sentence
-          that did it?
+          Language-driven control of xenobots and simulated cell collectives. I work on language
+          models, evolutionary computation and learning — and on checking that it was the sentence
+          that did it.
         </p>
         <ul class="hero__chips mono">
+          <li>Xenobots</li>
           <li>Language models</li>
           <li>Evolutionary computation</li>
           <li>Learning</li>
           <li>Bioelectric tissue</li>
-          <li>Xenobots</li>
         </ul>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/research/">Research</a>
@@ -143,12 +143,12 @@ const selected = [
           <a class="btn" href={`mailto:${site.email}`}>Contact</a>
         </div>
       </div>
-      <a class="hero__viz hero__clip" href="/research/#verify" aria-label="Simulated tissue engineering: one phrase changed, the tissue flips">
-        <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
-          <source src="/research/p2i-verify-loop.webm" type="video/webm" />
-          <source src="/research/p2i-verify-loop.mp4" type="video/mp4" />
+      <a class="hero__viz hero__clip" href="/research/#living" aria-label="Steering biobots with language">
+        <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.">
+          <source src="/research/living-loop.webm" type="video/webm" />
+          <source src="/research/living-loop.mp4" type="video/mp4" />
         </video>
-        <span class="hero__cap mono">One phrase changed, the tissue flips</span>
+        <span class="hero__cap mono">Steering biobots with language</span>
       </a>
     </div>
   </section>
@@ -310,8 +310,8 @@ const selected = [
   }
   .hero__chips li { border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.7rem; }
   .hero__clip {
-    position: relative; display: block; width: 100%; aspect-ratio: 960 / 690;
-    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fbfaf7;
+    position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #0b100e;
   }
   .hero__clip:hover { border-color: var(--accent); }
   .hero__clip .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
