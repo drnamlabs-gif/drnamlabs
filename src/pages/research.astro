@@ -102,17 +102,17 @@ const strands = [
   {
     id: 'morph',
     kind: 'Evolutionary robotics',
-    title: 'From a sentence to a verified robot',
+    title: 'GPT-Morph: language to robot morphology that moves',
     lead: 'What if the sentence set both the behaviour and the body, and something checked that the robot did what it said?',
     media: '/research/morph-story',
     body: [
-      'ZapGPT-Morph is early work on turning a sentence into a robot design. A small language model reads the request and writes a spec: what the robot should do (forward, sideways, turning, airtime) and what its body must satisfy (number of legs, leg length, mass). One evolutionary search then finds the body and the gait together, in MuJoCo. The clip follows one run, from the request, to a random design that falls over, to the evolved walker.',
+      'GPT-Morph is early work on turning a sentence into a robot design. A small language model reads the request and writes a spec: what the robot should do (forward, sideways, turning, airtime) and what its body must satisfy (number of legs, leg length, mass). One evolutionary search then finds the body and the gait together, in MuJoCo. The clip follows one run, from the request, to a random design that falls over, to the evolved walker.',
       'The closest work is Text2Robot (Ringel, Charlick, Liu, Xia and Chen, ICRA 2025). There the text goes through a text-to-3D model to give an initial shape; the body is then a quadruped, the behaviour is always walking, and the text plays no further part while the design is optimised. Here the text sets the behaviour and the body constraints for the whole search, and the result is checked against the sentence afterwards.',
       'The language model is Qwen2.5-1.5B-Instruct with a LoRA adapter, trained on 703 English sentences: templated requests plus paraphrases written by a larger local model for each combination of direction and body. Labels come from the class that was asked for, never from a model-written spec, and words that occur only in the test set were removed from training. On 23 sentences it had never seen, scored by rules fixed beforehand, the adapter got both body and direction right on 16. A 27B model prompted by hand got 11 — it understands the words but flips the sign of “right” in about half the cases — and sentence embeddings with a small network also got 11. The adapter handled negation and Vietnamese, which it never saw in training, and failed on unseen words such as “biped”.',
     ],
     figs: [{
       src: '/research/morph-pipeline.png', w: 1600, h: 1500,
-      alt: 'Pipeline of ZapGPT-Morph: a prompt, a language-model compiler, one 79-gene genome of 24 body genes and 55 gait genes, evolution of body and gait together, and verification by rules written before the run, shown with two evolved robots and their torso paths.',
+      alt: 'Pipeline of GPT-Morph: a prompt, a language-model compiler, one 79-gene genome of 24 body genes and 55 gait genes, evolution of body and gait together, and verification by rules written before the run, shown with two evolved robots and their torso paths.',
       caption: 'The pipeline. The genome is 24 body genes (torso size, leg pairs, segments, lengths, joint axes) and 55 gait genes (a sine per joint, one shared frequency). There is no reinforcement learning: body and gait come from one evolutionary search. Below, two evolved robots with the spec each sentence compiled to.',
     }],
     after: [
@@ -137,7 +137,7 @@ const strands = [
       ['Status', 'Early work · tested in MuJoCo · code public'],
     ],
     links: [
-      { label: 'Code', href: 'https://github.com/drnamlabs-gif/zapgpt-morph' },
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/gpt-morph' },
       { label: 'Text2Robot (arXiv)', href: 'https://arxiv.org/abs/2406.19963' },
     ],
   },
