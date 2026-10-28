@@ -25,6 +25,7 @@ const projects = [
       'Every stage of the pipeline is written for the project in plain PyTorch on one GPU: a BPE tokenizer, a 40.5M-parameter GPT, pretraining, SFT, preference optimisation, and reinforcement learning with the simulator as verifier. The final exams were sealed: the repository holds only their hashes, committed before any model saw them, and the analysis plan.',
     ],
     meta: [
+      ['For', 'Researchers in cell and tissue bioelectricity'],
       ['Model', '10-layer GPT, 40.5M parameters, written from scratch'],
       ['Corpus', '3.2M PubMed abstracts, 0.99B training tokens'],
       ['Referee', 'BETSE bioelectric tissue simulator'],
@@ -41,12 +42,20 @@ const projects = [
     kind: 'iPhone and iPad app · Swift',
     title: 'BunnyQuant for iPhone and iPad',
     lead: 'A native client for the BunnyQuant analytics service: a watchlist, candlestick charts, and a risk card.',
+    shots: [
+      { src: '/portfolio/bq-us-01-watchlist.jpg', alt: 'The BunnyQuant watchlist: Nasdaq 100, S&P 500, Bitcoin, Ethereum, Apple, NVIDIA, Tesla and Microsoft, each with a price, the day’s change and a leaning-up, leaning-down or steady label.', caption: 'Watchlist: one line per symbol, with a plain-language lean.' },
+      { src: '/portfolio/bq-us-02-chart.jpg', alt: 'A Nasdaq 100 daily candlestick chart with dashed entry, stop-loss and two take-profit lines, a price-levels table and a movement-and-risk card.', caption: 'Candlesticks drawn natively, with entry, stop and targets over the price.' },
+      { src: '/portfolio/bq-us-03-risk.jpg', alt: 'The key price levels table with reward-to-risk, the movement-and-risk bars, and a quick read with confidence.', caption: 'The numbers as a table, then as bars: typical move, risk to stop, target.' },
+      { src: '/portfolio/bq-us-04-chart-2.jpg', alt: 'A Bitcoin daily candlestick chart with the same levels and cards.', caption: 'The same screen on a different market: Bitcoin.' },
+    ],
+    shotsNote: 'Candles are real public price data. The entry, stop and target levels in these screenshots are illustrative, calculated simply for the picture; they are not output from the live service, which a simulator cannot register with.',
     body: [
       'Written in plain Swift and SwiftUI, with no third-party libraries and no web views. The candlestick charts are drawn directly with SwiftUI Canvas. For each symbol it shows entry, stop-loss and take-profit levels alongside a movement-and-risk card.',
       'It is free, and every install gets its own anonymous account, verified with Apple App Attest rather than a sign-up form. Results are kept on the device until the bar closes, so reopening the app does not spend an allowance.',
       'The analysis itself runs on private servers and is not part of the repository; the source is published for reading only.',
     ],
     meta: [
+      ['For', 'Retail traders in US markets'],
       ['Stack', 'Swift · SwiftUI Canvas · App Attest · iOS 17+'],
       ['Market', 'US equities, crypto, futures'],
       ['Source', 'Public, all rights reserved'],
@@ -61,11 +70,19 @@ const projects = [
     kind: 'iPhone and iPad app · Swift',
     title: 'BunnyQuantVN',
     lead: 'The sister app for the Vietnamese market, in Vietnamese: the VN30 list, candlesticks, entry, stop-loss and take-profit.',
+    shots: [
+      { src: '/portfolio/bq-vn-01-watchlist.jpg', alt: 'The BunnyQuantVN watchlist in Vietnamese: Vietcombank, FPT, Hòa Phát, Vinamilk, Thế Giới Di Động, ACB, Vingroup and SSI, with prices in thousand dong and a lean label.', caption: 'Watchlist in Vietnamese, seeded with VN30 tickers.' },
+      { src: '/portfolio/bq-vn-02-chart.jpg', alt: 'An FPT daily candlestick chart with entry, stop-loss and take-profit lines and a table of price levels, in Vietnamese.', caption: 'Candlesticks with Vào (entry), Cắt lỗ (stop-loss) and Chốt lời (take-profit).' },
+      { src: '/portfolio/bq-vn-03-risk.jpg', alt: 'The movement-and-risk bars and a quick read in Vietnamese, including a note that T+2 settlement means a stop has to be planned ahead.', caption: 'A quick read that knows the local rule: T+2 settlement, so stops need planning ahead.' },
+      { src: '/portfolio/bq-vn-04-chart-2.jpg', alt: 'A Hòa Phát daily candlestick chart with the same levels and cards, in Vietnamese.', caption: 'The same screen for another ticker: Hòa Phát.' },
+    ],
+    shotsNote: 'Nến là giá thật từ nguồn công khai. Các mức vào, cắt lỗ, chốt lời trong ảnh chỉ để minh hoạ, tính đơn giản cho bức hình, không phải kết quả từ máy chủ thật. (Candles are real public price data; the levels shown are illustrative.)',
     body: [
       'Same native Swift approach as the US app, pointed at a Vietnamese backend, with its own interface language, logo and colours. A watchlist is seeded with VN30 tickers on first launch, and each ticker opens to a candlestick chart with entry, stop-loss and take-profit levels and a movement-and-risk card.',
       'Free, with an anonymous per-install account verified by Apple App Attest. As with the US app, the analysis is server-side and not in the repository.',
     ],
     meta: [
+      ['For', 'Retail traders in Vietnam, in Vietnamese'],
       ['Stack', 'Swift · SwiftUI Canvas · App Attest'],
       ['Market', 'Vietnam, VN30'],
       ['Source', 'Public, all rights reserved'],
@@ -79,16 +96,18 @@ const projects = [
 ---
 
 <Base
-  current="Portfolio"
-  title="Portfolio"
-  description="Software I have built and published: a from-scratch bioelectricity language model refereed by a tissue simulator, and native iPhone apps."
+  current="Software"
+  title="Software"
+  description="Software portfolio: a from-scratch bioelectricity language model refereed by a tissue simulator, and two native iPhone apps, designed, written and published by a researcher."
 >
   <section class="head">
     <div class="wrap">
-      <h1>Portfolio</h1>
+      <h1>Software</h1>
       <p class="lede">
-        Things that run, with code you can read. Research results are on the
-        <a href="/research/">research page</a>; this is the software.
+        I am a researcher who also ships software. These are tools I designed,
+        wrote and published myself, each built for a specific kind of user, with
+        the code open to read. Research results are on the
+        <a href="/research/">research page</a>.
       </p>
     </div>
   </section>
@@ -113,6 +132,19 @@ const projects = [
             <figure class="project__fig">
               <img src={p.hero.src} width={p.hero.w} height={p.hero.h} alt={p.hero.alt} loading="lazy" />
               <figcaption class="small">{p.hero.caption}</figcaption>
+            </figure>
+          )}
+          {p.shots && (
+            <figure class="shots">
+              <ul class="shots__row">
+                {p.shots.map((s) => (
+                  <li>
+                    <img src={s.src} width="660" height="1319" alt={s.alt} loading="lazy" />
+                    <span class="small">{s.caption}</span>
+                  </li>
+                ))}
+              </ul>
+              <figcaption class="small">{p.shotsNote}</figcaption>
             </figure>
           )}
           {p.body.map((para) => (<p class="wide">{para}</p>))}
@@ -160,6 +192,7 @@ const projects = [
   }
   .meta dd { margin: 0; color: var(--text-soft); line-height: 1.45; }
 
+  .project__main { min-width: 0; }
   .project__main h2 { margin-bottom: 0.45rem; }
   .project__lead {
     font-family: var(--serif);
@@ -179,10 +212,32 @@ const projects = [
     background: #fbfaf7;
   }
   .project__fig figcaption { margin-top: 0.5rem; max-width: 38rem; color: var(--text-muted); line-height: 1.45; }
+  .shots { margin: 0 0 1.5rem; }
+  .shots__row {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.6rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(8.5rem, 1fr);
+    gap: 0.9rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+  .shots__row li { display: flex; flex-direction: column; gap: 0.5rem; scroll-snap-align: start; }
+  .shots__row img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 1.1rem;
+  }
+  .shots__row .small { color: var(--text-muted); line-height: 1.4; }
+  .shots figcaption { margin-top: 0.35rem; max-width: 38rem; color: var(--text-muted); line-height: 1.45; font-style: italic; }
   .project__links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin: 1.25rem 0 0; }
 
   @media (max-width: 52rem) {
-    .project { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
     .project__aside { order: 2; }
   }
 </style>
