@@ -8,6 +8,7 @@ const tiles = [
   {
     kind: 'Artificial life',
     title: 'Symbolic reasoning in embodied agents',
+    cls: 'b-a',
     href: '/research/#symbolic',
     media: 'video',
     src: '/research/oddworld-loop',
@@ -15,22 +16,16 @@ const tiles = [
   },{
     kind: 'Living matter',
     title: 'Steering biobots with language',
+    cls: 'b-b',
     href: '/research/#living',
     media: 'video',
     src: '/research/living-loop',
     alt: 'A biobot’s real archival trajectory, before and after a natural-language instruction to move faster, slower, or stop.',
   },
   {
-    kind: 'Simulated tissue engineering',
-    title: 'One phrase changed, the tissue flips',
-    href: '/research/#verify',
-    media: 'video',
-    src: '/research/p2i-verify-loop',
-    alt: 'Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states, the control that shows the sentence did the work.',
-  },
-  {
     kind: 'Embodied agents',
     title: 'Language-driven control, in a body',
+    cls: 'b-c',
     href: '/research/#embodied',
     media: 'video',
     src: '/research/embodied-loop',
@@ -39,6 +34,7 @@ const tiles = [
   {
     kind: 'Artificial life',
     title: 'Flocks that reproduce as units',
+    cls: 'b-d',
     href: '/research/#eti',
     media: 'video',
     src: '/research/vitanova-loop',
@@ -47,24 +43,40 @@ const tiles = [
   {
     kind: 'Computational intelligence',
     title: 'Learning, evolution, and the Baldwin effect',
+    cls: 'b-e',
     href: '/research/#learning',
     media: 'learning',
   },
   {
     kind: 'Markets',
     title: 'Finding the phase boundary in price',
+    cls: 'b-f',
     href: '/research/#markets',
     media: 'portrait',
   },
+];
+
+const software = [
   {
-    kind: 'Embodied agents',
-    title: 'A physical Braitenberg vehicle',
-    comingSoon: true,
+    kind: 'Language model · bioelectricity',
+    title: 'CellBio-GPT: a 40M model refereed by a tissue simulator',
+    href: '/portfolio/#cellbio-gpt',
+    src: '/portfolio/cellbio-pipeline.png',
+    alt: 'Pipeline diagram of CellBio-GPT, from PubMed abstracts to a simulator-scored reward.',
   },
   {
-    kind: 'Computational intelligence',
-    title: 'Evolving free-energy self-modelling networks',
-    comingSoon: true,
+    kind: 'iPhone and iPad · Swift',
+    title: 'BunnyQuant: native charts and risk levels',
+    href: '/portfolio/#bunnyquant-ios',
+    src: '/portfolio/bq-us-01-watchlist.jpg',
+    alt: 'The BunnyQuant app watchlist on an iPhone.',
+  },
+  {
+    kind: 'iPhone and iPad · Swift',
+    title: 'BunnyQuantVN: the same, for VN30, in Vietnamese',
+    href: '/portfolio/#bunnyquantvn-ios',
+    src: '/portfolio/bq-vn-01-watchlist.jpg',
+    alt: 'The BunnyQuantVN app watchlist on an iPhone.',
   },
 ];
 
@@ -108,20 +120,46 @@ const selected = [
 ---
 
 <Base current="Home">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="hero__kicker mono">{site.name}, {site.credential} · AI researcher · University of Vermont</p>
+        <h1>Telling collectives of cells what to do, in plain English<span class="hero__dot">.</span></h1>
+        <p class="lede hero__thesis">
+          I work on language models, evolutionary computation and learning. The question: can a
+          sentence steer a simulated tissue or a living xenobot — and was it really the sentence
+          that did it?
+        </p>
+        <ul class="hero__chips mono">
+          <li>Language models</li>
+          <li>Evolutionary computation</li>
+          <li>Learning</li>
+          <li>Bioelectric tissue</li>
+          <li>Xenobots</li>
+        </ul>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/research/">Research</a>
+          <a class="btn" href="/portfolio/">Software</a>
+          <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+        </div>
+      </div>
+      <a class="hero__viz hero__clip" href="/research/#verify" aria-label="Simulated tissue engineering: one phrase changed, the tissue flips">
+        <video class="tile__vid" muted loop playsinline preload="metadata" aria-label="Two requests three words apart — raise the voltage at the core, or around the perimeter — producing opposite tissue states.">
+          <source src="/research/p2i-verify-loop.webm" type="video/webm" />
+          <source src="/research/p2i-verify-loop.mp4" type="video/mp4" />
+        </video>
+        <span class="hero__cap mono">One phrase changed, the tissue flips</span>
+      </a>
+    </div>
+  </section>
+
   <section>
     <div class="wrap">
       <p class="eyebrow">Research, at a glance</p>
-      <div class="tile-grid">
-        {tiles.map((t) => t.comingSoon ? (
-          <div class="tile tile--soon">
-            <p class="tile__kind mono">{t.kind}</p>
-            <p class="tile__title">{t.title}</p>
-            <p class="tile__soon-tag small">Coming soon</p>
-          </div>
-        ) : (
-          <a class="tile" href={t.href} aria-label={`${t.kind}: ${t.title}`}>
+      <div class="bento">
+        {tiles.map((t) => (
+          <a class={`tile ${t.cls}`} href={t.href} aria-label={`${t.kind}: ${t.title}`}>
             <div class="tile__media">
-              {t.media === 'image' && <img src={t.src} alt={t.alt} class="tile__img" loading="lazy" />}
               {t.media === 'video' && (
                 <video class="tile__vid" muted loop playsinline preload="metadata" aria-label={t.alt}>
                   <source src={`${t.src}.webm`} type="video/webm" />
@@ -141,23 +179,29 @@ const selected = [
     </div>
   </section>
 
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__viz">
-        <PhasePortrait href="/research/#markets" />
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Software that runs</p>
+      <div class="stage">
+        <a class="stage__cell stage__cell--doc" href="/portfolio/#cellbio-gpt">
+          <img src="/portfolio/cellbio-pipeline.png" width="1445" height="564" alt="Pipeline diagram of CellBio-GPT, from PubMed abstracts to a simulator-scored reward." loading="lazy" />
+          <div class="tile__label">
+            <p class="tile__kind mono">Language model · bioelectricity</p>
+            <p class="tile__title">CellBio-GPT: a 40M model, refereed by a tissue simulator</p>
+          </div>
+        </a>
+        <a class="stage__cell stage__cell--phones" href="/portfolio/#bunnyquant-ios">
+          <div class="phones">
+            <img class="phones__a" src="/portfolio/bq-us-01-watchlist.jpg" width="660" height="1319" alt="The BunnyQuant app watchlist on an iPhone." loading="lazy" />
+            <img class="phones__b" src="/portfolio/bq-vn-01-watchlist.jpg" width="660" height="1319" alt="The BunnyQuantVN app watchlist on an iPhone." loading="lazy" />
+          </div>
+          <div class="tile__label">
+            <p class="tile__kind mono">iPhone and iPad · Swift</p>
+            <p class="tile__title">BunnyQuant and BunnyQuantVN: native charts, entry and risk levels</p>
+          </div>
+        </a>
       </div>
-
-      <div class="hero__text">
-        <p class="hero__kicker mono">{site.role} · University of Vermont</p>
-        <h1>{site.name}<span class="hero__dot">.</span></h1>
-        <p class="lede hero__thesis">{site.thesis}</p>
-        <p class="hero__blurb">{site.blurb}</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="/research/">Research</a>
-          <a class="btn" href="/book/">Book</a>
-          <a class="btn" href="/bunnyquant/">Ventures</a>
-        </div>
-      </div>
+      <p><a href="/portfolio/">All software &rarr;</a></p>
     </div>
   </section>
 
@@ -258,6 +302,65 @@ const selected = [
     .hero__grid { grid-template-columns: 1fr; }
     .hero__actions { margin-bottom: 0.5rem; }
   }
+
+  .hero h1 { font-size: clamp(1.9rem, 4.2vw, 2.9rem); line-height: 1.12; }
+  .hero__chips {
+    display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; margin: 0 0 0; padding: 0;
+    font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-muted);
+  }
+  .hero__chips li { border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.7rem; }
+  .hero__clip {
+    position: relative; display: block; width: 100%; aspect-ratio: 960 / 690;
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fbfaf7;
+  }
+  .hero__clip:hover { border-color: var(--accent); }
+  .hero__clip .tile__vid { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .hero__cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.9rem;
+    font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(transparent, rgba(8,12,18,0.78));
+  }
+  .hero { position: relative; }
+  .hero::before {
+    content: ''; position: absolute; inset: -10% -5% auto -5%; height: 90%; pointer-events: none; z-index: -1;
+    background: radial-gradient(60% 60% at 75% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  }
+  .hero__clip { box-shadow: 0 18px 60px -20px color-mix(in srgb, var(--accent) 45%, transparent); }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 11.5rem;
+    gap: 1rem;
+  }
+  .bento .tile { aspect-ratio: auto; transition: transform 0.25s ease, border-color 0.2s; }
+  .bento .tile:hover { transform: translateY(-3px); }
+  .bento .b-a { grid-column: span 2; grid-row: span 2; }
+  .bento .b-b { grid-column: span 2; }
+  .bento .b-e, .bento .b-f { grid-column: span 2; }
+  .bento .b-a .tile__title { font-size: 1.25rem; }
+  @media (max-width: 52rem) {
+    .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 10rem; }
+    .bento .b-e, .bento .b-f { grid-column: span 1; }
+  }
+
+  .stage { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1rem; }
+  .stage__cell {
+    position: relative; display: block; min-height: 22rem; overflow: hidden;
+    border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-raised); color: var(--text);
+    transition: transform 0.25s ease, border-color 0.2s;
+  }
+  .stage__cell:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .stage__cell--doc { background: #fbfaf7; }
+  .stage__cell--doc > img { position: absolute; inset: 0 0 4.5rem 0; width: 100%; height: calc(100% - 4.5rem); object-fit: contain; padding: 1.2rem; }
+  .phones { position: absolute; inset: 0 0 5.2rem 0; display: flex; justify-content: center; align-items: center; }
+  .phones img {
+    width: auto; height: 15rem; border-radius: 1.5rem; border: 1px solid var(--border);
+    box-shadow: 0 16px 40px -12px rgba(0,0,0,0.55);
+  }
+  .phones__a { transform: rotate(-5deg) translateX(1.2rem); }
+  .phones__b { transform: rotate(5deg) translateX(-1.2rem) translateY(0.8rem); }
+  @media (max-width: 52rem) { .stage { grid-template-columns: 1fr; } }
 
   .thesis p { font-size: 1.02rem; color: var(--text-soft); }
 
