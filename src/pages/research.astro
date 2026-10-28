@@ -118,7 +118,7 @@ const strands = [
     after: [
       'The check is a set of pass rules written before the run and tested on held-out physics. It caught six ways the search was exploiting the simulator — joints moving faster than the servo allows, soft default contacts, falling forward counted as walking, one lunge counted as a gait, one jump and a fall scored as full airtime, and flickering foot contacts counted as flight — each fixed before the results here.',
       'Four robots from four sentences in three languages passed: six legs walking forward (1.70 m), four legs walking sideways to the right (2.02 m), a robot that spins on the spot (647°), and a long-legged hopper airborne 59% of the time. Nothing in the sentences mentions joints, yet sideways walking evolved joints on one axis, spinning on another, and hopping two long legs with the lightest torso.',
-      'This is simulation only (MuJoCo), one seed per sentence and no hardware, so these are observations rather than conclusions. The gaits use contact details of the simulator and are not expected to carry over unchanged to another simulator or a real floor.',
+      'So far this has been tested in MuJoCo only, with one seed per sentence, so these are observations rather than conclusions. Transfer to another simulator and to a real robot has not been verified; that is future work.',
     ],
     gallery: [
       {
@@ -134,7 +134,7 @@ const strands = [
       ['Substrate', 'MuJoCo; body and gait evolved together (79 genes)'],
       ['Language layer', 'Qwen2.5-1.5B with LoRA, 703 training sentences'],
       ['Related', 'Text2Robot, Chen lab (ICRA 2025)'],
-      ['Status', 'Early work · simulation only · code public'],
+      ['Status', 'Early work · tested in MuJoCo · code public'],
     ],
     links: [
       { label: 'Code', href: 'https://github.com/drnamlabs-gif/zapgpt-morph' },
