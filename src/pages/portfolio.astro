@@ -85,11 +85,39 @@ const projects = [
       ['For', 'Retail traders in Vietnam, in Vietnamese'],
       ['Stack', 'Swift · SwiftUI Canvas · App Attest'],
       ['Market', 'Vietnam, VN30'],
+      ['Status', 'On the App Store since 6 November 2026'],
       ['Source', 'Public, all rights reserved'],
     ],
     links: [
+      { label: 'App Store', href: 'https://apps.apple.com/vn/app/bunnyquantvn/id6758330200' },
       { label: 'Code', href: 'https://github.com/drnamlabs-gif/bunnyquantvn-ios' },
       { label: 'BunnyQuantVN', href: 'https://bunnyquant.vn' },
+    ],
+  },
+  {
+    id: 'photonest-ios',
+    kind: 'iPhone app · Swift',
+    title: 'PhotoNest',
+    lead: 'Frees space on a full iPhone by shrinking photos and videos on the phone itself, instead of deleting them or uploading them anywhere.',
+    shots: [
+      { src: '/portfolio/pn-01-before-after.jpg', alt: 'Two PhotoNest overview screens side by side: the library at 693.8 MB before compressing 110 photos and videos, and 107.5 MB after, with dates, locations and albums kept.', caption: 'Before and after compressing 110 items: 586 MB back, dates, places and albums kept.' },
+      { src: '/portfolio/pn-02-overview.jpg', alt: 'The PhotoNest overview: library size split into videos, screenshots and photos, a Shrink, don’t delete topic, similar shots and copies, and storage by year.', caption: 'Overview: what fills the phone, by kind and by year.' },
+      { src: '/portfolio/pn-03-compress.jpg', alt: 'The Compress sheet: 14 videos and 96 photos estimated to go from 685.8 MB to about 82.8 MB, with video resolution, quality, maximum photo size and a switch to delete the originals afterwards.', caption: 'Compress: choose video resolution and photo size, see the saving first.' },
+      { src: '/portfolio/pn-04-assistant.jpg', alt: 'The assistant answering “Largest videos this year” with 14 videos totalling 542.5 MB and their thumbnails.', caption: 'Ask in plain words; the assistant runs on Apple’s on-device model.' },
+    ],
+    body: [
+      'Most cleaners delete. PhotoNest re-encodes videos (480p to 1080p) and photos (chosen size and quality) on the phone, keeping the original date, location, favourite status and albums. Space comes back only when the originals are removed, and the user confirms that step; removed items stay in Recently Deleted for 30 days.',
+      'It also finds similar shots and bursts, copies of the same photo saved several times, old screenshots and heavy videos. A plain-language assistant (“screenshots before June”) uses Apple’s on-device model on iPhone 15 Pro and later. Everything runs on the phone: no servers, no account, no ads, no tracking.',
+    ],
+    meta: [
+      ['For', 'Anyone whose iPhone is full but who does not want to lose photos'],
+      ['Stack', 'Swift · SwiftUI · PhotoKit · Vision · on-device language model'],
+      ['Status', 'On the App Store since 5 November 2026 · free · English and Vietnamese'],
+      ['Source', 'Private'],
+    ],
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/us/app/photonest-ai-photo-cleaner/id6827830187' },
+      { label: 'Support and privacy', href: 'https://github.com/drnamlabs-gif/photonest-site' },
     ],
   },
 ];
@@ -98,15 +126,15 @@ const projects = [
 <Base
   current="Software"
   title="Software"
-  description="Software portfolio: a from-scratch bioelectricity language model refereed by a tissue simulator, and two native iPhone apps, designed, written and published by a researcher."
+  description="Software portfolio: a from-scratch bioelectricity language model refereed by a tissue simulator, and three native iPhone apps, designed, written and published by a researcher."
 >
   <section class="head">
     <div class="wrap">
       <h1>Software</h1>
       <p class="lede">
         I am a researcher who also ships software. These are tools I designed,
-        wrote and published myself, each built for a specific kind of user, with
-        the code open to read. Research results are on the
+        wrote and published myself, each built for a specific kind of user, most
+        with the code open to read. Research results are on the
         <a href="/research/">research page</a>.
       </p>
     </div>
