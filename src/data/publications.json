@@ -50,13 +50,25 @@
       "title": "Preprints",
       "items": [
         {
+          "authors": "Nam H. Le, Douglas Blackiston, Michael Levin, Josh Bongard",
+          "title": "Toward Controlling Biology with Language: Offline Learning of Prompt-Conditioned Interventions for Cells, Organoids, and Biobots",
+          "venue": "arXiv:2610.02247",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2610.02247",
+              "href": "https://arxiv.org/abs/2610.02247"
+            }
+          ]
+        },
+        {
           "authors": "Nam H. Le",
-          "title": "Organismal Agency and Rapid Adaptation: The Phenopoiesis Algorithm for Phenotype-First Evolution",
+          "title": "Organisms Write Their Own Evolution: Direct Epigenomic Inheritance Accelerates Learning on Compositional Tasks",
           "venue": "arXiv:2602.00978",
           "year": "2026",
           "links": [
             {
-              "label": "Preprint",
+              "label": "arXiv:2602.00978",
               "href": "https://arxiv.org/abs/2602.00978"
             }
           ]
@@ -68,7 +80,7 @@
           "year": "2026",
           "links": [
             {
-              "label": "Preprint",
+              "label": "Zenodo",
               "href": "https://doi.org/10.5281/zenodo.23291253"
             },
             {
@@ -80,16 +92,94 @@
         {
           "authors": "Nam H. Le",
           "title": "Who Pays for the Knowledge Models Copy? Model Collapse as Rogers' Paradox",
-          "venue": "Zenodo",
+          "venue": "arXiv:2611.06022",
           "year": "2026",
           "links": [
             {
-              "label": "Preprint",
-              "href": "https://doi.org/10.5281/zenodo.23298661"
+              "label": "arXiv:2611.06022",
+              "href": "https://arxiv.org/abs/2611.06022"
             },
             {
               "label": "Code",
               "href": "https://github.com/drnamlabs-gif/rogers-model-collapse"
+            }
+          ]
+        },
+        {
+          "authors": "Nam Le",
+          "title": "Evolving Self-supervised Neural Networks: Autonomous Intelligence from Evolved Self-teaching",
+          "venue": "arXiv:1906.08865",
+          "year": "2019",
+          "links": [
+            {
+              "label": "arXiv:1906.08865",
+              "href": "https://arxiv.org/abs/1906.08865"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Under Review",
+      "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "The Forces at Hand: Social Learning Is Permissive, Not Instructive, for the Evolution of Phenotypic Plasticity",
+          "venue": "Submitted to Journal of Theoretical Biology, November 2026",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/forces-at-hand.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Collective-Level Selection from a Density-Dependent Energy Ecology",
+          "venue": "Submitted to Theory in Biosciences, November 2026",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/vitanova-collective-selection.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Two Measurable Laws for Dynamic Optimization: When Exploration Pays and When Sharing Searches",
+          "venue": "Submitted to Swarm Intelligence, November 2026",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/two-laws-dynamic-optimization.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Attention That Eats Itself: Self-Reference Flattens the Energy Landscape of Modern Hopfield Networks and Transformer Attention",
+          "venue": "Submitted to Neurocomputing, November 2026",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/attention-eats-itself.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Relocating Nonlinearity: How a Downstream Learner Reshapes What Genetic Programming Must Evolve",
+          "venue": "Submitted to Swarm and Evolutionary Computation, October 2026",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2610.09347",
+              "href": "https://arxiv.org/abs/2610.09347"
             }
           ]
         }
@@ -118,6 +208,14 @@
           "year": "November 2025",
           "links": [
             {
+              "label": "arXiv:2509.10660",
+              "href": "https://arxiv.org/abs/2509.10660"
+            },
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3787256.3787274"
+            },
+            {
               "label": "Code",
               "href": "https://github.com/namlehai90/ALife_ZapGPT"
             },
@@ -137,13 +235,25 @@
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "Social Learning vs Self-teaching in a Multi-agent Neural Network System",
           "venue": "Applications of Evolutionary Computation, Springer, pp. 354–368",
-          "year": "2020"
+          "year": "2020",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1007/978-3-030-43722-0_23"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le",
           "title": "Evolving Self-taught Neural Networks: The Baldwin Effect and the Emergence of Intelligence",
           "venue": "AISB Symposium on AI & Games",
-          "year": "2019"
+          "year": "2019",
+          "links": [
+            {
+              "label": "arXiv:1906.08854",
+              "href": "https://arxiv.org/abs/1906.08854"
+            }
+          ]
         }
       ]
     },
@@ -155,7 +265,13 @@
           "authors": "Nam H. Le",
           "title": "Organic Selection and Social Heredity: The Original Baldwin Effect Revisited",
           "venue": "ALIFE 2019 Conference Proceedings, MIT Press",
-          "year": "2019"
+          "year": "2019",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1162/isal_a_00214"
+            }
+          ]
         }
       ]
     },
@@ -167,39 +283,75 @@
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "Evolutionary Consequences of Learning Strategies in a Dynamic Rugged Landscape",
           "venue": "GECCO Proceedings, ACM",
-          "year": "2019"
+          "year": "2019",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3321707.3321741"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "How Learning Strategies Can Promote an Evolving Population in Dynamic Environments",
           "venue": "IEEE Congress on Evolutionary Computation (CEC)",
-          "year": "2019"
+          "year": "2019",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2019.8789888"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "The Evolution of Self-taught Neural Networks in a Multi-agent Environment",
           "venue": "EvoStar",
           "year": "2019",
-          "award": "Best Paper nominee"
+          "award": "Best Paper nominee",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1007/978-3-030-16692-2_31"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
-          "title": "How the Baldwin Effect Can Guide Evolution in Dynamic Environments",
+          "title": "How the “Baldwin Effect” Can Guide Evolution in Dynamic Environments",
           "venue": "Theory and Practice of Natural Computing (TPNC)",
-          "year": "2018"
+          "year": "2018",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1007/978-3-030-04070-3_13"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "Adaptive Advantage of Learning Strategies: A Study Through Dynamic Landscape",
           "venue": "Parallel Problem Solving from Nature (PPSN XV)",
-          "year": "2018"
+          "year": "2018",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1007/978-3-319-99259-4_31"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "The Baldwin Effect Reconsidered Through the Prism of Social Learning",
           "venue": "IEEE Congress on Evolutionary Computation (CEC)",
           "year": "2018",
-          "award": "Best Student Paper nominee"
+          "award": "Best Student Paper nominee",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2018.8477654"
+            }
+          ]
         }
       ]
     },
@@ -208,16 +360,28 @@
       "title": "Genetic Programming and Representation Learning",
       "items": [
         {
-          "authors": "Nam H. Le, M. O'Neill, A. Brabazon",
+          "authors": "Nam H. Le, M. O'Neill, D. Fagan, A. Brabazon",
           "title": "Social Grammatical Evolution with Imitation Learning for Real-Valued Function Estimation",
           "venue": "IEEE Congress on Evolutionary Computation (CEC)",
-          "year": "2017"
+          "year": "2017",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2017.7969490"
+            }
+          ]
         },
         {
           "authors": "Nam H. Le, H. N. Xuan, A. Brabazon, T. P. Thi",
           "title": "Complexity Measures in Genetic Programming Learning: A Brief Review",
           "venue": "IEEE Congress on Evolutionary Computation (CEC)",
-          "year": "2016"
+          "year": "2016",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2016.7744087"
+            }
+          ]
         }
       ]
     },
@@ -232,8 +396,12 @@
           "year": "2025",
           "links": [
             {
-              "label": "PDF",
+              "label": "arXiv:2505.02766",
               "href": "https://arxiv.org/abs/2505.02766"
+            },
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3712255.3736398"
             },
             {
               "label": "Video",
@@ -245,7 +413,13 @@
           "authors": "Nam H. Le",
           "title": "Evolution and Self-teaching in Neural Networks",
           "venue": "GECCO Companion Proceedings (poster track), ACM",
-          "year": "2019"
+          "year": "2019",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3319619.3326904"
+            }
+          ]
         }
       ]
     }
