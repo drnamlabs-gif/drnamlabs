@@ -91,7 +91,7 @@
         },
         {
           "authors": "Nam H. Le",
-          "title": "Who Pays for the Knowledge Models Copy? Model Collapse as Rogers' Paradox",
+          "title": "Who Pays for the Knowledge Models Copy? Model Collapse as Lossy Transmission and Rogers' Paradox",
           "venue": "arXiv:2611.06022",
           "year": "2026",
           "links": [
@@ -130,6 +130,10 @@
           "year": "2026",
           "links": [
             {
+              "label": "arXiv:2611.10986",
+              "href": "https://arxiv.org/abs/2611.10986"
+            },
+            {
               "label": "PDF (preprint)",
               "href": "/papers/forces-at-hand.pdf"
             }
@@ -162,7 +166,7 @@
         {
           "authors": "Nam H. Le",
           "title": "Attention That Eats Itself: Self-Reference Flattens the Energy Landscape of Modern Hopfield Networks and Transformer Attention",
-          "venue": "Submitted to Neurocomputing, November 2026",
+          "venue": "Under review at Neural Networks, November 2026",
           "year": "2026",
           "links": [
             {
@@ -174,7 +178,7 @@
         {
           "authors": "Nam H. Le",
           "title": "Relocating Nonlinearity: How a Downstream Learner Reshapes What Genetic Programming Must Evolve",
-          "venue": "Submitted to Swarm and Evolutionary Computation, October 2026",
+          "venue": "In revision at Swarm and Evolutionary Computation, November 2026",
           "year": "2026",
           "links": [
             {
