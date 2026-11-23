@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+
+const inbox = 'drnamlabs@gmail.com';
+const topics = [
+  'Research collaboration',
+  'Question about a paper or result',
+  'Question about a project or the code',
+  'Speaking, reviewing or teaching',
+  'Something else',
+];
+---
+
+<Base
+  current="Contact"
+  title="Contact"
+  description="Write to Nam H. Le about a collaboration, a paper, a project or the code."
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h1>Write to me</h1>
+      <p class="lede">
+        For a collaboration, a question about a paper or a result, or anything about a project or its code.
+        I read everything sent to <a href={`mailto:${inbox}`}>{inbox}</a> and usually reply within a few days.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid">
+      <form id="contact" class="form" novalidate>
+        <label>
+          <span>Your name</span>
+          <input name="name" type="text" autocomplete="name" required />
+        </label>
+        <label>
+          <span>Your email</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Topic</span>
+          <select name="topic">
+            {topics.map((t) => <option>{t}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="8" required
+            placeholder="What you are working on, and what you would like to ask or do together."></textarea>
+        </label>
+        <p class="err" id="err" hidden>Please fill in your name, a valid email and a message.</p>
+        <div class="actions">
+          <button class="btn btn--primary" type="submit">Open in my email app</button>
+          <button class="btn" type="button" id="copy">Copy message</button>
+        </div>
+        <p class="note" id="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="how">
+        <h2>How this works</h2>
+        <ol>
+          <li>Fill in the form and press <em>Open in my email app</em>.</li>
+          <li>Your email app opens a new message to {inbox} with everything filled in.</li>
+          <li>Check it and press send. Nothing is sent or stored by this site.</li>
+        </ol>
+        <p>
+          If no email app opens (common on shared or work computers), press <em>Copy message</em>
+          and paste it into any email to <a href={`mailto:${inbox}`}>{inbox}</a>.
+        </p>
+        <p class="addr">
+          <code>{inbox}</code>
+          <button class="btn btn--small" type="button" id="copy-addr">Copy address</button>
+        </p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ inbox }}>
+  const form = document.getElementById('contact');
+  const err = document.getElementById('err');
+  const status = document.getElementById('status');
+
+  function read() {
+    const d = Object.fromEntries(new FormData(form));
+    for (const k in d) d[k] = String(d[k]).trim();
+    const ok = d.name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) && d.message;
+    err.hidden = !!ok;
+    if (!ok) return null;
+    return {
+      subject: `[drnamlabs] ${d.topic}: ${d.name}`,
+      body: `${d.message}\n\n--\n${d.name}\n${d.email}\nTopic: ${d.topic}`,
+    };
+  }
+
+  async function copy(text, what) {
+    try {
+      await navigator.clipboard.writeText(text);
+      status.textContent = `${what} copied.`;
+    } catch {
+      status.textContent = `Could not copy automatically. Please select and copy it by hand.`;
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const m = read();
+    if (!m) return;
+    status.textContent = `Opening your email app. If nothing happens, use Copy message and send it to ${inbox}.`;
+    window.location.href =
+      `mailto:${inbox}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+  });
+
+  document.getElementById('copy').addEventListener('click', () => {
+    const m = read();
+    if (m) copy(`To: ${inbox}\nSubject: ${m.subject}\n\n${m.body}`, 'Message');
+  });
+  document.getElementById('copy-addr').addEventListener('click', () => copy(inbox, 'Address'));
+</script>
+
+<style>
+  .head { padding-block: clamp(2.5rem, 6vw, 4rem) 1.5rem; }
+  .kicker {
+    font-size: 0.7rem; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 0.9rem;
+  }
+  .lede { max-width: var(--measure); color: var(--text-soft); }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+    align-items: start;
+    padding-bottom: 4rem;
+  }
+  .form { display: grid; gap: 1.1rem; }
+  .form label { display: grid; gap: 0.35rem; }
+  .form label span { font-size: 0.85rem; color: var(--text-soft); }
+  .form input, .form select, .form textarea {
+    font: inherit; color: var(--text);
+    background: var(--bg-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 0.6rem 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form textarea { resize: vertical; min-height: 10rem; }
+  .form input:focus, .form select:focus, .form textarea:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .err { color: var(--amber); margin: 0; font-size: 0.9rem; }
+  .note { color: var(--text-muted); font-size: 0.9rem; margin: 0; min-height: 1.2em; }
+  .how {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-sunken); padding: 1.2rem 1.4rem;
+  }
+  .how h2 { font-size: 1.1rem; margin-top: 0; }
+  .how ol { padding-left: 1.2rem; margin: 0 0 1rem; }
+  .how li { margin-bottom: 0.4rem; }
+  .addr { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0; }
+  .addr code { font-family: var(--mono); }
+  .btn--small { padding: 0.25rem 0.6rem; font-size: 0.8rem; }
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
