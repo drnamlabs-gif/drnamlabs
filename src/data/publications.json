@@ -1,9 +1,219 @@
 {
-  "note": "Single source of truth for every publication listed on the site. Keep in sync with /Volumes/DATA/postdoc/CV/cv_nam_le.tex.",
+  "note": "Single source of truth for every publication listed on the site. Grouped by RESEARCH TOPIC, not by venue type, and ordered with the live strands first; within a topic, newest first. Keep in sync with /Volumes/DATA/postdoc/CV/cv_nam_le.tex.",
   "groups": [
     {
-      "id": "journal",
-      "title": "Journal Articles",
+      "id": "language-intervention",
+      "title": "Language to intervention: controlling cells and biobots with text",
+      "blurb": "One system across real biobots, cell archives and simulated tissue: a sentence becomes an intervention, and a vision-language model judges whether the outcome matches what was asked.",
+      "items": [
+        {
+          "authors": "Nam H. Le, Douglas Blackiston, Michael Levin, Josh Bongard",
+          "title": "Toward Controlling Biology with Language: Offline Learning of Prompt-Conditioned Interventions for Cells, Organoids, and Biobots",
+          "venue": "Preprint, under review",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2610.02247",
+              "href": "https://arxiv.org/abs/2610.02247"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Most of It Was Toxicity: Goal-Conditioned Intervention Retrieval from a Cell Painting Archive, and the Baselines It Has to Be Scored Against",
+          "venue": "Preprint, under review",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF",
+              "href": "/papers/paint-by-words-toxicity.pdf"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/drnamlabs-gif/paint-by-words"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
+          "title": "ZapGPT: Free-form Language Prompting for Simulated Cellular Control",
+          "venue": "Proceedings of the 8th International Conference on Computational Intelligence and Intelligent Systems, ACM, pp. 119–126",
+          "year": "2025",
+          "links": [
+            {
+              "label": "arXiv:2509.10660",
+              "href": "https://arxiv.org/abs/2509.10660"
+            },
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3787256.3787274"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/namlehai90/ALife_ZapGPT"
+            },
+            {
+              "label": "Video",
+              "href": "https://youtu.be/u58QZ6P1RUo"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
+          "title": "Giving Simulated Cells a Voice: Evolving Prompt-to-Intervention Models for Cellular Control",
+          "venue": "GECCO Companion Proceedings, ACM",
+          "year": "2025",
+          "links": [
+            {
+              "label": "arXiv:2505.02766",
+              "href": "https://arxiv.org/abs/2505.02766"
+            },
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3712255.3736398"
+            },
+            {
+              "label": "Video",
+              "href": "https://youtu.be/t2juNHTRs-o"
+            }
+          ]
+        },
+        {
+          "authors": "K. Kannan Srinivasan, Nam H. Le, Josh Bongard, Douglas Blackiston",
+          "title": "Evolving Agents to Generate and Falsify Hypotheses of Biological Self-Assembly",
+          "venue": "ALIFE 2025: Proceedings of the Artificial Life Conference, MIT Press",
+          "year": "2025",
+          "links": [
+            {
+              "label": "Paper",
+              "href": "https://direct.mit.edu/isal/proceedings/isal2025/37/24/134091"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "representation",
+      "title": "Representation, search, and what a downstream learner changes",
+      "blurb": "If a learner sits downstream of the search, the search no longer has to solve the same problem. What is left for it to evolve, and how to measure that.",
+      "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "Selection in Disguise: A Reassessment of Semantic Operators in Genetic Programming",
+          "venue": "Under review at Genetic Programming and Evolvable Machines",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF",
+              "href": "/papers/selection-in-disguise.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, Josh Bongard",
+          "title": "Decoupling Representation and Learning in Genetic Programming: The LaSER Approach",
+          "venue": "Genetic Programming Theory and Practice XXII, Springer Nature Singapore",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2505.17309",
+              "href": "https://arxiv.org/abs/2505.17309"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Relocating Nonlinearity: How a Downstream Learner Reshapes What Genetic Programming Must Evolve",
+          "venue": "In revision at Swarm and Evolutionary Computation",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2610.09347",
+              "href": "https://arxiv.org/abs/2610.09347"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, M. O'Neill, D. Fagan, A. Brabazon",
+          "title": "Social Grammatical Evolution with Imitation Learning for Real-Valued Function Estimation",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2017",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2017.7969490"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le, H. N. Xuan, A. Brabazon, T. P. Thi",
+          "title": "Complexity Measures in Genetic Programming Learning: A Brief Review",
+          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
+          "year": "2016",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1109/CEC.2016.7744087"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learning-machines",
+      "title": "Attention, memory, and what learning machines pass on",
+      "blurb": "Training on your own output is a form of inheritance. What it does to a memory, to an attention landscape, and to the knowledge a population still holds.",
+      "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "Attention That Eats Itself: Self-Reference Flattens the Energy Landscape of Modern Hopfield Networks and Transformer Attention",
+          "venue": "Under review at Neural Networks",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/attention-eats-itself.pdf"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Who Pays for the Knowledge Models Copy? Model Collapse as Lossy Transmission and Rogers' Paradox",
+          "venue": "Preprint",
+          "year": "2026",
+          "links": [
+            {
+              "label": "arXiv:2611.06022",
+              "href": "https://arxiv.org/abs/2611.06022"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/drnamlabs-gif/rogers-model-collapse"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Oddworld: Relational Reasoning Emerges under Implicit Selection in Evolving Attention Agents",
+          "venue": "Preprint, Zenodo",
+          "year": "2026",
+          "links": [
+            {
+              "label": "Zenodo",
+              "href": "https://doi.org/10.5281/zenodo.23291253"
+            },
+            {
+              "label": "Code",
+              "href": "https://github.com/drnamlabs-gif/oddworld"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "individuality",
+      "title": "Evolutionary transitions in individuality",
+      "blurb": "How a population of individuals becomes a collective that reproduces, and specialises, without anyone selecting for it.",
       "items": [
         {
           "authors": "Nam H. Le, M. Levin, R. A. Watson, J. Bongard, C. L. Buckley",
@@ -24,137 +234,30 @@
               "href": "https://www.youtube.com/watch?v=0fqAUwj0fDk"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "chapter",
-      "title": "Book Chapters",
-      "items": [
+        },
         {
-          "authors": "Nam H. Le, Josh Bongard",
-          "title": "Decoupling Representation and Learning in Genetic Programming: The LaSER Approach",
-          "venue": "Genetic Programming Theory and Practice XXII, Springer Nature Singapore",
+          "authors": "Nam H. Le",
+          "title": "Collective-Level Selection from a Density-Dependent Energy Ecology",
+          "venue": "Submitted to Theory in Biosciences",
           "year": "2026",
           "links": [
             {
-              "label": "Preprint (arXiv:2505.17309)",
-              "href": "https://arxiv.org/abs/2505.17309"
+              "label": "PDF (preprint)",
+              "href": "/papers/vitanova-collective-selection.pdf"
             }
           ]
         }
       ]
     },
     {
-      "id": "preprint",
-      "title": "Preprints",
-      "items": [
-        {
-          "authors": "Nam H. Le",
-          "title": "Evolution Makes Imitation Unnecessary for Adapting to an Opponent in Multiagent Reinforcement Learning",
-          "venue": "Preprint, drnamlabs.com (under review)",
-          "year": "2026",
-          "links": [
-            {
-              "label": "PDF",
-              "href": "/papers/evolution-makes-imitation-unnecessary.pdf"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Most of It Was Toxicity: Goal-Conditioned Intervention Retrieval from a Cell Painting Archive, and the Baselines It Has to Be Scored Against",
-          "venue": "Preprint, drnamlabs.com",
-          "year": "2026",
-          "links": [
-            {
-              "label": "PDF",
-              "href": "/papers/paint-by-words-toxicity.pdf"
-            },
-            {
-              "label": "Code",
-              "href": "https://github.com/drnamlabs-gif/paint-by-words"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le, Douglas Blackiston, Michael Levin, Josh Bongard",
-          "title": "Toward Controlling Biology with Language: Offline Learning of Prompt-Conditioned Interventions for Cells, Organoids, and Biobots",
-          "venue": "arXiv:2610.02247",
-          "year": "2026",
-          "links": [
-            {
-              "label": "arXiv:2610.02247",
-              "href": "https://arxiv.org/abs/2610.02247"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Organisms Write Their Own Evolution: Direct Epigenomic Inheritance Accelerates Learning on Compositional Tasks",
-          "venue": "arXiv:2602.00978",
-          "year": "2026",
-          "links": [
-            {
-              "label": "arXiv:2602.00978",
-              "href": "https://arxiv.org/abs/2602.00978"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Oddworld: relational reasoning emerges under implicit selection in evolving attention agents",
-          "venue": "Zenodo",
-          "year": "2026",
-          "links": [
-            {
-              "label": "Zenodo",
-              "href": "https://doi.org/10.5281/zenodo.23291253"
-            },
-            {
-              "label": "Code",
-              "href": "https://github.com/drnamlabs-gif/oddworld"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Who Pays for the Knowledge Models Copy? Model Collapse as Lossy Transmission and Rogers' Paradox",
-          "venue": "arXiv:2611.06022",
-          "year": "2026",
-          "links": [
-            {
-              "label": "arXiv:2611.06022",
-              "href": "https://arxiv.org/abs/2611.06022"
-            },
-            {
-              "label": "Code",
-              "href": "https://github.com/drnamlabs-gif/rogers-model-collapse"
-            }
-          ]
-        },
-        {
-          "authors": "Nam Le",
-          "title": "Evolving Self-supervised Neural Networks: Autonomous Intelligence from Evolved Self-teaching",
-          "venue": "arXiv:1906.08865",
-          "year": "2019",
-          "links": [
-            {
-              "label": "arXiv:1906.08865",
-              "href": "https://arxiv.org/abs/1906.08865"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "review",
-      "title": "Under Review",
+      "id": "evolution-learning",
+      "title": "Learning, evolution, and the Baldwin effect",
+      "blurb": "What learning within a lifetime does to the population that produced it, and when that advantage disappears.",
       "items": [
         {
           "authors": "Nam H. Le",
           "title": "The Forces at Hand: Social Learning Is Permissive, Not Instructive, for the Evolution of Phenotypic Plasticity",
-          "venue": "Submitted to Journal of Theoretical Biology, November 2026",
+          "venue": "Submitted to Journal of Theoretical Biology",
           "year": "2026",
           "links": [
             {
@@ -169,100 +272,28 @@
         },
         {
           "authors": "Nam H. Le",
-          "title": "Collective-Level Selection from a Density-Dependent Energy Ecology",
-          "venue": "Submitted to Theory in Biosciences, November 2026",
+          "title": "Organisms Write Their Own Evolution: Direct Epigenomic Inheritance Accelerates Learning on Compositional Tasks",
+          "venue": "Preprint",
           "year": "2026",
           "links": [
             {
-              "label": "PDF (preprint)",
-              "href": "/papers/vitanova-collective-selection.pdf"
+              "label": "arXiv:2602.00978",
+              "href": "https://arxiv.org/abs/2602.00978"
             }
           ]
         },
         {
           "authors": "Nam H. Le",
-          "title": "Two Measurable Laws for Dynamic Optimization: When Exploration Pays and When Sharing Searches",
-          "venue": "Submitted to Swarm Intelligence, November 2026",
+          "title": "Evolution Makes Imitation Unnecessary for Adapting to an Opponent in Multiagent Reinforcement Learning",
+          "venue": "Preprint, under review",
           "year": "2026",
           "links": [
             {
-              "label": "PDF (preprint)",
-              "href": "/papers/two-laws-dynamic-optimization.pdf"
+              "label": "PDF",
+              "href": "/papers/evolution-makes-imitation-unnecessary.pdf"
             }
           ]
         },
-        {
-          "authors": "Nam H. Le",
-          "title": "Attention That Eats Itself: Self-Reference Flattens the Energy Landscape of Modern Hopfield Networks and Transformer Attention",
-          "venue": "Under review at Neural Networks, November 2026",
-          "year": "2026",
-          "links": [
-            {
-              "label": "PDF (preprint)",
-              "href": "/papers/attention-eats-itself.pdf"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Relocating Nonlinearity: How a Downstream Learner Reshapes What Genetic Programming Must Evolve",
-          "venue": "In revision at Swarm and Evolutionary Computation, November 2026",
-          "year": "2026",
-          "links": [
-            {
-              "label": "arXiv:2610.09347",
-              "href": "https://arxiv.org/abs/2610.09347"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "bio",
-      "title": "Bio-Inspired AI and Language-Based Control",
-      "items": [
-        {
-          "authors": "K. Kannan Srinivasan, Nam H. Le, Josh Bongard, Douglas Blackiston",
-          "title": "Evolving Agents to Generate and Falsify Hypotheses of Biological Self-Assembly",
-          "venue": "ALIFE 2025: Proceedings of the Artificial Life Conference, MIT Press, Kyoto, Japan",
-          "year": "October 2025",
-          "links": [
-            {
-              "label": "Paper",
-              "href": "https://direct.mit.edu/isal/proceedings/isal2025/37/24/134091"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
-          "title": "ZapGPT: Free-form Language Prompting for Simulated Cellular Control",
-          "venue": "Proceedings of the 2025 8th International Conference on Computational Intelligence and Intelligent Systems (CIIS 2025), ACM, pp. 119–126",
-          "year": "November 2025",
-          "links": [
-            {
-              "label": "arXiv:2509.10660",
-              "href": "https://arxiv.org/abs/2509.10660"
-            },
-            {
-              "label": "Publisher",
-              "href": "https://doi.org/10.1145/3787256.3787274"
-            },
-            {
-              "label": "Code",
-              "href": "https://github.com/namlehai90/ALife_ZapGPT"
-            },
-            {
-              "label": "Video",
-              "href": "https://youtu.be/u58QZ6P1RUo"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "neuro",
-      "title": "Neuroevolution and Multi-Agent Learning",
-      "items": [
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "Social Learning vs Self-teaching in a Multi-agent Neural Network System",
@@ -277,24 +308,6 @@
         },
         {
           "authors": "Nam H. Le",
-          "title": "Evolving Self-taught Neural Networks: The Baldwin Effect and the Emergence of Intelligence",
-          "venue": "AISB Symposium on AI & Games",
-          "year": "2019",
-          "links": [
-            {
-              "label": "arXiv:1906.08854",
-              "href": "https://arxiv.org/abs/1906.08854"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "alife",
-      "title": "Artificial Life and Evolution",
-      "items": [
-        {
-          "authors": "Nam H. Le",
           "title": "Organic Selection and Social Heredity: The Original Baldwin Effect Revisited",
           "venue": "ALIFE 2019 Conference Proceedings, MIT Press",
           "year": "2019",
@@ -304,13 +317,62 @@
               "href": "https://doi.org/10.1162/isal_a_00214"
             }
           ]
+        },
+        {
+          "authors": "Nam Le",
+          "title": "Evolving Self-supervised Neural Networks: Autonomous Intelligence from Evolved Self-teaching",
+          "venue": "Preprint",
+          "year": "2019",
+          "links": [
+            {
+              "label": "arXiv:1906.08865",
+              "href": "https://arxiv.org/abs/1906.08865"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Evolving Self-taught Neural Networks: The Baldwin Effect and the Emergence of Intelligence",
+          "venue": "AISB Symposium on AI & Games",
+          "year": "2019",
+          "links": [
+            {
+              "label": "arXiv:1906.08854",
+              "href": "https://arxiv.org/abs/1906.08854"
+            }
+          ]
+        },
+        {
+          "authors": "Nam H. Le",
+          "title": "Evolution and Self-teaching in Neural Networks",
+          "venue": "GECCO Companion Proceedings, ACM",
+          "year": "2019",
+          "links": [
+            {
+              "label": "Publisher",
+              "href": "https://doi.org/10.1145/3319619.3326904"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "learn",
-      "title": "Learning Strategies in Evolutionary Optimisation",
+      "id": "dynamic-environments",
+      "title": "Learning and search in dynamic environments",
+      "blurb": "When the target keeps moving, which strategy pays: learn it yourself, copy a neighbour, or neither. The doctoral series, and what came out of it.",
       "items": [
+        {
+          "authors": "Nam H. Le",
+          "title": "Two Measurable Laws for Dynamic Optimization: When Exploration Pays and When Sharing Searches",
+          "venue": "Submitted to Swarm Intelligence",
+          "year": "2026",
+          "links": [
+            {
+              "label": "PDF (preprint)",
+              "href": "/papers/two-laws-dynamic-optimization.pdf"
+            }
+          ]
+        },
         {
           "authors": "Nam H. Le, A. Brabazon, M. O'Neill",
           "title": "Evolutionary Consequences of Learning Strategies in a Dynamic Rugged Landscape",
@@ -382,74 +444,6 @@
             {
               "label": "Publisher",
               "href": "https://doi.org/10.1109/CEC.2018.8477654"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "gp",
-      "title": "Genetic Programming and Representation Learning",
-      "items": [
-        {
-          "authors": "Nam H. Le, M. O'Neill, D. Fagan, A. Brabazon",
-          "title": "Social Grammatical Evolution with Imitation Learning for Real-Valued Function Estimation",
-          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
-          "year": "2017",
-          "links": [
-            {
-              "label": "Publisher",
-              "href": "https://doi.org/10.1109/CEC.2017.7969490"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le, H. N. Xuan, A. Brabazon, T. P. Thi",
-          "title": "Complexity Measures in Genetic Programming Learning: A Brief Review",
-          "venue": "IEEE Congress on Evolutionary Computation (CEC)",
-          "year": "2016",
-          "links": [
-            {
-              "label": "Publisher",
-              "href": "https://doi.org/10.1109/CEC.2016.7744087"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "companion",
-      "title": "Workshop, Companion and Short Papers",
-      "items": [
-        {
-          "authors": "Nam H. Le, Patrick Erickson, Yanbo Zhang, Michael Levin, Josh Bongard",
-          "title": "Giving Simulated Cells a Voice: Evolving Prompt-to-Intervention Models for Cellular Control",
-          "venue": "GECCO Companion Proceedings (poster track), ACM",
-          "year": "2025",
-          "links": [
-            {
-              "label": "arXiv:2505.02766",
-              "href": "https://arxiv.org/abs/2505.02766"
-            },
-            {
-              "label": "Publisher",
-              "href": "https://doi.org/10.1145/3712255.3736398"
-            },
-            {
-              "label": "Video",
-              "href": "https://youtu.be/t2juNHTRs-o"
-            }
-          ]
-        },
-        {
-          "authors": "Nam H. Le",
-          "title": "Evolution and Self-teaching in Neural Networks",
-          "venue": "GECCO Companion Proceedings (poster track), ACM",
-          "year": "2019",
-          "links": [
-            {
-              "label": "Publisher",
-              "href": "https://doi.org/10.1145/3319619.3326904"
             }
           ]
         }
