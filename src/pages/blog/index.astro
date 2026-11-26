@@ -8,7 +8,7 @@ const posts = (await getCollection('blog', ({ data }) => import.meta.env.DEV || 
 const langs = [...new Set(posts.map((p) => p.data.lang))];
 const fmt = (d, lang) =>
   d.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-GB', {
-    year: 'numeric', month: 'long', day: 'numeric',
+    timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric',
   });
 ---
 

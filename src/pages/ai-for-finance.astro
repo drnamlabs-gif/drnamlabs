@@ -1,0 +1,147 @@
+---
+// A door, not a second copy of /bunnyquant/. Capability only: the method behind Theta
+// is unpublished and nothing here may help anyone rebuild it. No state variables, no
+// estimator, no thresholds, no measured rates, no named validation instruments.
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const points = [
+  {
+    head: 'A market state, not an indicator reading',
+    body: 'Most tools answer whether something is high or low right now. The question I work on is which regime an instrument is in, and whether that regime is strengthening or coming apart. The answer is a position and a direction of travel, not a number to compare against a threshold.',
+  },
+  {
+    head: 'Risk that assumes the distribution moves',
+    body: 'Risk measures computed as though the distribution were fixed fail exactly when they are needed. I build probabilistic statements about where price can go and what it would cost to be wrong, recomputed as the state changes, and I report them as probabilities rather than as signals.',
+  },
+  {
+    head: 'It runs, and people pay for it',
+    body: 'This is not a notebook. Live data pipelines, server-side models, a web platform and two native iOS apps on the App Store, serving subscribers across US and Vietnamese markets. Everything I claim about evaluation in research has had to survive contact with users and with money.',
+  },
+];
+
+const evidence = [
+  {
+    kind: 'Platform, United States',
+    title: 'bunnyquant.com',
+    body: 'Equities, futures, cryptocurrencies and precious metals for intraday and short-horizon work: regime and cycle detection, structure across timeframes, and risk measures built for a distribution that moves.',
+    links: [{ label: 'bunnyquant.com', href: 'https://bunnyquant.com' }],
+  },
+  {
+    kind: 'Platform, Vietnam',
+    title: 'bunnyquant.vn and BunnyQuantVN',
+    body: 'Listed equities and index derivatives, with a fundamental engine built for the local market: discounted cash flow, Monte Carlo valuation, statement parsing, peer comparison. The iPhone app is aware of T+2 settlement, because the risk card is wrong without it.',
+    links: [
+      { label: 'bunnyquant.vn', href: 'https://bunnyquant.vn' },
+      { label: 'App Store', href: 'https://apps.apple.com/vn/app/bunnyquantvn/id6758330200' },
+    ],
+  },
+  {
+    kind: 'Benchmark on real order-book data',
+    title: 'Forecasting ten-minute volatility from the order book (Optiver, Kaggle)',
+    body: 'Data: ten-minute windows of second-by-second order book and trades for 112 stocks, released by the market maker Optiver; the task is to forecast realised volatility over the next ten minutes, scored by percentage error. Method: an explainable model first (current volatility scaled by a few interpretable ratios and by the volatility state of the whole market at that moment), then gradient-boosted trees fitted only to what that model leaves. The 17-coefficient structural model alone covers about 80% of the distance from the naive forecast to boosted trees, and the combination helps most when the whole market is volatile. Late submission, private leaderboard: 0.2314 (winning entry 0.1955). Code public; competition data stays with Kaggle.',
+    links: [
+      { label: 'Code on GitHub', href: 'https://github.com/drnamlabs-gif/quant-benchmarks' },
+      { label: 'Competition', href: 'https://www.kaggle.com/competitions/optiver-realized-volatility-prediction' },
+    ],
+  },
+  {
+    kind: 'Published research',
+    title: 'Synchronization reveals market structure that classical randomness tests cannot detect',
+    body: 'Structure that standard randomness tests miss, stated as a measurement rather than as a trading claim. Under journal review; the preprint is public.',
+    links: [{ label: 'arXiv:2610.11028', href: 'https://arxiv.org/abs/2610.11028' }],
+  },
+];
+---
+
+<Base
+  current="AI for markets"
+  title="AI for markets"
+  description="Probabilistic market state and risk, and a system that runs live for paying subscribers across US and Vietnamese markets. Platforms, iOS apps, and published research."
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="eyebrow">One of two lines of work</p>
+      <h1>AI for markets</h1>
+      <p class="lede">
+        I build probabilistic descriptions of market state and risk, and I run them as a
+        product. The emphasis is on saying what state an instrument is in and what being
+        wrong would cost, rather than on claiming to have found an edge. The same habits
+        apply as in the research: state the limits, measure against a baseline that knows
+        nothing, and report the result that survives.
+      </p>
+      <p class="small muted">
+        Founder and chief engineer, BunnyQuant. Data pipelines, server-side models, web
+        platform and native iOS clients, built and operated by one person.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What the work is</p>
+      <div class="cards">
+        {points.map((p) => (
+          <article class="card">
+            <h2 class="card__head">{p.head}</h2>
+            <p class="card__body">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Evidence you can open</p>
+      <div class="ev">
+        {evidence.map((e) => (
+          <article class="ev__item">
+            <p class="ev__kind mono">{e.kind}</p>
+            <h2 class="ev__title">{e.title}</h2>
+            <p class="ev__body">{e.body}</p>
+            <p class="ev__links">
+              {e.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Next</p>
+      <p class="lede">
+        The BunnyQuant page covers the products in full. The other line of work is
+        biology.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/bunnyquant/">BunnyQuant in full</a>
+        <a class="btn" href="/portfolio/">Software</a>
+        <a class="btn" href="/ai-for-bio/">AI for biology</a>
+        <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .card {
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg-raised); padding: 1.1rem 1.2rem;
+  }
+  .card__head { font-size: 1.02rem; margin: 0 0 .45rem; }
+  .card__body { margin: 0; color: var(--text-soft); font-size: .95rem; line-height: 1.6; }
+
+  .ev { display: grid; gap: 1.1rem; }
+  .ev__item { border-left: 2px solid var(--border-strong); padding-left: 1.1rem; }
+  .ev__kind {
+    font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-muted); margin: 0 0 .25rem;
+  }
+  .ev__title { font-size: 1.08rem; margin: 0 0 .4rem; }
+  .ev__body { margin: 0 0 .5rem; color: var(--text-soft); font-size: .95rem; line-height: 1.6; }
+  .ev__links { margin: 0; display: flex; flex-wrap: wrap; gap: .9rem; font-size: .86rem; }
+</style>

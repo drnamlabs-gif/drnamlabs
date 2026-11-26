@@ -1,0 +1,186 @@
+---
+// A door, not a second copy of /research/. One screen: what the work is, three pieces
+// of evidence a reader can open, and where to go next. Sent directly to people coming
+// from the biology side.
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const points = [
+  {
+    head: 'State the outcome, not the protocol',
+    body: 'An archive of experiments is indexed by what was done: a compound, a gene, a stimulation pattern. It is not indexed by what the cells ended up doing. I learn the inverse map, so a goal written in ordinary English returns an intervention and its dose, and a refusal when the archive contains nothing that matches.',
+  },
+  {
+    head: 'Supervision where there are no labels',
+    body: 'Nobody annotated those experiments with the question you are now asking, so the supervision has to be manufactured: predicates defined over measurements made for other reasons, or a vision-language model used as a second measuring instrument and validated, behaviour by behaviour, against the physical one.',
+  },
+  {
+    head: 'Evaluation designed as carefully as the model',
+    body: 'Every result is reported beside a baseline that never reads the request. On a public drug-screening archive that baseline scored 0.833 where my model scored 0.842, which is how I found that per-cell image features are entangled with cell death. A lower number that means something is worth more than a higher number that does not.',
+  },
+];
+
+const evidence = [
+  {
+    kind: 'Human cells, imaging',
+    title: 'Most of It Was Toxicity',
+    body: 'Goal-conditioned retrieval of compounds and doses from a public Cell Painting archive, with dose windows and calibrated refusal, and the measurement artefact that had been inflating phenotype models on it.',
+    links: [
+      { label: 'Preprint', href: '/papers/paint-by-words-toxicity.pdf' },
+      { label: 'Write-up', href: '/blog/most-of-it-was-toxicity/' },
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/paint-by-words' },
+    ],
+  },
+  {
+    kind: 'Biobots and organoids',
+    title: 'Toward Controlling Biology with Language',
+    body: 'Offline learning of prompt-conditioned interventions from an archive of past stimulation experiments, with a vision-language model judging outcomes from video as the only reward. Work with Tufts University; a wet lab on the other end of the loop.',
+    links: [{ label: 'arXiv:2610.02247', href: 'https://arxiv.org/abs/2610.02247' }],
+  },
+  {
+    kind: 'Simulated cells',
+    title: 'Free-form language prompting for cellular control',
+    body: 'The first instantiation of the loop, where a sentence becomes a spatial field acting on a population of cells, and generalises to instructions never trained on.',
+    links: [{ label: 'arXiv:2509.10660', href: 'https://arxiv.org/abs/2509.10660' }],
+  },
+  {
+    kind: 'Language models from scratch',
+    title: 'CellBio-GPT',
+    body: 'A 40.5M-parameter model written from scratch in PyTorch and trained against a tissue simulator rather than against human preference: tokenizer, pretraining, fine-tuning, DPO, then reinforcement learning with the simulator as the reward.',
+    links: [
+      { label: 'Demo', href: '/cellbio/' },
+      { label: 'Code', href: 'https://github.com/drnamlabs-gif/cellbio-gpt' },
+    ],
+  },
+];
+---
+
+<Base
+  current="AI for biology"
+  title="AI for biology"
+  description="Using language models to state what a biological system should do, and learning the intervention that does it from archives of experiments already run. Cells, organoids, biobots, and a public drug-screening archive."
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="eyebrow">One of two lines of work</p>
+      <h1>AI for biology</h1>
+      <p class="lede">
+        I use language models to say what a biological system should do, and learn the
+        intervention that does it from experiments that have already been run. The same
+        loop has been built four times now, on deliberately unlike systems: simulated
+        cells, living biobots and organoids, human cells under a microscope, and a
+        transcriptomic archive.
+      </p>
+      <p class="small muted">
+        The biobot and organoid work is postdoctoral research at the University of Vermont
+        in Josh Bongard's laboratory, with Michael Levin's group at Tufts, supported by the
+        U.S. Army Research Office. The Cell Painting work below is independent and received
+        no specific funding.
+      </p>
+
+      <figure class="shot">
+        <video autoplay muted loop playsinline preload="metadata"
+          aria-label="A request is typed, a ranking of compounds and doses appears with a toxicity score beside the model's own, then the real microscopy wells behind two of those rows.">
+          <source src="/blog/paint-by-words/00_demo.webm" type="video/webm" />
+          <source src="/blog/paint-by-words/00_demo.mp4" type="video/mp4" />
+        </video>
+        <figcaption>
+          Ask for a phenotype in plain English and the archive answers with a compound,
+          a dose and the evidence. Four of the five rows score higher on <i>kill most of
+          the cells</i> than on what was asked; the real wells behind two of them are
+          shown next. <a href="/blog/most-of-it-was-toxicity/">The write-up</a>.
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <video autoplay muted loop playsinline preload="metadata"
+          aria-label="One compound photographed at eight increasing doses, nuclei and actin channels, on a single brightness scale; the well empties as the dose rises.">
+          <source src="/blog/paint-by-words/02_dose_series.webm" type="video/webm" />
+          <source src="/blog/paint-by-words/02_dose_series.mp4" type="video/mp4" />
+        </video>
+        <figcaption>
+          Nothing modelled here: one compound at its eight doses, on a single brightness
+          scale taken from the lowest, so the thinning out is real. This is why the
+          output has to be able to rise and then fall.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What the work is</p>
+      <div class="cards">
+        {points.map((p) => (
+          <article class="card">
+            <h2 class="card__head">{p.head}</h2>
+            <p class="card__body">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Evidence you can open</p>
+      <div class="ev">
+        {evidence.map((e) => (
+          <article class="ev__item">
+            <p class="ev__kind mono">{e.kind}</p>
+            <h2 class="ev__title">{e.title}</h2>
+            <p class="ev__body">{e.body}</p>
+            <p class="ev__links">
+              {e.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Next</p>
+      <p class="lede">
+        The research pages carry the full account, including the strands this page leaves
+        out. The other line of work is markets.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/research/">Research in full</a>
+        <a class="btn" href="/publications/">Publications</a>
+        <a class="btn" href="/ai-for-finance/">AI for markets</a>
+        <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .card {
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg-raised); padding: 1.1rem 1.2rem;
+  }
+  .card__head { font-size: 1.02rem; margin: 0 0 .45rem; }
+  .card__body { margin: 0; color: var(--text-soft); font-size: .95rem; line-height: 1.6; }
+
+  .ev { display: grid; gap: 1.1rem; }
+  .ev__item { border-left: 2px solid var(--border-strong); padding-left: 1.1rem; }
+  .ev__kind {
+    font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-muted); margin: 0 0 .25rem;
+  }
+  .ev__title { font-size: 1.08rem; margin: 0 0 .4rem; }
+  .ev__body { margin: 0 0 .5rem; color: var(--text-soft); font-size: .95rem; line-height: 1.6; }
+  .ev__links { margin: 0; display: flex; flex-wrap: wrap; gap: .9rem; font-size: .86rem; }
+
+  .shot { margin: 1.6rem 0 0; }
+  .shot video {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--border); border-radius: 10px; background: var(--bg-sunken);
+  }
+  .shot figcaption {
+    margin-top: .55rem; font-size: .86rem; line-height: 1.55; color: var(--text-muted);
+  }
+</style>

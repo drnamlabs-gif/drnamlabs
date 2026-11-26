@@ -1,8 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PhasePortrait from '../components/PhasePortrait.astro';
 import LearningCanvas from '../components/LearningCanvas.astro';
 import site from '../data/site.json';
+
+// The newest post leads the page by itself, so this strip never goes stale and never
+// needs editing. Drafts are excluded in production exactly as on /blog/.
+const latest = (await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+const latestDate = latest?.data.date.toLocaleDateString(
+  latest?.data.lang === 'vi' ? 'vi-VN' : 'en-GB',
+  { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' },
+);
 
 const tiles = [
   {
@@ -74,6 +84,13 @@ const software = [
 const selected = [
   {
     year: '2026',
+    title: 'Most of It Was Toxicity: Goal-Conditioned Intervention Retrieval from a Cell Painting Archive',
+    note: 'Ask an archive of drug-screening images for a phenotype in plain English and get a compound, a dose, and the evidence. It scored 0.842 on chemistry it had never seen, until the same predictions were scored by a baseline that never reads the request, which scored 0.833. Per-cell features are averaged over the cells that survive, so dying cells read brighter: the phenotype model was mostly a toxicity detector, and so is the usual way of defining success on these archives.',
+    venue: 'Preprint · drnamlabs.com',
+    href: '/papers/paint-by-words-toxicity.pdf',
+  },
+  {
+    year: '2026',
     title: "Who Pays for the Knowledge Models Copy? Model Collapse as Lossy Transmission and Rogers' Paradox",
     note: 'Language models trained on each other\'s output lose knowledge, rare knowledge first. In a fixed world the copies are lossy; in a changing world even faithful copies go stale, which is Rogers\' paradox. Either way, someone has to keep learning for themselves.',
     venue: 'arXiv',
@@ -118,6 +135,16 @@ const selected = [
 ---
 
 <Base current="Home">
+  {latest && (
+    <a class="ribbon" href={`/blog/${latest.id.replace(/\.md$/, '')}/`}>
+      <span class="wrap ribbon__inner">
+        <span class="ribbon__tag mono">Latest</span>
+        <time class="ribbon__date mono" datetime={latest.data.date.toISOString().slice(0, 10)}>{latestDate}</time>
+        <span class="ribbon__title">{latest.data.title}</span>
+      </span>
+    </a>
+  )}
+
   <section class="hero">
     <div class="wrap">
       <p class="hero__kicker mono">{site.name}, {site.credential} · AI researcher · University of Vermont</p>
@@ -158,6 +185,12 @@ const selected = [
         </a>
       </div>
       <p class="trio__credit">Biobots and cells: work done in Josh Bongard’s lab (UVM), in collaboration with Michael Levin’s lab (Tufts). The xenobot experiments and video are by Dr Douglas Blackiston (Tufts).</p>
+      <p class="hero__lines">
+        Two lines of work:
+        <a href="/ai-for-bio/">AI for biology</a>
+        <span aria-hidden="true">·</span>
+        <a href="/ai-for-finance/">AI for markets</a>
+      </p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="/research/">Research</a>
         <a class="btn" href="/portfolio/">Software</a>
@@ -479,4 +512,81 @@ const selected = [
   @media (max-width: 34rem) {
     .sel__item { grid-template-columns: 1fr; gap: 0.35rem; }
   }
+
+  /* Latest: the newest post leads the page. Restrained on purpose, in line with the
+     rest of the site: a dated label and the finding itself, no badge that blinks. */
+  .latest { padding-top: 0; }
+  .latest__card {
+    display: block;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-raised);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .latest__card:hover {
+    border-color: var(--border-strong);
+    border-left-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(23, 24, 28, .06);
+  }
+  .latest__meta {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--text-muted); margin: 0 0 .5rem;
+  }
+  .latest__tag {
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 999px; padding: .12rem .5rem; font-weight: 600;
+  }
+  .latest__title {
+    font-family: var(--serif); font-size: 1.22rem; line-height: 1.3;
+    margin: 0 0 .4rem; color: var(--text);
+  }
+  .latest__note { margin: 0; color: var(--text-soft); font-size: .97rem; line-height: 1.55; }
+  .latest__more { margin: .7rem 0 0; font-size: .78rem; color: var(--accent); }
+  .latest__more::after { content: ' 92'; }
+  @media (max-width: 560px) {
+    .latest__title { font-size: 1.08rem; }
+    .latest__meta { flex-wrap: wrap; }
+  }
+
+  /* One line, above everything, carrying the newest post's title. A visitor who has
+     been here before sees what is new without the page turning into a news feed. */
+  .ribbon {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--bg-sunken);
+    border-bottom: 1px solid var(--border);
+    transition: background .18s ease;
+  }
+  .ribbon:hover { background: var(--accent-soft); }
+  .ribbon__inner {
+    display: flex; align-items: baseline; gap: .7rem;
+    padding: .55rem 0; font-size: .88rem; line-height: 1.4;
+  }
+  .ribbon__tag {
+    flex: none; color: var(--accent); font-size: .7rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .ribbon__date { flex: none; color: var(--text-muted); font-size: .72rem; }
+  .ribbon__title {
+    color: var(--text-soft);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .ribbon__title::after { content: ' 92'; color: var(--accent); }
+  @media (max-width: 620px) {
+    .ribbon__date { display: none; }
+    .ribbon__title { white-space: normal; }
+  }
+
+  /* The two doors, stated once, under the hero actions rather than in the nav: the nav
+     row already scrolls horizontally on a 390px screen and two more items overflow it. */
+  .hero__lines {
+    margin: 1.1rem 0 0; font-size: .92rem; color: var(--text-muted);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem;
+  }
+  .hero__lines a { color: var(--accent); }
 </style>

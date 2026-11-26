@@ -14,6 +14,14 @@
   },
   "nav": [
     {
+      "label": "AI for biology",
+      "href": "/ai-for-bio/"
+    },
+    {
+      "label": "AI for markets",
+      "href": "/ai-for-finance/"
+    },
+    {
       "label": "Research",
       "href": "/research/"
     },
@@ -34,8 +42,8 @@
       "href": "/publications/"
     },
     {
-      "label": "Ventures",
-      "href": "/bunnyquant/"
+      "label": "Contact",
+      "href": "/contact/"
     }
   ]
 }

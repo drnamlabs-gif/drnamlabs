@@ -13,7 +13,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
 const locale = post.data.lang === 'vi' ? 'vi-VN' : 'en-GB';
 const shown = post.data.date.toLocaleDateString(locale, {
-  year: 'numeric', month: 'long', day: 'numeric',
+  timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric',
 });
 const canonical = new URL(`/blog/${post.id}/`, Astro.site).toString();
 const minutes = remarkPluginFrontmatter?.minutes;
@@ -152,4 +152,13 @@ const minutes = remarkPluginFrontmatter?.minutes;
   .post__head h1 { max-width: 34rem; margin-bottom: 0.6rem; }
   .post__head .lede { max-width: 38rem; }
   .post__tags { margin-top: 1rem; }
+
+  /* Wide panels and charts break out of the reading column on a large screen; the
+     reading column is sized for text, and these are 1700px of plot. */
+  @media (min-width: 1060px) {
+    .prose figure.wide {
+      width: min(118%, 62rem);
+      margin-inline: calc((100% - min(118%, 62rem)) / 2);
+    }
+  }
 </style>
